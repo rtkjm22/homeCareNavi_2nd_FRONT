@@ -1,5 +1,4 @@
 <template>
-  <div>
-    <p>hogehgoe</p>
-  </div>
+  <div>topページ</div>
 </template>
+<script setup lang="ts"></script>
