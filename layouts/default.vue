@@ -1,14 +1,11 @@
 <template>
   <div class="bg-[#F5F7F7]">
-    <Headers />
+    <OrganismsHeaders :status="1" />
     <slot class="main" />
-    <Footers />
+    <OrganismsFooters />
   </div>
 </template>
-<script setup lang="ts">
-import Footers from "~~/components/organisms/Footers.vue";
-import Headers from "../components/organisms/Headers.vue";
-</script>
+<script setup lang="ts"></script>
 <style scoped>
 .main {
   display: block;

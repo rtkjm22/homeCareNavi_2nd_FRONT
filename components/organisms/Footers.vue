@@ -21,13 +21,9 @@
             class="mb-4 flex items-center justify-end sm:mb-0 sm:flex-1 lg:w-0"
           >
             <nav>
-              <ul>
-                <li>
-                  <a href="/" class="text-[11px] text-pink mr-5">
-                    プライバシーポリシー
-                  </a>
-                  <a href="/" class="text-[11px] text-pink mr-5"> 利用規約 </a>
-                  <a href="/" class="text-[11px] text-pink"> お問い合わせ </a>
+              <ul class="flex">
+                <li v-for="item in links" class="linkItem">
+                  <NuxtLink :to="item.to">{{ item.text }}</NuxtLink>
                 </li>
               </ul>
             </nav>
@@ -37,4 +33,27 @@
     </div>
   </div>
 </template>
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const links = [
+  {
+    text: "プライバシーポリシー",
+    to: "/",
+  },
+  {
+    text: "利用規約",
+    to: "/",
+  },
+  {
+    text: "お問い合わせ",
+    to: "/",
+  },
+];
+</script>
+<style scoped lang="scss">
+.linkItem {
+  @apply text-[11px] text-pink;
+}
+.linkItem:not(:last-of-type) {
+  @apply mr-5;
+}
+</style>
