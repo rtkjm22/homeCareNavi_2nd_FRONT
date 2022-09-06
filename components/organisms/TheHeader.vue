@@ -20,7 +20,7 @@
           <nav class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <div class="flex flex-nowrap">
               <NuxtLink
-                v-for="item in headerLinks"
+                v-for="item in links"
                 :key="item.innerText"
                 :to="item.to"
                 class="linkItem"
@@ -95,7 +95,7 @@
                 </div>
                 <!-- メニュー下部 -->
                 <ul class="flex flex-col">
-                  <li v-for="item in headerLinks" :key="item.innerText">
+                  <li v-for="item in links" :key="item.innerText">
                     <AtomsButtonArrow
                       :inner-text="item.innerText"
                       :to="item.to"
@@ -116,7 +116,7 @@ import type { ComputedRef, Ref } from 'vue'
 interface Props {
   role?: number;
 }
-interface Links {
+interface Link {
   innerText: string;
   to: string;
 }
@@ -126,7 +126,7 @@ const props = defineProps<Props>()
 const isNavOpened = ref(false)
 
 const navStatus: Ref<number> = ref(props.role)
-const headerLinks: ComputedRef<Links[]> = computed(() => {
+const links = computed<Link[]>(() => {
   switch (navStatus.value) {
     case 1:
       return [
