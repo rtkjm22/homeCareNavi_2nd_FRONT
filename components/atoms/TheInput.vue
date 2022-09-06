@@ -13,14 +13,14 @@
       :minlength="minL"
       :maxlength="maxL"
       :required="required"
-    />
+    >
   </div>
 </template>
 <script setup lang="ts">
 interface Props {
   labelFor: string;
   labelText: string;
-  inputType: "text" | "email" | "password" | "tel";
+  inputType: 'text' | 'email' | 'password' | 'tel';
   placeholder: string;
   pattern?: string;
   minL?: string;
@@ -28,7 +28,7 @@ interface Props {
   required?: boolean;
 }
 
-const props = defineProps<Props>();
+defineProps<Props>()
 </script>
 <style scoped>
 .label {

@@ -7,10 +7,10 @@
     <div class="relative flex items-center">
       <div
         class="arrowBase rotate-45 -translate-y-[2px]"
-      ></div>
+      />
       <div
         class="arrowBase -rotate-45 translate-y-[2px]"
-      ></div>
+      />
     </div>
   </NuxtLink>
 </template>
@@ -20,7 +20,7 @@ interface Props {
   to: string;
 }
 
-const props = defineProps<Props>();
+defineProps<Props>()
 </script>
 <style scoped lang="scss">
 .arrowBase {

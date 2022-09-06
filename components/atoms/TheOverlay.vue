@@ -3,30 +3,14 @@
     <!-- オーバーレイ -->
     <transition name="overlay">
       <div
+        v-if="isNavOpened"
         class="overlay"
-        v-if="navFlg"
-        @click="toggleNavFlg"
-      ></div>
+      />
     </transition>
   </div>
 </template>
 <script setup lang="ts">
-import { emit } from 'process';
-
-  interface Props {
-    navFlg: boolean;
-  }
-
-  interface Emits {
-    (e: "update:value"): void;
-  }
-
-  const props = defineProps<Props>();
-  const emits = defineEmits<Emits>();
-
-  const toggleNavFlg = () => {
-    emits("update:value")
-  }
+defineProps<{ isNavOpened:boolean }>()
 </script>
 <style scoped lang="scss">
 .overlay {
@@ -37,7 +21,7 @@ import { emit } from 'process';
   &-leave-to {
     opacity: 0;
   }
-  &-enter-to, 
+  &-enter-to,
   &-leave-from {
     opacity: 0.8;
   }

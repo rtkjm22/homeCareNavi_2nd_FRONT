@@ -12,7 +12,7 @@
                 class="h-8 w-auto sm:h-8"
                 src="@/assets/img/logo.svg"
                 alt=""
-              />
+              >
             </a>
           </div>
 
@@ -20,16 +20,17 @@
           <nav class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <div class="flex flex-nowrap">
               <NuxtLink
-                v-for="item in menuArr"
+                v-for="item in headerLinks"
                 :key="item.innerText"
                 :to="item.to"
                 class="linkItem"
-                >{{ item.innerText }}</NuxtLink
               >
+                {{ item.innerText }}
+              </NuxtLink>
             </div>
             <div class="ml-4 flex items-center gap-2">
-              <AtomsButton innerText="ログイン" />
-              <AtomsButton innerText="新規登録" role="client" />
+              <AtomsTheButton inner-text="ログイン" />
+              <AtomsTheButton inner-text="新規登録" role="client" />
             </div>
           </nav>
 
@@ -41,7 +42,7 @@
                 type="button"
                 class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset"
                 aria-expanded="false"
-                @click="toggleNavFlg"
+                @click="isNavOpened = true"
               >
                 <svg
                   class="h-6 w-6"
@@ -62,13 +63,13 @@
             </div>
 
             <!-- オーバーレイ -->
-            <AtomsOverlay :navFlg="navFlg" @update:value="toggleNavFlg" />
+            <AtomsTheOverlay :is-nav-opened="isNavOpened" @click="isNavOpened = false" />
 
             <!-- メニュー部 -->
             <transition name="menu">
               <div
+                v-if="isNavOpened"
                 class="h-screen fixed w-[300px] bg-white top-0 bottom-0 right-0 z-20"
-                v-if="navFlg"
               >
                 <!-- メニュー上部 -->
                 <div
@@ -78,22 +79,25 @@
                     <img
                       class="h-7 w-auto sm:h-8"
                       src="@/assets/img/logo.svg"
-                    />
+                    >
                   </a>
-                  <p class="mb-6 text-xs text-gray-base">ゲストさん</p>
+                  <p class="mb-6 text-xs text-gray-base">
+                    ゲストさん
+                  </p>
                   <div class="mx-auto mb-3 flex items-center gap-2">
-                    <AtomsButton innerText="ログイン" />
-                    <AtomsButton innerText="新規登録" role="client" />
+                    <AtomsTheButton inner-text="ログイン" />
+                    <AtomsTheButton inner-text="新規登録" role="client" />
                   </div>
-                  <a href="#" class="mb-6 text-xs font-medium text-pink"
-                    >ケアマネージャーの方はこちら</a
-                  >
+                  <a
+                    href="#"
+                    class="mb-6 text-xs font-medium text-pink"
+                  >ケアマネージャーの方はこちら</a>
                 </div>
                 <!-- メニュー下部 -->
                 <ul class="flex flex-col">
-                  <li v-for="item in menuArr" :key="item.innerText">
+                  <li v-for="item in headerLinks" :key="item.innerText">
                     <AtomsButtonArrow
-                      :innerText="item.innerText"
+                      :inner-text="item.innerText"
                       :to="item.to"
                     />
                   </li>
@@ -107,60 +111,53 @@
   </div>
 </template>
 <script setup lang="ts">
-import type { ComputedRef, Ref } from "vue";
+import type { ComputedRef, Ref } from 'vue'
 
 interface Props {
-  status: number;
+  role?: number;
 }
-interface menuArr {
+interface Links {
   innerText: string;
   to: string;
 }
-const props = defineProps<Props>();
+const props = defineProps<Props>()
 
 // スマートフォン用メニューの表示フラグ
-const navFlg: Ref<boolean> = ref(false);
-const toggleNavFlg = (): void => {
-  navFlg.value = !navFlg.value;
-};
+const isNavOpened = ref(false)
 
-let navStatus: Ref<number> = ref(props.status);
-const menuArr: ComputedRef<menuArr[]> = computed(() => {
+const navStatus: Ref<number> = ref(props.role)
+const headerLinks: ComputedRef<Links[]> = computed(() => {
   switch (navStatus.value) {
     case 1:
       return [
-        { innerText: "閲覧履歴", to: "/" },
-        { innerText: "ブックマーク", to: "/" },
-        { innerText: "予約状況確認", to: "/" },
-      ];
-      break;
+        { innerText: '閲覧履歴', to: '/' },
+        { innerText: 'ブックマーク', to: '/' },
+        { innerText: '予約状況確認', to: '/' }
+      ]
     case 2:
       return [
-        { innerText: "閲覧履歴", to: "/" },
-        { innerText: "ブックマーク", to: "/" },
-        { innerText: "予約状況確認", to: "/" },
-        { innerText: "レビュー履歴", to: "/" },
-        { innerText: "登録情報変更", to: "/" },
-      ];
-      break;
+        { innerText: '閲覧履歴', to: '/' },
+        { innerText: 'ブックマーク', to: '/' },
+        { innerText: '予約状況確認', to: '/' },
+        { innerText: 'レビュー履歴', to: '/' },
+        { innerText: '登録情報変更', to: '/' }
+      ]
     case 3:
       return [
-        { innerText: "事業所情報編集", to: "/" },
-        { innerText: "スタッフ情報", to: "/" },
-        { innerText: "お礼一覧", to: "/" },
-        { innerText: "予約状況確認", to: "/" },
-        { innerText: "利用者情報管理", to: "/" },
-      ];
-      break;
+        { innerText: '事業所情報編集', to: '/' },
+        { innerText: 'スタッフ情報', to: '/' },
+        { innerText: 'お礼一覧', to: '/' },
+        { innerText: '予約状況確認', to: '/' },
+        { innerText: '利用者情報管理', to: '/' }
+      ]
     default:
       return [
-        { innerText: "閲覧履歴", to: "/" },
-        { innerText: "ブックマーク", to: "/" },
-        { innerText: "予約状況確認", to: "/" },
-      ];
-      break;
+        { innerText: '閲覧履歴', to: '/' },
+        { innerText: 'ブックマーク', to: '/' },
+        { innerText: '予約状況確認', to: '/' }
+      ]
   }
-});
+})
 </script>
 <style scoped lang="scss">
 .linkItem {

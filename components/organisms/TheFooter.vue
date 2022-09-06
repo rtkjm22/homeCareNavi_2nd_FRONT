@@ -9,12 +9,11 @@
           <div
             class="flex justify-between w-full max-w-[343px] items-center sm:w-auto"
           >
-            <a href="/" class="inline-block text-sm font-bold text-gray-dark"
-              >ホームケアナビ</a
-            >
-            <small class="inline-block text-[10px] text-gray-light sm:ml-6"
-              >&copy;hogehoge</small
-            >
+            <a
+              href="/"
+              class="inline-block text-sm font-bold text-gray-dark"
+            >ホームケアナビ</a>
+            <small class="inline-block text-[10px] text-gray-light sm:ml-6">&copy;hogehoge</small>
           </div>
           <!-- リンク -->
           <div
@@ -22,8 +21,10 @@
           >
             <nav>
               <ul class="flex">
-                <li v-for="item in links" class="linkItem">
-                  <NuxtLink :to="item.to">{{ item.text }}</NuxtLink>
+                <li v-for="item in links" :key="item.text" class="linkItem">
+                  <NuxtLink :to="item.to">
+                    {{ item.text }}
+                  </NuxtLink>
                 </li>
               </ul>
             </nav>
@@ -36,18 +37,18 @@
 <script setup lang="ts">
 const links = [
   {
-    text: "プライバシーポリシー",
-    to: "/",
+    text: 'プライバシーポリシー',
+    to: '/'
   },
   {
-    text: "利用規約",
-    to: "/",
+    text: '利用規約',
+    to: '/'
   },
   {
-    text: "お問い合わせ",
-    to: "/",
-  },
-];
+    text: 'お問い合わせ',
+    to: '/'
+  }
+]
 </script>
 <style scoped lang="scss">
 .linkItem {

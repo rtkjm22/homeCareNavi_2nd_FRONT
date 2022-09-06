@@ -1,14 +1,16 @@
 <template>
-  <button type="submit" class="base" :class="[btnColor, btnSize]">
-    {{ innerText }}
-  </button>
+  <div>
+    <a href="#" class="base" :class="[btnColor, btnSize]">
+      {{ innerText }}
+    </a>
+  </div>
 </template>
 
 <script setup lang="ts">
 interface Props {
   innerText: string;
   role?: 'client' | 'manager';
-  size?: 'sm' | 'lg';
+  size?: 'lg' | 'md' | 'sm';
 }
 
 const props = defineProps<Props>()
@@ -21,24 +23,25 @@ const btnColor = computed(() => {
     case 'manager':
       return ['bg-orange', 'text-white', 'border-transparent']
     default:
-      return ['bg-white', 'text-gray-base', 'border', 'border-gray-lighter']
+      return ['bg-white', 'text-gray-base', 'border-gray-lighter']
   }
 })
 
-// サイズ
+// パディング、テキストのサイズ
 const btnSize = computed(() => {
   switch (props.size) {
     case 'sm':
-      return ['text-sm', 'py-[10px]']
+      return ['px-8', 'py-2', 'text-sm']
+    case 'md':
     case 'lg':
-      return ['text-base', 'w-full', 'sm:text-lg']
+      return ['py-3', 'w-full', 'text-base', 'sm:text-lg', 'sm:py-4']
     default:
-      return ['text-base', 'w-full', 'sm:text-lg']
+      return ['px-8', 'py-2', 'text-sm']
   }
 })
 </script>
-<style scoped lang="scss">
+<style scoped>
 .base {
-  @apply font-bold rounded duration-200 hover:opacity-70;
+  @apply box-border whitespace-nowrap font-bold inline-flex items-center justify-center border rounded transition hover:opacity-80;
 }
 </style>

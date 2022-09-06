@@ -9,7 +9,7 @@
       pattern="\d{3}-?\d{4}"
       maxlength="8"
       required
-    />
+    >
   </div>
 </template>
 <script setup lang="ts">
