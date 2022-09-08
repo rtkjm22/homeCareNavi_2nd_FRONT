@@ -14,6 +14,7 @@
     </div>
   </NuxtLink>
 </template>
+
 <script setup lang="ts">
 interface Props {
   innerText: string;
@@ -22,6 +23,7 @@ interface Props {
 
 defineProps<Props>()
 </script>
+
 <style scoped lang="scss">
 .arrowBase {
   @apply block absolute w-[8px] h-[2px] rounded bg-gray-base transform;

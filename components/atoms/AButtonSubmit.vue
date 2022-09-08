@@ -37,6 +37,7 @@ const btnSize = computed(() => {
   }
 })
 </script>
+
 <style scoped lang="scss">
 .base {
   @apply font-bold rounded duration-200 hover:opacity-70;

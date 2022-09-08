@@ -40,6 +40,7 @@ const btnSize = computed(() => {
   }
 })
 </script>
+
 <style scoped>
 .base {
   @apply box-border whitespace-nowrap font-bold inline-flex items-center justify-center border rounded transition hover:opacity-80;

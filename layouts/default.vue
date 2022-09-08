@@ -1,6 +1,6 @@
 <template>
   <div class="bg-[#F5F7F7]">
-    <OHeader :role="1" />
+    <OHeader />
     <slot class="main" />
     <OFooter />
   </div>

@@ -19,5 +19,9 @@ export default defineNuxtConfig({
       '~/components/organisms',
       '~/components'
     ]
+  },
+
+  typescript: {
+    strict: true
   }
 })

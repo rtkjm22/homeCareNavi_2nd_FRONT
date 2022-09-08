@@ -21,9 +21,9 @@
           >
             <nav>
               <ul class="flex">
-                <li v-for="item in links" :key="item.text" class="linkItem">
-                  <NuxtLink :to="item.to">
-                    {{ item.text }}
+                <li v-for="link in links" :key="link.text" class="linkItem">
+                  <NuxtLink :to="link.to">
+                    {{ link.text }}
                   </NuxtLink>
                 </li>
               </ul>
@@ -34,6 +34,7 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 const links = [
   {
@@ -50,6 +51,7 @@ const links = [
   }
 ]
 </script>
+
 <style scoped lang="scss">
 .linkItem {
   @apply text-[11px] text-pink;
