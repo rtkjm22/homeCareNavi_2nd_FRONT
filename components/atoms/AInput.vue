@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <label :for="labelFor" class="label">{{ labelText }}</label>
 
-    <AtomsInputAddressCd v-if="labelText === '住所'" />
+    <AInputAddressCd v-if="labelText === '住所'" />
 
     <input
       :id="labelFor"

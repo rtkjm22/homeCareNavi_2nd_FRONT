@@ -1,8 +1,8 @@
 <template>
   <div class="bg-[#F5F7F7]">
-    <OrganismsTheHeader :role="1" />
+    <OHeader :role="1" />
     <slot class="main" />
-    <OrganismsTheFooter />
+    <OFooter />
   </div>
 </template>
 <script setup lang="ts"></script>

@@ -29,8 +29,8 @@
               </NuxtLink>
             </div>
             <div class="ml-4 flex items-center gap-2">
-              <AtomsTheButton inner-text="ログイン" />
-              <AtomsTheButton inner-text="新規登録" role="client" />
+              <AButton inner-text="ログイン" />
+              <AButton inner-text="新規登録" role="client" />
             </div>
           </nav>
 
@@ -63,7 +63,7 @@
             </div>
 
             <!-- オーバーレイ -->
-            <AtomsTheOverlay :is-nav-opened="isNavOpened" @click="isNavOpened = false" />
+            <AOverlay :is-nav-opened="isNavOpened" @click="isNavOpened = false" />
 
             <!-- メニュー部 -->
             <transition name="menu">
@@ -85,8 +85,8 @@
                     ゲストさん
                   </p>
                   <div class="mx-auto mb-3 flex items-center gap-2">
-                    <AtomsTheButton inner-text="ログイン" />
-                    <AtomsTheButton inner-text="新規登録" role="client" />
+                    <AButton inner-text="ログイン" />
+                    <AButton inner-text="新規登録" role="client" />
                   </div>
                   <a
                     href="#"
@@ -96,7 +96,7 @@
                 <!-- メニュー下部 -->
                 <ul class="flex flex-col">
                   <li v-for="item in links" :key="item.innerText">
-                    <AtomsButtonArrow
+                    <AButtonArrow
                       :inner-text="item.innerText"
                       :to="item.to"
                     />

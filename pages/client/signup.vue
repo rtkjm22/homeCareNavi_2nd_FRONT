@@ -10,13 +10,13 @@
     <div class="w-full px-4">
       <!-- タイトル -->
       <div class="mb-6 sm:mb-12 sm:mt-4 sm:text-center">
-        <AtomsTheTitle ttl-text="新規登録" />
+        <ATitle ttl-text="新規登録" />
       </div>
       <!-- フォーム部分 -->
       <div class="mb-9 sm:mb-16 mx-auto sm:w-[520px]">
         <form>
           <!-- お名前 -->
-          <AtomsTheInput
+          <AInput
             label-for="inputNm"
             label-text="お名前"
             input-type="text"
@@ -26,7 +26,7 @@
           />
 
           <!-- メールアドレス -->
-          <AtomsTheInput
+          <AInput
             label-for="inputMail"
             label-text="メールアドレス"
             input-type="email"
@@ -37,7 +37,7 @@
           />
 
           <!-- パスワード -->
-          <AtomsTheInput
+          <AInput
             label-for="inputPass"
             label-text="パスワード"
             input-type="password"
@@ -48,7 +48,7 @@
           />
 
           <!-- 電話番号 -->
-          <AtomsTheInput
+          <AInput
             label-for="inputTel"
             label-text="電話番号"
             input-type="tel"
@@ -60,7 +60,7 @@
           />
 
           <!-- 住所 -->
-          <AtomsTheInput
+          <AInput
             label-for="inputPost"
             label-text="住所"
             input-type="text"
@@ -70,7 +70,7 @@
           />
 
           <!-- 新規登録ボタン -->
-          <AtomsButtonSubmit
+          <AButtonSubmit
             inner-text="新規登録"
             role="client"
             class="py-3 sm:py-4"
