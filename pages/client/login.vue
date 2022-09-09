@@ -1,6 +1,7 @@
 <template>
+  <!-- クライアント用ログイン画面 -->
   <div>
-    <OrganismsLogin Arole="client" />
+    <OrganismsTheLogin role="client" />
   </div>
 </template>
 <script  setup lang="ts">
