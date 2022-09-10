@@ -72,7 +72,7 @@
           <!-- 新規登録ボタン -->
           <AButtonSubmit
             inner-text="新規登録"
-            role="client"
+            user-type="client"
             class="py-3 sm:py-4"
           />
         </form>

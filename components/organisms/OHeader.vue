@@ -30,7 +30,7 @@
             </div>
             <div class="ml-4 flex items-center gap-2">
               <AButton inner-text="ログイン" />
-              <AButton inner-text="新規登録" role="client" />
+              <AButton inner-text="新規登録" user-type="client" />
             </div>
           </nav>
 
@@ -86,7 +86,7 @@
                   </p>
                   <div class="mx-auto mb-3 flex items-center gap-2">
                     <AButton inner-text="ログイン" />
-                    <AButton inner-text="新規登録" role="client" />
+                    <AButton inner-text="新規登録" user-type="client" />
                   </div>
                   <a
                     href="#"
@@ -113,7 +113,7 @@
 
 <script setup lang="ts">
 interface Props {
-  role?: 'client' | 'manager';
+  userType?: 'client' | 'manager';
 }
 const props = defineProps<Props>()
 
@@ -122,7 +122,7 @@ interface Link {
   to: string;
 }
 const links = computed<Link[] | undefined>(() => {
-  switch (props.role) {
+  switch (props.userType) {
     case 'client':
       return [
         { innerText: '閲覧履歴', to: '/' },
