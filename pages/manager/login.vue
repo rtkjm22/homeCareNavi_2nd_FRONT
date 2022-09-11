@@ -1,7 +1,7 @@
 <template>
   <!-- ケアマネージャー用ログイン画面 -->
   <div>
-    <OrganismsTheLogin role="manager" />
+    <OrganismsTheLogin user-type="manager" />
   </div>
 </template>
 <script  setup lang="ts">

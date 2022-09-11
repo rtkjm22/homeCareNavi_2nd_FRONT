@@ -16,7 +16,7 @@
     "nuxt": "3.0.0-rc.6",
     "sass": "^1.54.8"
   },
-  "dependencies": {
-    "typescript": "^4.8.3"
+  "depenDencies": {
+    "typescript": "^3.3.1"
   }
 }
