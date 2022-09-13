@@ -9,10 +9,12 @@
           <div
             class="flex justify-between w-full max-w-[343px] items-center sm:w-auto"
           >
-            <a
+            <NuxtLink
               href="/"
               class="inline-block text-sm font-bold text-gray-dark"
-            >ホームケアナビ</a>
+            >
+              ホームケアナビ
+            </NuxtLink>
             <small class="inline-block text-[10px] text-gray-light sm:ml-6">&copy;hogehoge</small>
           </div>
           <!-- リンク -->

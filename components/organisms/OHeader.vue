@@ -7,13 +7,13 @@
         >
           <!-- ヘッダー画像 -->
           <div class="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
+            <NuxtLink to="/">
               <img
                 class="h-8 w-auto sm:h-8"
                 src="@/assets/img/logo.svg"
                 alt=""
               >
-            </a>
+            </NuxtLink>
           </div>
 
           <!-- メニュー部（PC） -->
@@ -29,8 +29,12 @@
               </NuxtLink>
             </div>
             <div class="ml-4 flex items-center gap-2">
-              <AButton inner-text="ログイン" />
-              <AButton inner-text="新規登録" user-type="client" />
+              <NuxtLink to="/client/login">
+                <AButton inner-text="ログイン" />
+              </NuxtLink>
+              <NuxtLink to="/client/signup">
+                <AButton inner-text="新規登録" user-type="client" />
+              </NuxtLink>
             </div>
           </nav>
 
@@ -75,12 +79,12 @@
                 <div
                   class="pt-6 bg-[#F5F7F7] flex justify-center flex-col text-center"
                 >
-                  <a href="#" class="mx-auto mb-3">
+                  <NuxtLink to="/" class="mx-auto mb-3">
                     <img
                       class="h-7 w-auto sm:h-8"
                       src="@/assets/img/logo.svg"
                     >
-                  </a>
+                  </NuxtLink>
                   <p class="mb-6 text-xs text-gray-base">
                     ゲストさん
                   </p>
@@ -88,10 +92,12 @@
                     <AButton inner-text="ログイン" />
                     <AButton inner-text="新規登録" user-type="client" />
                   </div>
-                  <a
-                    href="#"
+                  <NuxtLink
+                    to="/manager/login"
                     class="mb-6 text-xs font-medium text-pink"
-                  >ケアマネージャーの方はこちら</a>
+                  >
+                    ケアマネージャーの方はこちら
+                  </NuxtLink>
                 </div>
                 <!-- メニュー下部 -->
                 <ul class="flex flex-col">
