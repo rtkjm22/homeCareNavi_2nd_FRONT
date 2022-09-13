@@ -4,5 +4,5 @@
     <OrganismsTheLogin user-type="manager" />
   </div>
 </template>
-<script  setup lang="ts">
+<script setup lang="ts">
 </script>
