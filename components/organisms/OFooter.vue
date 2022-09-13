@@ -9,10 +9,12 @@
           <div
             class="flex justify-between w-full max-w-[343px] items-center sm:w-auto"
           >
-            <a
+            <NuxtLink
               href="/"
               class="inline-block text-sm font-bold text-gray-dark"
-            >ホームケアナビ</a>
+            >
+              ホームケアナビ
+            </NuxtLink>
             <small class="inline-block text-[10px] text-gray-light sm:ml-6">&copy;hogehoge</small>
           </div>
           <!-- リンク -->
@@ -21,9 +23,9 @@
           >
             <nav>
               <ul class="flex">
-                <li v-for="item in links" :key="item.text" class="linkItem">
-                  <NuxtLink :to="item.to">
-                    {{ item.text }}
+                <li v-for="link in links" :key="link.text" class="linkItem">
+                  <NuxtLink :to="link.to">
+                    {{ link.text }}
                   </NuxtLink>
                 </li>
               </ul>
@@ -34,6 +36,7 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 const links = [
   {
@@ -50,6 +53,7 @@ const links = [
   }
 ]
 </script>
+
 <style scoped lang="scss">
 .linkItem {
   @apply text-[11px] text-pink;

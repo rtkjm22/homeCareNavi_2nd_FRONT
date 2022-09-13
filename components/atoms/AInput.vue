@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <label :for="labelFor" class="label">{{ labelText }}</label>
 
-    <AtomsInputAddressCd v-if="labelText === '住所'" />
+    <AInputAddressCd v-if="labelText === '住所'" />
 
     <input
       :id="labelFor"
@@ -16,6 +16,7 @@
     >
   </div>
 </template>
+
 <script setup lang="ts">
 interface Props {
   labelFor: string;
@@ -30,6 +31,7 @@ interface Props {
 
 defineProps<Props>()
 </script>
+
 <style scoped>
 .label {
   @apply mb-2 text-[13px] font-bold text-gray-base;

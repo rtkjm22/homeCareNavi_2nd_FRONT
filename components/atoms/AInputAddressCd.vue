@@ -12,8 +12,7 @@
     >
   </div>
 </template>
-<script setup lang="ts">
-</script>
+
 <style scoped>
 .addressCd {
   @apply px-5 py-2.5 border-[1px] border-gray-lighter text-gray-dark max-w-[120px] rounded placeholder-gray-lighter outline-none focus:border-pink;

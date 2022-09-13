@@ -7,30 +7,34 @@
         >
           <!-- ヘッダー画像 -->
           <div class="flex justify-start lg:w-0 lg:flex-1">
-            <a href="#">
+            <NuxtLink to="/">
               <img
                 class="h-8 w-auto sm:h-8"
                 src="@/assets/img/logo.svg"
                 alt=""
               >
-            </a>
+            </NuxtLink>
           </div>
 
           <!-- メニュー部（PC） -->
           <nav class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             <div class="flex flex-nowrap">
               <NuxtLink
-                v-for="item in links"
-                :key="item.innerText"
-                :to="item.to"
+                v-for="link in links"
+                :key="link.innerText"
+                :to="link.to"
                 class="linkItem"
               >
-                {{ item.innerText }}
+                {{ link.innerText }}
               </NuxtLink>
             </div>
             <div class="ml-4 flex items-center gap-2">
-              <AtomsTheButton inner-text="ログイン" />
-              <AtomsTheButton inner-text="新規登録" role="client" />
+              <NuxtLink to="/client/login">
+                <AButton inner-text="ログイン" />
+              </NuxtLink>
+              <NuxtLink to="/client/signup">
+                <AButton inner-text="新規登録" user-type="client" />
+              </NuxtLink>
             </div>
           </nav>
 
@@ -63,7 +67,7 @@
             </div>
 
             <!-- オーバーレイ -->
-            <AtomsTheOverlay :is-nav-opened="isNavOpened" @click="isNavOpened = false" />
+            <AOverlay :is-nav-opened="isNavOpened" @click="isNavOpened = false" />
 
             <!-- メニュー部 -->
             <transition name="menu">
@@ -75,30 +79,32 @@
                 <div
                   class="pt-6 bg-[#F5F7F7] flex justify-center flex-col text-center"
                 >
-                  <a href="#" class="mx-auto mb-3">
+                  <NuxtLink to="/" class="mx-auto mb-3">
                     <img
                       class="h-7 w-auto sm:h-8"
                       src="@/assets/img/logo.svg"
                     >
-                  </a>
+                  </NuxtLink>
                   <p class="mb-6 text-xs text-gray-base">
                     ゲストさん
                   </p>
                   <div class="mx-auto mb-3 flex items-center gap-2">
-                    <AtomsTheButton inner-text="ログイン" />
-                    <AtomsTheButton inner-text="新規登録" role="client" />
+                    <AButton inner-text="ログイン" />
+                    <AButton inner-text="新規登録" user-type="client" />
                   </div>
-                  <a
-                    href="#"
+                  <NuxtLink
+                    to="/manager/login"
                     class="mb-6 text-xs font-medium text-pink"
-                  >ケアマネージャーの方はこちら</a>
+                  >
+                    ケアマネージャーの方はこちら
+                  </NuxtLink>
                 </div>
                 <!-- メニュー下部 -->
                 <ul class="flex flex-col">
-                  <li v-for="item in links" :key="item.innerText">
-                    <AtomsButtonArrow
-                      :inner-text="item.innerText"
-                      :to="item.to"
+                  <li v-for="link in links" :key="link.innerText">
+                    <AButtonArrow
+                      :inner-text="link.innerText"
+                      :to="link.to"
                     />
                   </li>
                 </ul>
@@ -110,31 +116,20 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import type { ComputedRef, Ref } from 'vue'
 
+<script setup lang="ts">
 interface Props {
-  role?: number;
+  userType?: 'client' | 'manager';
 }
+const props = defineProps<Props>()
+
 interface Link {
   innerText: string;
   to: string;
 }
-const props = defineProps<Props>()
-
-// スマートフォン用メニューの表示フラグ
-const isNavOpened = ref(false)
-
-const navStatus: Ref<number> = ref(props.role)
-const links = computed<Link[]>(() => {
-  switch (navStatus.value) {
-    case 1:
-      return [
-        { innerText: '閲覧履歴', to: '/' },
-        { innerText: 'ブックマーク', to: '/' },
-        { innerText: '予約状況確認', to: '/' }
-      ]
-    case 2:
+const links = computed<Link[] | undefined>(() => {
+  switch (props.userType) {
+    case 'client':
       return [
         { innerText: '閲覧履歴', to: '/' },
         { innerText: 'ブックマーク', to: '/' },
@@ -142,7 +137,7 @@ const links = computed<Link[]>(() => {
         { innerText: 'レビュー履歴', to: '/' },
         { innerText: '登録情報変更', to: '/' }
       ]
-    case 3:
+    case 'manager':
       return [
         { innerText: '事業所情報編集', to: '/' },
         { innerText: 'スタッフ情報', to: '/' },
@@ -150,15 +145,13 @@ const links = computed<Link[]>(() => {
         { innerText: '予約状況確認', to: '/' },
         { innerText: '利用者情報管理', to: '/' }
       ]
-    default:
-      return [
-        { innerText: '閲覧履歴', to: '/' },
-        { innerText: 'ブックマーク', to: '/' },
-        { innerText: '予約状況確認', to: '/' }
-      ]
   }
 })
+
+// スマートフォン用メニューの表示フラグ
+const isNavOpened = ref(false)
 </script>
+
 <style scoped lang="scss">
 .linkItem {
   @apply whitespace-nowrap text-[13px] font-medium text-gray-base hover:text-gray-900;

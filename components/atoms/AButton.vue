@@ -9,7 +9,7 @@
 <script setup lang="ts">
 interface Props {
   innerText: string;
-  role?: 'client' | 'manager';
+  userType?: 'client' | 'manager';
   size?: 'lg' | 'md' | 'sm';
 }
 
@@ -17,7 +17,7 @@ const props = defineProps<Props>()
 
 // ボタン、フォント、ボーダーの色
 const btnColor = computed(() => {
-  switch (props.role) {
+  switch (props.userType) {
     case 'client':
       return ['bg-pink', 'text-white', 'border-transparent']
     case 'manager':
@@ -40,6 +40,7 @@ const btnSize = computed(() => {
   }
 })
 </script>
+
 <style scoped>
 .base {
   @apply box-border whitespace-nowrap font-bold inline-flex items-center justify-center border rounded transition hover:opacity-80;
