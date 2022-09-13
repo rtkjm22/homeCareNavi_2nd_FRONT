@@ -1,6 +1,10 @@
 # PRUMアカデミー
 
+<br />
+
 ## ホームケアナビ作成用PJ(FRONT)
+
+<br />
 
 ### 環境構築
 1. FRONTリポジトリをクローンする　`git clone https://github.com/rtkjm22/homeCareNavi_2nd_FRONT.git`
@@ -9,10 +13,14 @@
 4. パッケージをインストールする　`npm run install`
 5. nuxt3を起動する　`npm run dev`
 
+<br />
+
 ### 作業開始時のgit操作
 1. 現在のブランチがdevelopであることを確認する　`git branch`
 2. 最新のdevelopブランチをプルする　`git pull origin develop`
 3. 自分のissueに基づきfeatureブランチを作成及び移動する(例：マネージャー側の新規登録画面を追加する)　`git checkout -b feature/add-manager-signup-page`
+
+<br />
 
 ### 作業完了時のgit操作
 1. 実装が完了したら、lintチェックを実施しコードを綺麗にする。自動修正できないところは手動で修正し、出来れば引っかかる箇所を0にする　`npm run lint` 及び `npm run lint_fix`
@@ -21,6 +29,8 @@
 4. 実装したファイルをインデックスに登録し、コミット対象にする　`git add -A`(全部登録)
 5. コミットする　`git commit -m "Add: マネージャー側の新規登録画面を追加"`
 6. リモートリポジトリにプッシュする　`git push origin feature/add-manager-signup-page`
+
+<br />
 
 ### プルリクエスト作成
 1. githubの[FRONTのページ](https://github.com/rtkjm22/homeCareNavi_2nd_FRONT/tree/develop)に移動する
@@ -31,6 +41,8 @@
 4. 画面右上の*Reviewrs*の歯車マークをクリックし、チームメンバー全員をレビュワーとして追加する
 5. 画面中央のコメント欄に必要事項を記載する。特に画面追加時はそのスクショを添付する(Macなら`⌘+Shift+4`で選択範囲をスクショするとデスクトップに保存されるので、そのままドラッグアンドドロップする)
 6. 画面右下の*Create pull request*を押下すればプルリクエスト作成完了
+
+<br />
 
 ### レビュワー
 `git fetch origin pull/ID/head:BRANCHNAME`でローカルにプルリクエストを落とせるので、手元で確認したい人は左記を実行する。
