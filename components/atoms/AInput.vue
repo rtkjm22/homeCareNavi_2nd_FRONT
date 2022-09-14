@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <label :for="labelFor" class="label">{{ labelText }}</label>
+    <ALabel :label-for="labelFor" :label-text="labelText" />
 
     <AInputAddressCd v-if="labelText === '住所'" />
 

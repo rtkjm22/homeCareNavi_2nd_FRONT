@@ -4,5 +4,3 @@
     <OLogin user-type="client" />
   </div>
 </template>
-<script setup lang="ts">
-</script>
