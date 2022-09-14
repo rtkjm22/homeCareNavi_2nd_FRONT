@@ -1,11 +1,12 @@
 <template>
   <div>
-    <label :for="labelFor" class="label">{{ labelText }}</label>
+    <p class="label">
+      {{ labelText }}
+    </p>
   </div>
 </template>
 <script setup lang="ts">
 interface Props {
-  labelFor: string,
   labelText: string
 }
 
