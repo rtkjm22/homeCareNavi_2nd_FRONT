@@ -74,8 +74,8 @@
 interface Props {
   userType: 'client' | 'manager';
 }
-const props = defineProps<Props>()
 
+const props = defineProps<Props>()
 const otherUser = computed(() => {
   switch (props.userType) {
     case 'client':
@@ -104,4 +104,5 @@ const otherUser = computed(() => {
       }
   }
 })
+
 </script>
