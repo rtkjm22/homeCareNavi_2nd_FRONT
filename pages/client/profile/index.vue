@@ -20,35 +20,35 @@
           <div class="flex flex-col">
             <!-- お名前 -->
             <div class="py-2">
-              <ALabel :label-text="'お名前'" />
-              <p class="label">
+              <AHeadline :label-text="'お名前'" />
+              <p class="profile-text">
                 {{ currentUser.name }}
               </p>
             </div>
             <!-- メールアドレス -->
             <div class="py-2">
-              <ALabel :label-text="'メールアドレス'" />
-              <p class="label">
+              <AHeadline :label-text="'メールアドレス'" />
+              <p class="profile-text">
                 {{ currentUser.email }}
               </p>
             </div>
             <!-- パスワード -->
             <div class="py-2">
-              <ALabel :label-text="'パスワード'" />
-              <p class="label">
+              <AHeadline :label-text="'パスワード'" />
+              <p class="profile-text">
                 非表示
               </p>
             </div>
             <!-- 電話番号 -->
             <div class="py-2">
-              <ALabel :label-text="'電話番号'" />
-              <p class="label">
+              <AHeadline :label-text="'電話番号'" />
+              <p class="profile-text">
                 {{ currentUser.tel }}
               </p>
             </div>
             <!-- 住所 -->
             <div class="py-2">
-              <ALabel :label-text="'住所'" />
+              <AHeadline :label-text="'住所'" />
               <p class="font-bold text-gray-base">
                 〒{{ currentUser.postal_code }}
               </p>
@@ -84,7 +84,7 @@
 </template>
 
 <script setup lang="ts">
-// ユーザー情報の取（本来はVuexのgettersから取得？）
+// ユーザー情報
 const currentUser = computed(() => {
   return {
     name: '田中 太郎',
@@ -97,7 +97,7 @@ const currentUser = computed(() => {
 </script>
 
 <style scoped>
-  .label {
+  .profile-text {
     @apply my-2 font-bold text-gray-base;
   }
 </style>
