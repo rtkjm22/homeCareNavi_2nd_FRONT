@@ -8,12 +8,18 @@
       :id="labelFor"
       :type="inputType"
       class="inputItem"
+      :class="`${ validateBorder }`"
       :placeholder="placeholder"
       :pattern="pattern"
-      :minlength="minL"
-      :maxlength="maxL"
+      :minlength="minlength"
+      :maxlength="maxlength"
       :required="required"
     >
+    <div v-show="isValid">
+      <p class="text-sm text-pink">
+        パスワードが違います
+      </p>
+    </div>
   </div>
 </template>
 
@@ -24,12 +30,21 @@ interface Props {
   inputType: 'text' | 'email' | 'password' | 'tel';
   placeholder: string;
   pattern?: string;
-  minL?: string;
-  maxL?: string;
+  minlength?: string;
+  maxlength?: string;
   required?: boolean;
+  isValid?: boolean;
 }
+const props = defineProps<Props>()
 
-defineProps<Props>()
+const validateBorder = computed(() => {
+  if (props.isValid) {
+    return 'border-pink'
+  } else {
+    return 'border-gray-lighter'
+  }
+})
+
 </script>
 
 <style scoped>
@@ -38,6 +53,6 @@ defineProps<Props>()
 }
 
 .inputItem {
-  @apply px-5 py-2.5 border-[1px] border-gray-lighter text-gray-dark rounded placeholder-gray-lighter outline-none focus:border-pink;
+  @apply px-5 py-2.5 border-[1px] text-gray-dark rounded placeholder-gray-lighter outline-none focus:border-pink;
 }
 </style>
