@@ -6,6 +6,7 @@
 
     <input
       :id="labelFor"
+      v-model="computedModelValue"
       :type="inputType"
       class="inputItem"
       :placeholder="placeholder"
@@ -27,9 +28,16 @@ interface Props {
   minL?: string;
   maxL?: string;
   required?: boolean;
+  modelValue?: string
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
+const emits = defineEmits<{(e: 'update:modelValue', value?: string): void}>()
+
+const computedModelValue = computed({
+  get: () => props.modelValue,
+  set: value => emits('update:modelValue', value)
+})
 </script>
 
 <style scoped>
