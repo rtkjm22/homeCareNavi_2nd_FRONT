@@ -3,7 +3,9 @@
     <div
       class="flex flex-col mt-2 px-4 justify-center lg:pt-3 lg:justify-start bg-white rounded shadow-[0_1px_6px_0_rgba(0,0,0,0.1)]"
     >
-      <h3 class="pt-2 mb-2 font-bold text-gray-dark">検索条件</h3>
+      <h3 class="pt-2 mb-2 font-bold text-gray-dark">
+        検索条件
+      </h3>
       <form class="" @submit.prevent="sendData">
         <!-- フリー検索欄 -->
         <AInputRoundWithIcon />
@@ -14,13 +16,11 @@
           class="flex items-center justify-between pt-[18px] px-2 pb-4"
         >
           <div>
-            <span class="pr-4 text-[11px] font-bold text-gray-base"
-              >エリア</span
-            >
+            <span class="pr-4 text-[11px] font-bold text-gray-base">エリア</span>
             <span class="text-sm text-gray-dark">現在地周辺（3km）</span>
           </div>
           <!-- アロー -->
-          <AArrow class="relative" lineColor="gray-base" />
+          <AArrow class="relative" line-color="gray-base" />
         </a>
         <AButtonSubmit
           inner-text="現在地から探す"
@@ -32,7 +32,7 @@
           class="flex relative items-center -mx-4 mb-3 w-[calc(100% + 32px)] bg-[#F5F7F7]"
         >
           <span class="py-3 pl-7 text-xs text-gray-dark">東京都</span>
-          <AArrow lineSide="left" :linePosition="12" lineDirection="left" />
+          <AArrow line-side="left" :line-position="12" line-direction="left" />
         </a>
         <table class="city">
           <tr>
@@ -50,8 +50,8 @@
         >
           <AButton
             class="py-2 text-sm w-full"
-            innerText="検索する"
-            userType="client"
+            inner-text="検索する"
+            user-type="client"
             size="md"
           />
         </div>
@@ -61,8 +61,8 @@
 </template>
 <script setup lang="ts">
 const sendData = () => {
-  console.log("データが送信されました。");
-};
+  console.log('データが送信されました。')
+}
 </script>
 <style scoped lang="scss">
 .city {

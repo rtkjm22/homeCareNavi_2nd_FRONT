@@ -8,25 +8,25 @@
       <h3
         class="mb-3 font-bold text-gray-dark text-[18px] w-[calc(100%-56px)] leading-[24px]"
       >
-        {{compInfo.name}}
+        {{ compInfo.name }}
       </h3>
 
       <div class="flex mb-3 gap-[14px]">
         <img
           :src="compInfo.img"
           alt="ホームケア施設のイメージ画像"
-        />
+        >
         <ul>
           <li class="officeDataItem">
-            <img src="@/assets/img/searchOffice.svg" width="12" height="12" />
-            <p>{{compInfo.access}}</p>
+            <img src="@/assets/img/searchOffice.svg" width="12" height="12">
+            <p>{{ compInfo.access }}</p>
           </li>
           <li class="officeDataItem">
-            <img src="@/assets/img/searchOffice.svg" width="12" height="12" />
+            <img src="@/assets/img/searchOffice.svg" width="12" height="12">
             <p>スタッフ数{{ compInfo.staffs }}人</p>
           </li>
           <li class="officeDataItem">
-            <img src="@/assets/img/searchOffice.svg" width="12" height="12" />
+            <img src="@/assets/img/searchOffice.svg" width="12" height="12">
             <p>{{ compInfo.phone }}</p>
           </li>
         </ul>
@@ -37,18 +37,18 @@
 
       <!-- お礼コメント -->
       <AThanksMsg
-        :thanksMsg="thanksMsg"
+        :thanks-msg="thanksMsg"
       />
 
       <!-- 営業日 -->
-      <AWorkDay :workDay="workDay" />
+      <AWorkDay :work-day="workDay" />
     </a>
     <!-- ブックマークアイコン -->
-    <ABookmark class="absolute z-20 top-[46px] right-3" :isBookmarked="isBookmarked" />
+    <ABookmark class="absolute z-20 top-[46px] right-3" :is-bookmarked="isBookmarked" />
   </li>
 </template>
 <script setup lang="ts">
-type Weeks = "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat";
+type Weeks = 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat';
 interface Props {
   compInfo: {
     canBookOnline: boolean;
@@ -64,7 +64,7 @@ interface Props {
   isBookmarked: boolean;
 }
 
-defineProps<Props>();
+defineProps<Props>()
 </script>
 <style scoped lang="scss">
 .officeDataItem {

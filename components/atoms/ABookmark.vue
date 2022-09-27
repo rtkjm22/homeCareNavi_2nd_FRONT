@@ -27,8 +27,8 @@
 <script setup lang="ts">
 const props = defineProps<{
   isBookmarked: boolean;
-}>();
-let bookmarkedFlg = ref<boolean>(props.isBookmarked);
+}>()
+const bookmarkedFlg = ref<boolean>(props.isBookmarked)
 </script>
 <style scoped lang="scss">
 .bookmark {

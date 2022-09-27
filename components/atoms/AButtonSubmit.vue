@@ -30,7 +30,7 @@ const btnSize = computed(() => {
   switch (props.size) {
     case 'sm':
       return ['text-sm', 'py-[10px]']
-    case 'md': 
+    case 'md':
       return
     case 'lg':
       return ['text-base', 'w-full', 'sm:text-lg']

@@ -8,19 +8,33 @@
     <table class="border-collapse border border-slate-500">
       <thead>
         <tr>
-          <th class="workDay_head workDay_head__red">日</th>
-          <th class="workDay_head">月</th>
-          <th class="workDay_head">火</th>
-          <th class="workDay_head">水</th>
-          <th class="workDay_head">木</th>
-          <th class="workDay_head">金</th>
-          <th class="workDay_head workDay_head__blue">土</th>
+          <th class="workDay_head workDay_head__red">
+            日
+          </th>
+          <th class="workDay_head">
+            月
+          </th>
+          <th class="workDay_head">
+            火
+          </th>
+          <th class="workDay_head">
+            水
+          </th>
+          <th class="workDay_head">
+            木
+          </th>
+          <th class="workDay_head">
+            金
+          </th>
+          <th class="workDay_head workDay_head__blue">
+            土
+          </th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <!-- <td class="tableD" v-for="flg in workDayFlgs">{{ flg }}</td> -->
-          <td v-for="flg in workDayFlgs" class="workDay_body">
+          <td v-for="(flg, index) in workDayFlgs" :key="index" class="workDay_body">
             <span :class="flg" />
           </td>
         </tr>
@@ -29,26 +43,26 @@
   </div>
 </template>
 <script setup lang="ts">
-type Weeks = "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat";
+type Weeks = 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat';
 
 interface Props {
   workDay: Weeks[];
 }
-const props = defineProps<Props>();
+const props = defineProps<Props>()
 
-const weeks: Weeks[] = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-let workDayFlgs = ref<string[]>([]);
+const weeks: Weeks[] = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+const workDayFlgs = ref<string[]>([])
 
 const setWorkDay = (): void => {
   for (let i = 0; i < weeks.length; i++) {
     if (props.workDay.includes(weeks[i])) {
-      workDayFlgs.value.push("circle");
+      workDayFlgs.value.push('circle')
     } else {
-      workDayFlgs.value.push("cross");
+      workDayFlgs.value.push('cross')
     }
   }
-};
-setWorkDay();
+}
+setWorkDay()
 </script>
 <style scoped lang="scss">
 .workDay {

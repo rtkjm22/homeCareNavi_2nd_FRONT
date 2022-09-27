@@ -13,20 +13,20 @@ interface Props {
   bgColor: string;
 }
 const props = withDefaults(defineProps<Props>(), {
-  textColor: "pink",
+  textColor: 'pink',
   textSize: 11,
-  bgColor: "#F0636433",
-});
+  bgColor: '#F0636433'
+})
 
 const tagTextColor = computed(() => {
-  return `text-${props.textColor}`;
-});
+  return `text-${props.textColor}`
+})
 const tagTextSize = computed(() => {
-  return `text-[${props.textSize}px]`;
-});
+  return `text-[${props.textSize}px]`
+})
 const tagBgColor = computed(() => {
-  return `bg-[${props.bgColor}]`;
-});
+  return `bg-[${props.bgColor}]`
+})
 </script>
 <style scoped lang="scss">
 .tag {

@@ -7,7 +7,7 @@
       src="@/assets/img/searchOffice.svg"
       width="16"
       height="16"
-    />
+    >
     <div>
       <p class="text-[10px] font-bold text-gray-dark">
         ユーザーからのお礼コメント
@@ -22,7 +22,7 @@
 defineProps({
   thanksMsg: {
     type: String,
-    default: "",
+    default: ''
   }
 })
 </script>
