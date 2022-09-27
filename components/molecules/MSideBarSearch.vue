@@ -61,7 +61,7 @@
 </template>
 <script setup lang="ts">
 const sendData = () => {
-  console.log('データが送信されました。')
+  // 検索条件のデータが送信されます。
 }
 </script>
 <style scoped lang="scss">
