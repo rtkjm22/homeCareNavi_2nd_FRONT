@@ -1,38 +1,47 @@
 <template>
   <li
-    class="relative mb-6 bg-white rounded-[4px] overflow-hidden shadow-[0_1px_6px_0_rgba(0,0,0,0.1)] max-w-[365px]"
+    class="relative mb-6 bg-white rounded-[4px] overflow-hidden shadow-[0_1px_6px_0_rgba(0,0,0,0.1)] max-w-[375px]"
   >
     <!-- 事業所詳細情報 -->
     <a href="#" class="block p-3 w-full h-full z-10">
-      <ATag v-if="compInfo.canBookOnline" class="mb-2.5" />
+      <!-- web予約タグ -->
+      <div class="min-h-[30px]">
+        <ATag v-if="canBookOnline" class="mb-2.5" inner-text="web予約可" />
+      </div>
+
+      <!-- 事業所名 -->
       <h3
-        class="mb-3 font-bold text-gray-dark text-[18px] w-[calc(100%-56px)] leading-[24px]"
+        class="mb-3 font-bold text-gray-dark text-[18px] w-[calc(100%-50px)] min-h-[48px] leading-[24px]"
       >
-        {{ compInfo.name }}
+        {{ officeInfo.name }}
       </h3>
 
       <div class="flex mb-3 gap-[14px]">
+        <!-- 事業所イメージ -->
         <img
-          :src="compInfo.img"
+          :src="officeInfo.img"
           alt="ホームケア施設のイメージ画像"
         >
+        <!-- 事業所詳細情報 -->
         <ul>
           <li class="officeDataItem">
             <img src="@/assets/img/searchOffice.svg" width="12" height="12">
-            <p>{{ compInfo.access }}</p>
+            <p>{{ officeInfo.access }}</p>
           </li>
           <li class="officeDataItem">
             <img src="@/assets/img/searchOffice.svg" width="12" height="12">
-            <p>スタッフ数{{ compInfo.staffs }}人</p>
+            <p>スタッフ数{{ officeInfo.staffs }}人</p>
           </li>
           <li class="officeDataItem">
             <img src="@/assets/img/searchOffice.svg" width="12" height="12">
-            <p>{{ compInfo.phone }}</p>
+            <p>{{ officeInfo.phone }}</p>
           </li>
         </ul>
       </div>
-      <p class="mb-3 text-[11px] text-gray-base">
-        {{ compInfo.message }}
+
+      <!-- 事業所メッセージ -->
+      <p class="mb-3 min-h-[66px] text-[11px] text-gray-base">
+        {{ officeInfo.message }}
       </p>
 
       <!-- お礼コメント -->
@@ -49,9 +58,8 @@
 </template>
 <script setup lang="ts">
 type Weeks = 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat';
-interface Props {
-  compInfo: {
-    canBookOnline: boolean;
+type Props = {
+  officeInfo: {
     name: string;
     img: string;
     access: string;
@@ -59,6 +67,7 @@ interface Props {
     phone: string;
     message: string;
   };
+  canBookOnline: boolean;
   thanksMsg: string;
   workDay: Weeks[];
   isBookmarked: boolean;

@@ -1,9 +1,12 @@
 <template>
   <label class="checkbox">
+    <!-- チェックボックス部 -->
     <input class="checkbox_input" type="checkbox" value="shibuya" checked>
     <span class="checkbox_dummy" />
+    <!-- ラベル部 -->
     <span class="checkbox_text">渋谷区</span>
-    <AArrow />
+    <!-- 矢印（>） -->
+    <AArrow class="absolute right-3" line-color="gray-light" />
   </label>
 </template>
 <script setup lang="ts"></script>

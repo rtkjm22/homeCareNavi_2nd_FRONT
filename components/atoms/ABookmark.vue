@@ -4,6 +4,7 @@
     class="flex justify-center w-11 h-11 bg-[#F5F7F7] rounded-full"
     @click="bookmarkedFlg = !bookmarkedFlg"
   >
+    <!-- 星アイコン -->
     <svg
       class="w-[30px]"
       xmlns="http://www.w3.org/2000/svg"

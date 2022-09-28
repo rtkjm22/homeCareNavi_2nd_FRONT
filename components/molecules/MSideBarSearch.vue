@@ -15,12 +15,12 @@
           href="#"
           class="flex items-center justify-between pt-[18px] px-2 pb-4"
         >
-          <div>
+          <div class="flex items-center">
             <span class="pr-4 text-[11px] font-bold text-gray-base">エリア</span>
             <span class="text-sm text-gray-dark">現在地周辺（3km）</span>
           </div>
           <!-- アロー -->
-          <AArrow class="relative" line-color="gray-base" />
+          <AArrow class="relative sm:hidden" line-color="gray-light" />
         </a>
         <AButtonSubmit
           inner-text="現在地から探す"
@@ -32,7 +32,7 @@
           class="flex relative items-center -mx-4 mb-3 w-[calc(100% + 32px)] bg-[#F5F7F7]"
         >
           <span class="py-3 pl-7 text-xs text-gray-dark">東京都</span>
-          <AArrow line-side="left" :line-position="12" line-direction="left" />
+          <AArrow class="absolute left-3" line-direction="left" line-color="gray-light" />
         </a>
         <table class="city">
           <tr>

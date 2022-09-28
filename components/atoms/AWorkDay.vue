@@ -33,7 +33,6 @@
       </thead>
       <tbody>
         <tr>
-          <!-- <td class="tableD" v-for="flg in workDayFlgs">{{ flg }}</td> -->
           <td v-for="(flg, index) in workDayFlgs" :key="index" class="workDay_body">
             <span :class="flg" />
           </td>
@@ -50,14 +49,18 @@ interface Props {
 }
 const props = defineProps<Props>()
 
+// 取得する値は以下の値が含まれている配列
 const weeks: Weeks[] = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+// 営業日なのか判断（trueの場合営業日）
 const workDayFlgs = ref<string[]>([])
 
 const setWorkDay = (): void => {
   for (let i = 0; i < weeks.length; i++) {
     if (props.workDay.includes(weeks[i])) {
+      // 営業日の場合
       workDayFlgs.value.push('circle')
     } else {
+      // 休業日の場合
       workDayFlgs.value.push('cross')
     }
   }

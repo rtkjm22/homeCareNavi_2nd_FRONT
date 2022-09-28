@@ -12,7 +12,8 @@
       <p class="text-[10px] font-bold text-gray-dark">
         ユーザーからのお礼コメント
       </p>
-      <p class="text-[11px] text-gray-dark">
+      <!-- お礼コメント -->
+      <p class="min-h-[33px] text-[11px] text-gray-dark">
         {{ thanksMsg }}
       </p>
     </div>

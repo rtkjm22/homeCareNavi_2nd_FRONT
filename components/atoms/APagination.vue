@@ -1,20 +1,20 @@
 <template>
   <!-- ページネーション部分 -->
   <ul class="flex justify-center list-none gap-2 pagination">
+    <!-- 前へボタン -->
     <li
       v-if="currentPage >= range - 1"
       class="pagination_item pagination_item__prev"
       @click="changePage(currentPage - 1)"
     >
-      <div class="relative flex items-center">
-        <div
-          class="block absolute w-[8px] h-[2px] -right-1 rounded bg-pink transform rotate-45 translate-y-[2px]"
-        />
-        <div
-          class="block absolute w-[8px] h-[2px] -right-1 rounded bg-pink transform -rotate-45 -translate-y-[2px]"
-        />
-      </div>
+      <AArrow
+        class="relative flex items-center justify-center"
+        line-direction="left"
+        :line-position="200"
+        line-color="pink"
+      />
     </li>
+    <!-- range分ページ数のボタンを表示 -->
     <li
       v-for="page in middlePageRange"
       :key="page"
@@ -24,51 +24,39 @@
     >
       <span>{{ page }}</span>
     </li>
+    <!-- 次へボタン -->
     <li
       v-if="lastPage >= currentPage + range - 2"
       class="pagination_item pagination_item__next"
       @click="changePage(currentPage + 1)"
     >
-      <div class="relative flex items-center">
-        <div
-          class="block absolute w-[8px] h-[2px] -right-1 rounded bg-pink transform rotate-45 -translate-y-[2px]"
-        />
-        <div
-          class="block absolute w-[8px] h-[2px] -right-1 rounded bg-pink transform -rotate-45 translate-y-[2px]"
-        />
-      </div>
+      <AArrow
+        class="relative flex items-center justify-center"
+        :line-position="0"
+        line-color="pink"
+      />
     </li>
   </ul>
 </template>
 <script setup lang="ts">
-const currentPage = ref(1)
-const lastPage = 20
+const { $pagination } = useNuxtApp()
+
+// 現在表示されているページ
+const currentPage = ref(7)
+// ページネーションに表示する個数
 const range = 5
+// 取得した事業所情報の件数
+const countItems = 1000
+// 表示している事業所の件数
+const displayItems = 10
+// 最後のページ
+const lastPage = Math.ceil(countItems / displayItems / range) + 1
 
 const middlePageRange = computed(() => {
-  let start: number
-  let end: number
-  if (currentPage.value < range - 2) {
-    start = 1
-    end = range
-  } else if (currentPage.value > lastPage - range + 2) {
-    start = lastPage - range + 1
-    end = lastPage
-  } else {
-    start = currentPage.value - Math.floor(range / 2)
-    end = currentPage.value + Math.floor(range / 2)
-  }
-  return calRange(start, end)
+  return $pagination.middlePageRange(currentPage.value, lastPage, range)
 })
 
-const calRange = (start: number, end: number): number[] => {
-  const returnRange = []
-  for (let i = start; i <= end; i++) {
-    returnRange.push(i)
-  }
-  return returnRange
-}
-
+// ページの切り替え実行関数
 const changePage = (page: number) => {
   if (page > 0 && page <= lastPage) {
     currentPage.value = page

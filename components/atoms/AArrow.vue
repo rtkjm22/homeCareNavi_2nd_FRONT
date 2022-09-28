@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- 矢印の上 -->
     <div
       class="arrow"
       :class="[
@@ -11,6 +12,7 @@
         ArrowUpTranslateY,
       ]"
     />
+    <!-- 矢印の下 -->
     <div
       class="arrow"
       :class="[
@@ -26,14 +28,14 @@
 </template>
 <script setup lang="ts">
 interface Props {
-  lineLength: number;
-  lineWeight: number;
-  lineSide: 'right' | 'left';
-  lineDirection: 'right' | 'left';
-  linePosition: number;
-  lineColor: string;
-  upTranslateY: number;
-  downTranslateY: number;
+  lineLength?: number;
+  lineWeight?: number;
+  lineSide?: 'right' | 'left';
+  lineDirection?: 'right' | 'left';
+  linePosition?: number;
+  lineColor?: string;
+  upTranslateY?: number;
+  downTranslateY?: number;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -42,7 +44,7 @@ const props = withDefaults(defineProps<Props>(), {
   lineSide: 'right', // ポジション（左右のみ）
   lineDirection: 'right', // アローの方向
   linePosition: 8, // 右左から〇〇px
-  lineColor: 'gray-light', // アローの色
+  lineColor: 'pink', // アローの色
   upTranslateY: 2, // 上部アローのYポジション
   downTranslateY: 2 // 下部アローのYポジション
 })
