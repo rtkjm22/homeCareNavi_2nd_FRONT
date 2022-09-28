@@ -6,6 +6,7 @@
 
     <input
       :id="labelFor"
+      v-model="computedModelValue"
       :type="inputType"
       class="inputItem"
       :class="`${ validateBorder }`"
@@ -34,6 +35,7 @@ interface Props {
   maxlength?: string;
   required?: boolean;
   isValid?: boolean;
+  modelValue?: string
 }
 const props = defineProps<Props>()
 
@@ -43,6 +45,14 @@ const validateBorder = computed(() => {
   } else {
     return 'border-gray-lighter'
   }
+})
+
+const props = defineProps<Props>()
+const emits = defineEmits<{(e: 'update:modelValue', value?: string): void}>()
+
+const computedModelValue = computed({
+  get: () => props.modelValue,
+  set: value => emits('update:modelValue', value)
 })
 
 </script>

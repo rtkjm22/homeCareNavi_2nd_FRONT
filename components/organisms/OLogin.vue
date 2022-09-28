@@ -41,7 +41,7 @@
           <!-- パスワードリセット画面へ遷移 -->
           <div class="text-right mb-8">
             <NuxtLink
-              to="/"
+              to="/password-reset"
               class="text-sm text-zinc-500"
             >
               パスワードを忘れた
