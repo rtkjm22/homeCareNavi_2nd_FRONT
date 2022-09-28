@@ -9,12 +9,18 @@
       v-model="computedModelValue"
       :type="inputType"
       class="inputItem"
+      :class="`${ validateBorder }`"
       :placeholder="placeholder"
       :pattern="pattern"
-      :minlength="minL"
-      :maxlength="maxL"
+      :minlength="minlength"
+      :maxlength="maxlength"
       :required="required"
     >
+    <div v-show="isValid">
+      <p class="text-sm text-pink">
+        パスワードが違います
+      </p>
+    </div>
   </div>
 </template>
 
@@ -25,11 +31,21 @@ interface Props {
   inputType: 'text' | 'email' | 'password' | 'tel';
   placeholder: string;
   pattern?: string;
-  minL?: string;
-  maxL?: string;
+  minlength?: string;
+  maxlength?: string;
   required?: boolean;
+  isValid?: boolean;
   modelValue?: string
 }
+const props = defineProps<Props>()
+
+const validateBorder = computed(() => {
+  if (props.isValid) {
+    return 'border-pink'
+  } else {
+    return 'border-gray-lighter'
+  }
+})
 
 const props = defineProps<Props>()
 const emits = defineEmits<{(e: 'update:modelValue', value?: string): void}>()
@@ -38,6 +54,7 @@ const computedModelValue = computed({
   get: () => props.modelValue,
   set: value => emits('update:modelValue', value)
 })
+
 </script>
 
 <style scoped>
@@ -46,6 +63,6 @@ const computedModelValue = computed({
 }
 
 .inputItem {
-  @apply px-5 py-2.5 border-[1px] border-gray-lighter text-gray-dark rounded placeholder-gray-lighter outline-none focus:border-pink;
+  @apply px-5 py-2.5 border-[1px] text-gray-dark rounded placeholder-gray-lighter outline-none focus:border-pink;
 }
 </style>
