@@ -41,7 +41,7 @@
             minlength="8"
             :required="true"
             class="mb-6"
-            :isValid="isValid"
+            :is-valid="isValid"
           />
           <!-- 新しいパスワード -->
           <AInput

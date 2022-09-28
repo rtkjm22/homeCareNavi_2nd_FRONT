@@ -37,7 +37,6 @@ interface Props {
   isValid?: boolean;
   modelValue?: string
 }
-const props = defineProps<Props>()
 
 const validateBorder = computed(() => {
   if (props.isValid) {
