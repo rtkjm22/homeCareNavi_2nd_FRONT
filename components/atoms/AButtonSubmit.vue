@@ -8,7 +8,7 @@
 interface Props {
   innerText: string;
   userType?: 'client' | 'manager';
-  size?: 'sm' | 'lg';
+  size?: 'sm' | 'md' | 'lg';
 }
 
 const props = defineProps<Props>()
@@ -30,6 +30,8 @@ const btnSize = computed(() => {
   switch (props.size) {
     case 'sm':
       return ['text-sm', 'py-[10px]']
+    case 'md':
+      return
     case 'lg':
       return ['text-base', 'w-full', 'sm:text-lg']
     default:

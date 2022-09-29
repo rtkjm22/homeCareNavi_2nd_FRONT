@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <a href="#" class="base" :class="[btnColor, btnSize]">
-      {{ innerText }}
-    </a>
-  </div>
+  <a href="#" class="base" :class="[btnColor, btnSize]">
+    {{ innerText }}
+  </a>
 </template>
 
 <script setup lang="ts">
@@ -33,6 +31,7 @@ const btnSize = computed(() => {
     case 'sm':
       return ['px-8', 'py-2', 'text-sm']
     case 'md':
+      return
     case 'lg':
       return ['py-3', 'w-full', 'text-base', 'sm:text-lg', 'sm:py-4']
     default:
