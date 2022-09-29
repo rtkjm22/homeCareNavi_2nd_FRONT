@@ -1,6 +1,6 @@
 <template>
   <ul class="twoCol">
-    <AOfficeInfo
+    <MOfficeInfo
       v-for="(item, index) in compItems"
       :key="index"
       class="twoCol_item"

@@ -14,7 +14,7 @@
       <MOfficeInfoList />
 
       <!-- ページネーション部分 -->
-      <APagination />
+      <MPagination />
     </div>
   </div>
 </template>

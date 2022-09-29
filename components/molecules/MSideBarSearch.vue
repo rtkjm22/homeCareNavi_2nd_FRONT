@@ -40,7 +40,7 @@
           </tr>
           <tr>
             <td v-for="n in 10" :key="n">
-              <ACheckboxWithArrow />
+              <MCheckboxWithArrow />
             </td>
           </tr>
         </table>
