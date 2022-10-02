@@ -25,6 +25,14 @@
           class="py-3 sm:py-4"
         />
       </form>
+      <div class="mb-8 sm:mb-16 text-center">
+        <NuxtLink
+          to="/client/login"
+          class="text-sm text-pink"
+        >
+          リセットせずにもどる
+        </NuxtLink>
+      </div>
     </div>
   </div>
 </template>
