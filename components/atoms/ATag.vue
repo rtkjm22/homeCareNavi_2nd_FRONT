@@ -1,6 +1,6 @@
 <template>
   <p
-    class="tag"
+    class="myTag"
     :class="[tagTextColor, tagTextSize, tagBgColor]"
   >
     {{ innerText }}
@@ -30,7 +30,7 @@ const tagBgColor = computed(() => {
 })
 </script>
 <style scoped lang="scss">
-.tag {
+.myTag {
   @apply inline-block px-[6px] rounded-sm leading-5 font-bold;
 }
 </style>

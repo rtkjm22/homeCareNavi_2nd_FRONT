@@ -32,7 +32,7 @@
           class="flex relative items-center -mx-4 mb-3 w-[calc(100% + 32px)] bg-[#F5F7F7]"
         >
           <span class="py-3 pl-7 text-xs text-gray-dark">東京都</span>
-          <AArrow class="absolute left-3" line-direction="left" line-color="gray-light" />
+          <AArrow class="absolute left-3" line-direction="left" line-color="gray-base" />
         </a>
         <table class="city">
           <tr>
@@ -44,7 +44,6 @@
             </td>
           </tr>
         </table>
-        <!-- <AButton innerText="検索する" userType="client" size="sm" class="w-full"/> -->
         <div
           class="flex relative items-center -mx-4 w-[calc(100% + 32px)] px-3 py-[10px] bg-[#F5F7F7] rounded-b"
         >

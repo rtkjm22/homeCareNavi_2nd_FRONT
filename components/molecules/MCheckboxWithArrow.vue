@@ -1,17 +1,17 @@
 <template>
-  <label class="checkbox">
+  <label class="myCheckbox">
     <!-- チェックボックス部 -->
-    <input class="checkbox_input" type="checkbox" value="shibuya" checked>
-    <span class="checkbox_dummy" />
+    <input class="myCheckbox_input" type="checkbox" value="shibuya" checked>
+    <span class="myCheckbox_dummy" />
     <!-- ラベル部 -->
-    <span class="checkbox_text">渋谷区</span>
+    <span class="myCheckbox_text">渋谷区</span>
     <!-- 矢印（>） -->
-    <AArrow class="absolute right-3" line-color="gray-light" />
+    <AArrow class="absolute right-3" line-color="gray-base" />
   </label>
 </template>
 <script setup lang="ts"></script>
 <style scoped lang="scss">
-.checkbox {
+.myCheckbox {
   display: block;
   position: relative;
   padding: 10px 8px;
@@ -42,11 +42,11 @@
   }
 }
 
-.checkbox_input:checked ~ .checkbox_text {
+.myCheckbox_input:checked ~ .myCheckbox_text {
   @apply font-bold;
 }
 
-.checkbox_input:checked + .checkbox_dummy {
+.myCheckbox_input:checked + .myCheckbox_dummy {
   @apply bg-pink border-transparent;
   &:before,
   &:after {
