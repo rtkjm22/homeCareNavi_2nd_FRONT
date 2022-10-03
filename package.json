@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "daisyui": "^2.31.0",
-    "scule": "^0.3.2"
+    "scule": "^0.3.2",
+    "swiper": "^8.4.2",
+    "vue-awesome-swiper": "^5.0.1"
   }
 }
