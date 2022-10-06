@@ -3,15 +3,26 @@
     <!-- 郵便番号入力欄 -->
     <span class="text-gray-base text-base mr-2">〒</span>
     <input
+      v-model="value"
       type="text"
       class="addressCd"
-      placeholder="000-0000"
-      pattern="\d{3}-?\d{4}"
+      placeholder="0000000"
+      pattern="\d{7}"
       maxlength="8"
       required
     >
   </div>
 </template>
+
+<script setup lang="ts">
+const props = defineProps<{ modelValue: string }>()
+const emit = defineEmits<{(e: 'update:modelValue', value: string): void}>()
+
+const value = computed({
+  get: () => props.modelValue,
+  set: v => emit('update:modelValue', v)
+})
+</script>
 
 <style scoped>
 .addressCd {

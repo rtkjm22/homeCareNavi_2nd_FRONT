@@ -3,16 +3,16 @@
     class="mb-[50px] mt-10 sm:mb-20 mx-auto pt-4 flex justify-center max-w-pcCol1 bg-white relative rounded"
   >
     <NuxtLink
-      :href="otherUser.loginUrl"
-      :class="`absolute top-4 right-4 text-sm text-${otherUser.color}`"
+      :href="otherLoginUrl"
+      :class="`absolute top-4 right-4 text-sm ${textColor}`"
     >
-      {{ otherUser.text }}
+      {{ otherLoginText }}
     </NuxtLink>
     <!-- コンテンツ部分 -->
     <div class="w-full px-4">
       <!-- タイトル -->
       <div class="mb-6 sm:mb-12 sm:mt-4 sm:text-center">
-        <ATitle :ttl-text="otherUser.title" />
+        <ATitle :ttl-text="title" />
       </div>
       <!-- フォーム部分 -->
       <div class="mb-9 sm:mb-16 mx-auto sm:w-[520px]">
@@ -59,8 +59,8 @@
         <!-- 新規登録画面へ遷移 -->
         <div class="text-center mt-1 mb-8">
           <NuxtLink
-            :href="otherUser.signupUrl"
-            :class="`text-sm text-${otherUser.color}`"
+            :href="signupUrl"
+            :class="`text-sm ${textColor}`"
           >
             新規登録はこちら
           </NuxtLink>
@@ -74,35 +74,28 @@
 interface Props {
   userType: 'client' | 'manager';
 }
-
 const props = defineProps<Props>()
-const otherUser = computed(() => {
-  switch (props.userType) {
-    case 'client':
-      return {
-        title: 'ログイン',
-        text: 'ケアマネージャーの方はこちら',
-        color: 'pink',
-        loginUrl: '/manager/login',
-        signupUrl: '/manager/signup'
-      }
-    case 'manager':
-      return {
-        title: 'ケアマネログイン',
-        text: '一般の方はこちら',
-        color: 'orange',
-        loginUrl: '/client/login',
-        signupUrl: '/client/signup'
-      }
-    default:
-      return {
-        title: '',
-        text: '',
-        color: '',
-        loginUrl: '',
-        signupUrl: ''
-      }
-  }
-})
 
+const title = ref('')
+const textColor = ref('')
+const signupUrl = ref('')
+const otherLoginText = ref('')
+const otherLoginUrl = ref('')
+
+switch (props.userType) {
+  case 'client':
+    title.value = 'ログイン'
+    textColor.value = 'text-pink'
+    signupUrl.value = '/client/signup'
+    otherLoginText.value = 'ケアマネージャーの方はこちら'
+    otherLoginUrl.value = '/manager/login'
+    break
+  case 'manager':
+    title.value = 'ケアマネログイン'
+    textColor.value = 'text-orange'
+    signupUrl.value = '/manager/signup'
+    otherLoginText.value = '一般の方はこちら'
+    otherLoginUrl.value = '/client/login'
+    break
+}
 </script>

@@ -73,7 +73,11 @@
             placeholder="東京都世田谷区祖師谷4-3-15"
             :required="true"
             class="mb-8"
-          />
+          >
+            <template #top>
+              <AInputAddressCd v-model="address" />
+            </template>
+          </AInput>
 
           <!-- 新規登録ボタン -->
           <AButtonSubmit
@@ -99,5 +103,5 @@
 <script setup lang="ts">
 // レスポンスでエラーが帰ってきたとき、differentPassをtrueにする
 const isValid = false
-
+const address = ref('')
 </script>
