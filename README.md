@@ -10,7 +10,7 @@
 1. FRONTリポジトリをクローンする　`git clone https://github.com/rtkjm22/homeCareNavi_2nd_FRONT.git`
 2. クローンしたFRONTリポジトリに移動する　`cd homeCareNavi_2nd_FRONT`
 3. 本番環境をいじらないよう、すぐに開発環境のブランチに移動する　`git checkout develop`
-4. パッケージをインストールする　`npm run install`
+4. パッケージをインストールする　`npm install`
 5. nuxt3を起動する　`npm run dev`
 
 <br />
