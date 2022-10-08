@@ -70,9 +70,13 @@
 </template>
 
 <script setup lang="ts">
-const clickValue = ref([])
+// const clickValue = ref([])
+// const addList = (name: string) => {
+//   clickValue.push(name)
+// }
+const clickValue = ref<string[]>([])
 const addList = (name: string) => {
-  clickValue.push(name)
+  clickValue.value.push(name)
 }
 const clearList = () => {
   clickValue.value = []
@@ -104,7 +108,7 @@ const districts = [
 
 </script>
 
-<style style scoped lang="scss">
+<style scoped lang="scss">
 .checkbox {
   padding: 12px 8px;
   display: flex;
