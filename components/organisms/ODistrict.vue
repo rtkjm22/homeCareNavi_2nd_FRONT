@@ -70,10 +70,6 @@
 </template>
 
 <script setup lang="ts">
-// const clickValue = ref([])
-// const addList = (name: string) => {
-//   clickValue.push(name)
-// }
 const clickValue = ref<string[]>([])
 const addList = (name: string) => {
   clickValue.value.push(name)
