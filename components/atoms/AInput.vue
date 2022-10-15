@@ -2,7 +2,7 @@
   <div class="flex flex-col">
     <label :for="labelFor" class="label">{{ labelText }}</label>
 
-    <AInputAddressCd v-if="labelText === '住所'" />
+    <slot name="top" />
 
     <input
       :id="labelFor"
