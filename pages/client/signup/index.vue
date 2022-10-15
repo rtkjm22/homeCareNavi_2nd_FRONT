@@ -1,3 +1,3 @@
 <template>
-  <OLogin :user-type="'client'" />
+  <OSignup user-type="client" />
 </template>

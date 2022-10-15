@@ -38,28 +38,12 @@ const searchByPostal = async (postal: string) => {
   return response.location[0]
 }
 
-/** 郵便番号から最寄り駅を取得しそれを返す。ヒットしなければundefinedを返す。 */
-const getStations = async (postal: string) => {
-  type Result = {
-    station: Array<{
-      name: string;
-      distance: number;
-    } & AddressResult>
-  }
-  const { response } = await $fetch<BaseResponse<Result>>(`${BASE_URL}/?method=getStations&postal=${postal}`)
-
-  if ('error' in response) { return }
-
-  return response.station[0]
-}
-
 /**
  * 郵便番号・住所・緯度経度データをHeartRailsGeoAPIから取得する。
  * @see http://geoapi.heartrails.com/api.html
  */
 export const useHeartRailsGeoAPI = () => {
   return {
-    searchByPostal,
-    getStations
+    searchByPostal
   }
 }

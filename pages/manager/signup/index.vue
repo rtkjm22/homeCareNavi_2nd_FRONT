@@ -1,3 +1,3 @@
 <template>
-  <OSignup :user-type="'manager'" />
+  <OSignup user-type="manager" />
 </template>

@@ -78,8 +78,7 @@
             <template #top>
               <AInputAddressCd
                 v-model="params.postal"
-                @change="searchByPostal();
-                         getStations()"
+                @change="searchByPostal()"
               />
             </template>
           </AInput>
@@ -131,12 +130,7 @@ const params = reactive({
   password: '',
   type: 'Manager',
   // TODO: api側の準備が整ったら実行時の環境変数でurlを変更するようにする
-  confirm_success_url: 'http://localhost:8080/manager/staffs',
-  office_attributes: {
-    lat: 0,
-    lng: 0,
-    nearest_station: ''
-  }
+  confirm_success_url: 'http://localhost:8080/manager/staffs'
 })
 
 const geoApi = useHeartRailsGeoAPI()
@@ -149,24 +143,8 @@ const searchByPostal = async () => {
   const location = await geoApi.searchByPostal(postal)
   if (location === undefined) { return }
 
-  const { city, prefecture, town, x, y } = location
-  params.office_attributes.lat = y
-  params.office_attributes.lng = x
+  const { city, prefecture, town } = location
   params.address = city + prefecture + town
-}
-
-// 郵便番号から最寄り駅を取得する
-const getStations = async () => {
-  const { postal } = params
-  if (postal.length !== 7) { return }
-
-  const station = await geoApi.getStations(postal)
-  if (station === undefined) { return }
-
-  const { distance, name } = station
-  // 1分間に80mとして徒歩○分の時間を求める
-  const min = Math.trunc(distance / 80)
-  params.office_attributes.nearest_station = `${name}駅 徒歩${min}分`
 }
 
 const router = useRouter()
