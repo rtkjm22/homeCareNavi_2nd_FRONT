@@ -23,5 +23,12 @@ export default defineNuxtConfig({
 
   typescript: {
     strict: true
+  },
+
+  runtimeConfig: {
+    public: {
+      frontURL: process.env.FRONT_URL,
+      apiURL: process.env.API_URL
+    }
   }
 })
