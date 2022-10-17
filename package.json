@@ -3,16 +3,19 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "PORT=8080 nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "lint": "eslint --ext .ts,.js,.vue .",
-    "lint_fix": "eslint --ext .ts,.js,.vue . --fix"
+    "lint_fix": "eslint --ext .ts,.js,.vue . --fix",
+    "screenshot": "playwright test tests/screenshot.spec.ts",
+    "screenshot_update": "playwright test tests/screenshot.spec.ts --update-snapshots"
   },
   "devDependencies": {
     "@nuxt/ui": "^0.3.2",
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "@nuxtjs/tailwindcss": "^5.3.2",
+    "@playwright/test": "^1.27.1",
     "eslint": "^8.23.0",
     "nuxt": "3.0.0-rc.9",
     "sass": "^1.54.9",
