@@ -29,12 +29,17 @@
               </NuxtLink>
             </div>
             <div class="ml-4 flex items-center gap-2">
-              <NuxtLink to="/client/login">
-                <AButton inner-text="ログイン" />
-              </NuxtLink>
-              <NuxtLink to="/client/signup">
-                <AButton inner-text="新規登録" user-type="client" />
-              </NuxtLink>
+              <template v-if="userType === undefined">
+                <NuxtLink to="/client/login">
+                  <AButton inner-text="ログイン" />
+                </NuxtLink>
+                <NuxtLink to="/client/signup">
+                  <AButton inner-text="新規登録" user-type="client" />
+                </NuxtLink>
+              </template>
+              <template v-else>
+                <a class="linkItem cursor-pointer" @click="logout">ログアウト</a>
+              </template>
             </div>
           </nav>
 
@@ -86,18 +91,29 @@
                     >
                   </NuxtLink>
                   <p class="mb-6 text-xs text-gray-base">
-                    ゲストさん
+                    {{ $user.state.value?.name || 'ゲスト' }}さん
                   </p>
-                  <div class="mx-auto mb-3 flex items-center gap-2">
-                    <AButton inner-text="ログイン" />
-                    <AButton inner-text="新規登録" user-type="client" />
-                  </div>
-                  <NuxtLink
-                    to="/manager/login"
-                    class="mb-6 text-xs font-medium text-pink"
-                  >
-                    ケアマネージャーの方はこちら
-                  </NuxtLink>
+                  <template v-if="userType === undefined">
+                    <div class="mx-auto mb-3 flex items-center gap-2">
+                      <NuxtLink to="/client/login">
+                        <AButton inner-text="ログイン" />
+                      </NuxtLink>
+                      <NuxtLink to="/client/signup">
+                        <AButton inner-text="新規登録" user-type="client" />
+                      </NuxtLink>
+                    </div>
+                    <NuxtLink
+                      to="/manager/login"
+                      class="mb-6 text-xs font-medium text-pink"
+                    >
+                      ケアマネージャーの方はこちら
+                    </NuxtLink>
+                  </template>
+                  <template v-else>
+                    <span class="mb-6 text-xs font-medium text-pink" @click="logout">
+                      ログアウト
+                    </span>
+                  </template>
                 </div>
                 <!-- メニュー下部 -->
                 <ul class="flex flex-col">
@@ -135,7 +151,7 @@ const links = computed<Link[] | undefined>(() => {
         { innerText: 'ブックマーク', to: '/' },
         { innerText: '予約状況確認', to: '/' },
         { innerText: 'レビュー履歴', to: '/' },
-        { innerText: '登録情報変更', to: '/' }
+        { innerText: '登録情報変更', to: '/client/auth/profile' }
       ]
     case 'manager':
       return [
@@ -150,6 +166,26 @@ const links = computed<Link[] | undefined>(() => {
 
 // スマートフォン用メニューの表示フラグ
 const isNavOpened = ref(false)
+
+const { $api, $user } = useNuxtApp()
+const router = useRouter()
+const { alert } = useUI()
+
+/**
+ BUG: ログアウトした後にログインページに遷移すると、たまにヘッダーがログイン前のままになっているバグあり。
+ $user.stateの値及びセッションストレージを確認したが、正常に全削除されていた。
+ Nuxt3のページキャッシュ？の可能性があると思ったので、clearNuxtDataメソッドでキャッシュ削除しようとしたものの、
+ RC11の時点でバグによりインポートできなかった。RC12で改善されるようなので、RC12がリリースされたらclearNuxtDataを試してみる
+ @see https://v3.nuxtjs.org/api/utils/clear-nuxt-data#clearnuxtdata clearNuxtDataドキュメント
+ @see https://github.com/nuxt/framework/issues/8153 インポートできないissue
+*/
+const logout = async () => {
+  await $api.client.api.v1.auth.sign_out.$delete()
+  $api.clearAuthHeaders()
+  $user.clearUserState()
+  await router.push('/')
+  alert.showAlert('ログアウトしました', 'success')
+}
 </script>
 
 <style scoped lang="scss">
