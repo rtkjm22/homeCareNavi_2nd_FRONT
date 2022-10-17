@@ -105,6 +105,7 @@ const title = ref('')
 const textColor = ref('')
 const loginUrl = ref('')
 const loginText = ref('')
+let confirmSuccessUrl: string = useRuntimeConfig().public.frontURL
 
 switch (props.userType) {
   case 'client':
@@ -112,12 +113,14 @@ switch (props.userType) {
     textColor.value = 'text-pink'
     loginUrl.value = '/client/login'
     loginText.value = 'ログインはこちら'
+    confirmSuccessUrl = confirmSuccessUrl + '/client/login'
     break
   case 'manager':
     title.value = 'ケアマネ新規登録'
     textColor.value = 'text-orange'
     loginUrl.value = '/manager/login'
     loginText.value = 'ケアマネログインはこちら'
+    confirmSuccessUrl = confirmSuccessUrl + '/manager/login'
     break
 }
 
@@ -128,9 +131,9 @@ const params = reactive({
   postal: '',
   address: '',
   password: '',
-  type: 'Manager',
-  // TODO: api側の準備が整ったら実行時の環境変数でurlを変更するようにする
-  confirm_success_url: 'http://localhost:8080/manager/staffs'
+  // 頭文字を大文字にしたuserType。 'client' => 'Client', 'manager' => 'Manager'。APIの仕様上必要。
+  type: props.userType[0].toUpperCase() + props.userType.slice(1),
+  confirm_success_url: confirmSuccessUrl
 })
 
 const geoApi = useHeartRailsGeoAPI()
@@ -148,9 +151,18 @@ const searchByPostal = async () => {
 }
 
 const router = useRouter()
+const { $api } = useNuxtApp()
+const { alert } = useUI()
 
-// TODO 新規登録処理
-const signup = () => {
-  router.push(`/${props.userType}/signup/complete`)
+const signup = async () => {
+  await $api.client.api.v1.auth.$post({ body: params })
+    .then(async () => {
+      await router.push(`/${props.userType}/signup/complete`)
+      alert.showAlert('メールを送信しました。メールに記載されているリンクにアクセスしてください。', 'success')
+    })
+    .catch(async (e) => {
+      const message = await $api.getErrorMessage(e)
+      alert.showAlert(message, 'danger')
+    })
 }
 </script>
