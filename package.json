@@ -3,19 +3,22 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "PORT=8080 nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "lint": "eslint --ext .ts,.js,.vue .",
-    "lint_fix": "eslint --ext .ts,.js,.vue . --fix"
+    "lint_fix": "eslint --ext .ts,.js,.vue . --fix",
+    "generate_api": "rm -fr api && npx openapi2aspida -i https://raw.githubusercontent.com/rahhi555/homeCareNavi_2nd_OpenAPI/master/reference/home-care-navi-second-open-api.yaml -o=api"
   },
   "devDependencies": {
+    "@aspida/fetch": "^1.11.0",
     "@nuxt/ui": "^0.3.2",
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "@nuxtjs/tailwindcss": "^5.3.2",
+    "@openapitools/openapi-generator-cli": "^2.5.2",
     "eslint": "^8.23.0",
     "nuxt": "3.0.0-rc.9",
     "sass": "^1.54.9",
-    "typescript": "^3.3.1"
+    "typescript": "^4.8.4"
   }
 }
