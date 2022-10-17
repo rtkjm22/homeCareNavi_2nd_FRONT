@@ -9,18 +9,14 @@
       v-model="computedModelValue"
       :type="inputType"
       class="inputItem"
-      :class="`${ validateBorder }`"
       :placeholder="placeholder"
       :pattern="pattern"
       :minlength="minlength"
       :maxlength="maxlength"
       :required="required"
     >
-    <div v-show="isValid">
-      <p class="text-sm text-pink">
-        パスワードが違います
-      </p>
-    </div>
+
+    <slot name="bottom" />
   </div>
 </template>
 
@@ -34,17 +30,8 @@ interface Props {
   minlength?: string;
   maxlength?: string;
   required?: boolean;
-  isValid?: boolean;
   modelValue?: string
 }
-
-const validateBorder = computed(() => {
-  if (props.isValid) {
-    return 'border-pink'
-  } else {
-    return 'border-gray-lighter'
-  }
-})
 
 const props = defineProps<Props>()
 const emits = defineEmits<{(e: 'update:modelValue', value?: string): void}>()
