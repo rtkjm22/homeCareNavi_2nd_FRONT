@@ -64,7 +64,7 @@
           <!-- 新しいパスワード（確認） -->
           <AInput
             v-model="params.password_confirmation"
-            label-for="inputNewPass"
+            label-for="inputNewPassConfirm"
             label-text="新しいパスワード（確認）"
             input-type="password"
             placeholder="半角英数字8文字以上"

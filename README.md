@@ -6,12 +6,65 @@
 
 <br />
 
+## [API仕様定義書（OpenAPI）リンク](https://rahhi555.stoplight.io/docs/home-care-navi-second/oyf2pt1k0zz67-home-care-navi-second)
+
+<br />
+
+
 ### 環境構築
 1. FRONTリポジトリをクローンする　`git clone https://github.com/rtkjm22/homeCareNavi_2nd_FRONT.git`
 2. クローンしたFRONTリポジトリに移動する　`cd homeCareNavi_2nd_FRONT`
 3. 本番環境をいじらないよう、すぐに開発環境のブランチに移動する　`git checkout develop`
 4. パッケージをインストールする　`npm install`
 5. nuxt3を起動する　`npm run dev`
+
+<br />
+
+### モックを有効化して開発環境を起動する
+API側と通信するため、本来はAPIのリポジトリをクローンして環境構築しなければなりません。しかし、モック（ダミーレスポンス）を有効にすればフロントエンドのみで開発できます。
+1. モックの元となるOpenAPIファイルをダウンロードする　`npm run fetch_openapi`
+2. モック有効化モードで環境構築を起動する　`npm run dev_mock`
+3. モックを有効化した状態でログイン等をすると、API通信をせずにダミーのレスポンスを受け取る。注意点として、現状はどんな値を入力しても常に成功レスポンスを返します。
+
+<br />
+
+### OpenAPI（API定義書）から作成したフェッチ関数を使用する
+現在API側はOpenAPIを用いて定義書を作成しています（[URL](https://rahhi555.stoplight.io/docs/home-care-navi-second/oyf2pt1k0zz67-home-care-navi-second)）。OpenAPIの特徴として、実態はyamlファイルであるため、リクエスト、レスポンス等の情報をいろんなエコシステムで使い回すことができます。今回は[aspida](https://github.com/aspida/aspida/tree/main/packages/aspida/docs/ja)及び[openapi2aspida](https://github.com/aspida/openapi2aspida)を用いて、形安全なフェッチ関数を作成しています。
+
+#### 使用方法：
+
+- 主に認証系など、キャッシュしたくない通信を行う場合
+```ts
+// 1. useNuxtApp()から$apiを呼び出す
+const { $api } = useNuxtApp()
+
+// 2. '/api/v1/auth/sign_in'のpostを呼び出す（例）
+await $api.client.api.v1.auth.sign_in.post({ body: signInBody })
+
+    .then((res) => {
+      // 3. 成功時の処理
+    })
+
+    .catch(async (e) => {
+      // 4. エラー時の処理。エラーメッセージは $api.getErrorMessage にeを渡すことで取得できる
+      const message = await $api.getErrorMessage(e)
+    })
+```
+
+- 主にスタッフ一覧など、キャッシュしたい場合はNuxt3の[useAsyncData](https://zenn.dev/ytr0903/articles/6acccb5fa816ee)でラップする
+```ts
+// 1. useNuxtApp()から$apiを呼び出す
+const { $api } = useNuxtApp()
+
+// 2. '/api/v1/manager/staffs'を呼び出す（例）
+const { data, error } = useAsyncData(() => $api.client.api.v1.manager.staffs.get())
+
+data.value // 3. 成功時の処理
+
+const message = await $api.getErrorMessage(error.value) // 4. 失敗時の処理
+```
+最新のOpenAPI定義に追従する場合は以下のコマンドを打ってください
+- `npm run generate_api`
 
 <br />
 

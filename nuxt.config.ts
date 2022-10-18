@@ -27,8 +27,9 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      frontURL: process.env.FRONT_URL,
-      apiURL: process.env.API_URL
+      frontURL: 'http://localhost:8080',
+      apiURL: 'http://localhost:3000',
+      enabledMock: process.env.ENABLED_MOCK || false
     }
   }
 })
