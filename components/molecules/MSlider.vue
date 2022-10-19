@@ -89,8 +89,9 @@ const images = reactive([
 </script>
 <style lang="scss">
 .mySwiper {
-  @apply relative h-[322px] w-[520px];
+  @apply relative lg:h-[322px] lg:w-[520px];
   &-thumb {
+    @apply hidden sm:block;
     padding: 16px !important;
     margin: 0 !important;
     width: 100%;

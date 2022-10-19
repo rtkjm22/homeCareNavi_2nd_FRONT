@@ -81,7 +81,7 @@ setWorkDay()
 <style scoped lang="scss">
 .workDay {
   &_head {
-    @apply py-1 px-3 text-[11px] text-gray-dark border border-b-0 border-gray-lighter bg-[#F5F7F7];
+    @apply py-1 px-3 text-[11px] text-gray-dark border border-b-0 border-gray-lighter bg-[#F5F7F7] text-center;
     &__red {
       @apply text-[#E23E5D];
     }

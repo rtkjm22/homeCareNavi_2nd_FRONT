@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full p-4 bg-white">
-    <h3 class="text-lg font-bold mb-4">施設概要</h3>
+  <div class="w-full pt-4 px-4 pb-6 bg-white lg:p-4">
+    <h3 class="mb-4 text-base font-bold lg:text-lg">施設概要</h3>
 
     <div>
       <table class="myTable">
@@ -44,7 +44,7 @@
         <!-- 公式サイト -->
         <tr>
           <td>公式サイト</td>
-          <td><a class="text-pink hover:underline" href="#">https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html</a></td>
+          <td><a class="text-pink break-words hover:underline" href="#">https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html</a></td>
         </tr>
       </table>
     </div>
@@ -57,11 +57,12 @@
   tr {
     @apply  border-t border-b border-gray-lighter;
     td:first-of-type {
-      @apply px-2 py-3 w-24 text-xs font-bold text-gray-base;
+      @apply pl-2 pr-4 py-3 w-24 text-xs font-bold text-gray-base whitespace-nowrap lg:px-2;
     }
     td:nth-of-type(2) {
       @apply pl-0 pr-2 py-3 w-[392px] text-sm whitespace-normal break-all;
     }
   }
+
 }
 </style>
