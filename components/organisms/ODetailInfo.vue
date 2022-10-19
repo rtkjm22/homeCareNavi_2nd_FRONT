@@ -7,7 +7,7 @@
       </h2>
       <!-- 住所 -->
       <p class="mb-3 text-[13px] text-gray-base lg:mb-4">
-        〒157-0072<br />東京都世田谷区祖師谷4-3-15
+        〒157-0072<br>東京都世田谷区祖師谷4-3-15
       </p>
 
       <!-- アクセス・スタッフ数 -->
@@ -20,7 +20,7 @@
             width="16"
             height="16"
             class="mr-1.5 w-[11px] h-[11px] lg:mr-2 lg:w-4 lg:h-4"
-          />
+          >
           <span class="text-[11px] lg:text-[13px]">祖師ヶ谷大蔵駅 徒歩5分</span>
         </div>
         <!-- スタッフ数 -->
@@ -31,7 +31,7 @@
             width="16"
             height="16"
             class="mr-1.5 w-[11px] h-[11px] lg:mr-2 lg:w-4 lg:h-4"
-          />
+          >
           <span class="text-[11px] lg:text-[13px]">スタッフ数 5人</span>
         </div>
       </div>
@@ -46,29 +46,35 @@
             width="32"
             height="32"
             class="mr-2 w-5 h-5 lg:w-8 lg:h-8 lg:mr-3"
-          />
-          <p class="font-bold text-4 text-pink lg:text-xl lg:text-gray-dark">00-0000-0000</p>
+          >
+          <p class="font-bold text-4 text-pink lg:text-xl lg:text-gray-dark">
+            00-0000-0000
+          </p>
         </div>
         <!-- FAX -->
         <div class="flex items-center">
           <span class="mr-2 text-sm font-bold text-gray-light lg:mr-3 lg:text-[18px]">FAX</span>
-          <p class="font-bold text-4 lg:text-xl">00-0000-0000</p>
+          <p class="font-bold text-4 lg:text-xl">
+            00-0000-0000
+          </p>
         </div>
       </div>
 
       <!-- web予約するボタン -->
       <AButton
-        innerText="web予約する"
-        userType="client"
+        inner-text="web予約する"
+        user-type="client"
         size="lg"
         class="mb-4 lg:mb-[18px]"
       />
 
       <!-- 営業日 -->
       <div class="flex mb-2 items-center gap-4 lg:mb-0 lg:block lg:items-stretch">
-        <p class="mb-3 text-[13px] text-gray-base font-bold whitespace-nowrap">営業日</p>
-        <AWorkDay :workDay="(arr as Weeks[])" class="w-full h-[68px] lg:hidden" />
-        <AWorkDay :workDay="(arr as Weeks[])" size="lg" class="hidden mb-2 m-auto w-full h-[68px] lg:table" />
+        <p class="mb-3 text-[13px] text-gray-base font-bold whitespace-nowrap">
+          営業日
+        </p>
+        <AWorkDay :work-day="(arr as Weeks[])" class="w-full h-[68px] lg:hidden" />
+        <AWorkDay :work-day="(arr as Weeks[])" size="lg" class="hidden mb-2 m-auto w-full h-[68px] lg:table" />
       </div>
 
       <!-- 営業日時についての説明文 -->
@@ -76,12 +82,12 @@
         営業日時についてのテキストが入ります営業日時についてのテキストが入ります営業日時についてのテキストが入ります営業日時についてのテキストが入ります営業日時についてのテキストが入ります
       </p>
     </div>
-    <ABookmark :isBookmarked="false" class="absolute right-4 top-4" />
+    <ABookmark :is-bookmarked="false" class="absolute right-4 top-4" />
   </div>
 </template>
 <script setup lang="ts">
-type Weeks = "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat";
-const arr = ["sun", "tue", "thu", "fri", "sat"];
+type Weeks = 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat';
+const arr = ['sun', 'tue', 'thu', 'fri', 'sat']
 </script>
 <style scoped lang="scss">
 .content {

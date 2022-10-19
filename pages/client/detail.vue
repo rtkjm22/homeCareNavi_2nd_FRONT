@@ -4,7 +4,7 @@
       <!-- 左カラム -->
       <ODetail class="gridItem w-full max-w-[520px]" />
       <!-- 右カラム -->
-      <ODetailInfo class="hidden lg:max-w-[438px] lg:block" /> 
+      <ODetailInfo class="hidden lg:max-w-[438px] lg:block" />
     </div>
   </div>
 </template>

@@ -1,18 +1,20 @@
 <template>
   <div class="w-full pt-4 px-4 pb-6 bg-white lg:p-4">
-    <h3 class="mb-4 text-base font-bold lg:text-lg">施設概要</h3>
+    <h3 class="mb-4 text-base font-bold lg:text-lg">
+      施設概要
+    </h3>
 
     <div>
       <table class="myTable">
         <!-- 住所 -->
         <tr>
           <td>住所</td>
-          <td>〒157-0072<br />東京都世田谷区祖師谷4-3-15</td>
+          <td>〒157-0072<br>東京都世田谷区祖師谷4-3-15</td>
         </tr>
         <!-- 類型 -->
         <tr>
           <td>類型</td>
-          <td>介護付きホーム（サービス付き高齢者向け住宅　特定施設）</td>
+          <td>介護付きホーム（サービス付き高齢者向け住宅 特定施設）</td>
         </tr>
         <!-- 開設年月 -->
         <tr>
@@ -38,8 +40,8 @@
         </tr>
         <!-- 経営・事業主体 -->
         <tr>
-          <td>経営・<br />事業主体</td>
-          <td>株式会社ユニマット　リタイアメント・コミュニティ</td>
+          <td>経営・<br>事業主体</td>
+          <td>株式会社ユニマット リタイアメント・コミュニティ</td>
         </tr>
         <!-- 公式サイト -->
         <tr>

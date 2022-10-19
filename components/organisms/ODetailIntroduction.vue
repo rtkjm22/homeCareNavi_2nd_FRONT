@@ -12,7 +12,7 @@
           src="https://placehold.jp/f3d5c9/ffffff/150x150.png"
           alt="事業所のイメージ画像1"
           class="twoCol_img"
-        />
+        >
         <p class="twoCol_text">
           画像の説明テキストが入ります画像の説明テキストが入ります
         </p>
@@ -22,7 +22,7 @@
           src="https://placehold.jp/e7f3c9/c4c4c4/150x150.png"
           alt="事業所のイメージ画像2"
           class="twoCol_img"
-        />
+        >
         <p class="twoCol_text">
           画像の説明テキストが入ります画像の説明テキストが入ります
         </p>

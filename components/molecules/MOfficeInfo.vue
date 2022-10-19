@@ -18,19 +18,19 @@
 
       <div class="flex mb-3 gap-[14px]">
         <!-- 事業所イメージ -->
-        <img :src="officeInfo.img" alt="ホームケア施設のイメージ画像" />
+        <img :src="officeInfo.img" alt="ホームケア施設のイメージ画像">
         <!-- 事業所詳細情報 -->
         <ul>
           <li class="officeDataItem">
-            <img src="@/assets/img/searchOffice.svg" width="12" height="12" />
+            <img src="@/assets/img/searchOffice.svg" width="12" height="12">
             <p>{{ officeInfo.access }}</p>
           </li>
           <li class="officeDataItem">
-            <img src="@/assets/img/searchOffice.svg" width="12" height="12" />
+            <img src="@/assets/img/searchOffice.svg" width="12" height="12">
             <p>スタッフ数{{ officeInfo.staffs }}人</p>
           </li>
           <li class="officeDataItem">
-            <img src="@/assets/img/searchOffice.svg" width="12" height="12" />
+            <img src="@/assets/img/searchOffice.svg" width="12" height="12">
             <p>{{ officeInfo.phone }}</p>
           </li>
         </ul>
@@ -63,7 +63,7 @@
   </li>
 </template>
 <script setup lang="ts">
-type Weeks = "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat";
+type Weeks = 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat';
 type Props = {
   officeInfo: {
     name: string;
@@ -79,7 +79,7 @@ type Props = {
   isBookmarked: boolean;
 };
 
-defineProps<Props>();
+defineProps<Props>()
 </script>
 <style scoped lang="scss">
 .officeDataItem {

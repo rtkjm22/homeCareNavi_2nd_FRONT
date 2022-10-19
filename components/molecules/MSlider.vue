@@ -17,7 +17,7 @@
       :thumbs="{ swiper: thumbsSwiper }"
     >
       <swiper-slide v-for="image in images" :key="image.id">
-        <img class="h-full w-full object-cover" :src="image.imageUrl" alt="" />
+        <img class="h-full w-full object-cover" :src="image.imageUrl" alt="">
       </swiper-slide>
     </swiper>
 
@@ -36,56 +36,56 @@
           class="w-[92px] h-[69px] object-cover"
           :src="image.imageUrl"
           alt=""
-        />
+        >
       </swiper-slide>
     </swiper>
   </div>
 </template>
 <script setup lang="ts">
-import SwiperClass, { Autoplay, Navigation, Thumbs } from "Swiper";
+import SwiperClass, { Autoplay, Navigation, Thumbs } from 'Swiper'
 
 // 画像ボタンの配列
-const thumbsSwiper = ref<SwiperClass>();
+const thumbsSwiper = ref<SwiperClass>()
 
 // thumbsSwiperに画像を格納する関数
 const setThumbsSwiper = (swiper: SwiperClass): void => {
-  thumbsSwiper.value = swiper;
-};
+  thumbsSwiper.value = swiper
+}
 
 // swiper標準のモジュールをインポート
 // Autoplay: 4000ms間隔でオートプレイ
 // Navigation: メインビジュアルの中央下部のページ数表示 例: 2/5
 // Thumbs: 画像ボタン生成用モジュール
-const swiperModules = [Autoplay, Navigation, Thumbs];
+const swiperModules = [Autoplay, Navigation, Thumbs]
 
 // 取得した画像の配列
 const images = reactive([
   {
     id: 1,
     imageUrl:
-      "https://placehold.jp/a6deda/ffffff/520x322.png",
+      'https://placehold.jp/a6deda/ffffff/520x322.png'
   },
   {
     id: 2,
     imageUrl:
-      "https://placehold.jp/e5bdd4/ffffff/520x322.png",
+      'https://placehold.jp/e5bdd4/ffffff/520x322.png'
   },
   {
     id: 3,
     imageUrl:
-      "https://placehold.jp/e7f3c9/c4c4c4/520x322.png",
+      'https://placehold.jp/e7f3c9/c4c4c4/520x322.png'
   },
   {
     id: 4,
     imageUrl:
-      "https://placehold.jp/cbc9f3/ffffff/520x322.png",
+      'https://placehold.jp/cbc9f3/ffffff/520x322.png'
   },
   {
     id: 5,
     imageUrl:
-      "https://placehold.jp/f3d5c9/ffffff/520x322.png",
-  },
-]);
+      'https://placehold.jp/f3d5c9/ffffff/520x322.png'
+  }
+])
 </script>
 <style lang="scss">
 .mySwiper {
