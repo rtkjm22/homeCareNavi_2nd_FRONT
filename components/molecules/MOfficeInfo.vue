@@ -18,22 +18,19 @@
 
       <div class="flex mb-3 gap-[14px]">
         <!-- 事業所イメージ -->
-        <img
-          :src="officeInfo.img"
-          alt="ホームケア施設のイメージ画像"
-        >
+        <img :src="officeInfo.img" alt="ホームケア施設のイメージ画像" />
         <!-- 事業所詳細情報 -->
         <ul>
           <li class="officeDataItem">
-            <img src="@/assets/img/searchOffice.svg" width="12" height="12">
+            <img src="@/assets/img/searchOffice.svg" width="12" height="12" />
             <p>{{ officeInfo.access }}</p>
           </li>
           <li class="officeDataItem">
-            <img src="@/assets/img/searchOffice.svg" width="12" height="12">
+            <img src="@/assets/img/searchOffice.svg" width="12" height="12" />
             <p>スタッフ数{{ officeInfo.staffs }}人</p>
           </li>
           <li class="officeDataItem">
-            <img src="@/assets/img/searchOffice.svg" width="12" height="12">
+            <img src="@/assets/img/searchOffice.svg" width="12" height="12" />
             <p>{{ officeInfo.phone }}</p>
           </li>
         </ul>
@@ -45,19 +42,28 @@
       </p>
 
       <!-- お礼コメント -->
-      <AThanksMsg
-        :thanks-msg="thanksMsg"
-      />
+      <AThanksMsg :thanks-msg="thanksMsg" />
 
       <!-- 営業日 -->
-      <AWorkDay :work-day="workDay" />
+
+      <div
+        class="flex justify-between items-center w-full sm:justify-around lg:justify-between"
+      >
+        <p class="pl-2 text-[11px] whitespace-nowrap text-gray-base font-bold">
+          営業日
+        </p>
+        <AWorkDay :work-day="workDay" />
+      </div>
     </a>
     <!-- ブックマークアイコン -->
-    <ABookmark class="absolute z-20 top-[46px] right-3" :is-bookmarked="isBookmarked" />
+    <ABookmark
+      class="absolute z-20 top-[46px] right-3"
+      :is-bookmarked="isBookmarked"
+    />
   </li>
 </template>
 <script setup lang="ts">
-type Weeks = 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat';
+type Weeks = "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat";
 type Props = {
   officeInfo: {
     name: string;
@@ -71,9 +77,9 @@ type Props = {
   thanksMsg: string;
   workDay: Weeks[];
   isBookmarked: boolean;
-}
+};
 
-defineProps<Props>()
+defineProps<Props>();
 </script>
 <style scoped lang="scss">
 .officeDataItem {

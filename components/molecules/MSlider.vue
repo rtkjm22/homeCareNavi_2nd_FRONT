@@ -63,27 +63,27 @@ const images = reactive([
   {
     id: 1,
     imageUrl:
-      "https://assets.safaraq.com/images/800/trips/79b5edebe8fe1c9a14cbffcd49dca6a3DI4614.jpg",
+      "https://placehold.jp/a6deda/ffffff/520x322.png",
   },
   {
     id: 2,
     imageUrl:
-      "https://assets.safaraq.com/images/800/trips/79b5edebe8fe1c9a14cbffcd49dca6a37Nh398.jpg",
+      "https://placehold.jp/e5bdd4/ffffff/520x322.png",
   },
   {
     id: 3,
     imageUrl:
-      "https://assets.safaraq.com/images/800/trips/79b5edebe8fe1c9a14cbffcd49dca6a3xc3946.jpg",
+      "https://placehold.jp/e7f3c9/c4c4c4/520x322.png",
   },
   {
     id: 4,
     imageUrl:
-      "https://assets.safaraq.com/images/800/trips/79b5edebe8fe1c9a14cbffcd49dca6a310P156.jpg",
+      "https://placehold.jp/cbc9f3/ffffff/520x322.png",
   },
   {
     id: 5,
     imageUrl:
-      "https://assets.safaraq.com/images/800/trips/79b5edebe8fe1c9a14cbffcd49dca6a3zSf839.jpg",
+      "https://placehold.jp/f3d5c9/ffffff/520x322.png",
   },
 ]);
 </script>

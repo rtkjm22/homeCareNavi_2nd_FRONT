@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full relative">
     <div class="content">
       <!-- 事業所名 -->
       <h2 class="mb-3 max-w-[338px] text-[28px] font-bold">
@@ -64,22 +64,23 @@
       />
 
       <!-- 営業日 -->
-      <p class="text-[13px] text-gray-base font-bold">営業日</p>
-      <AWorkDay :workDay="(arr as Weeks[])" class="mb-2" />
+      <p class="mb-3 text-[13px] text-gray-base font-bold">営業日</p>
+      <AWorkDay :workDay="(arr as Weeks[])" size="lg" class="mb-2 m-auto w-full h-[68px]" />
 
       <!-- 営業日時についての説明文 -->
       <p class="text-[11px] text-gray-base">
         営業日時についてのテキストが入ります営業日時についてのテキストが入ります営業日時についてのテキストが入ります営業日時についてのテキストが入ります営業日時についてのテキストが入ります
       </p>
     </div>
+    <ABookmark :isBookmarked="false" class="absolute right-4 top-4" />
   </div>
 </template>
 <script setup lang="ts">
 type Weeks = "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat";
-const arr = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+const arr = ["sun", "tue", "thu", "fri", "sat"];
 </script>
 <style scoped lang="scss">
 .content {
-  @apply p-4 rounded shadow-[0_1px_6px_0_rgba(0,0,0,0.1)];
+  @apply p-4 rounded bg-white shadow-[0_1px_6px_0_rgba(0,0,0,0.1)];
 }
 </style>

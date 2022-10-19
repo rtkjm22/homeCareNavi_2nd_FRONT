@@ -3,7 +3,7 @@
     <h3 class="text-lg font-bold mb-4">施設概要</h3>
 
     <div>
-      <table class="table">
+      <table class="myTable">
         <!-- 住所 -->
         <tr>
           <td>住所</td>
@@ -44,7 +44,7 @@
         <!-- 公式サイト -->
         <tr>
           <td>公式サイト</td>
-          <td>https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html</td>
+          <td><a class="text-pink hover:underline" href="#">https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html</a></td>
         </tr>
       </table>
     </div>
@@ -52,9 +52,10 @@
 </template>
 <script setup lang="ts"></script>
 <style scoped lang="scss">
-.table {
+.myTable {
   @apply w-full;
   tr {
+    @apply  border-t border-b border-gray-lighter;
     td:first-of-type {
       @apply px-2 py-3 w-24 text-xs font-bold text-gray-base;
     }
