@@ -3,8 +3,9 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "PORT=8080 nuxt dev",
-    "dev_mock": "ENABLED_MOCK=true PORT=8080 nuxt dev",
+    "dev": "nuxt dev --port=8080",
+    "dev_mock": "ENABLED_MOCK=true nuxt dev --port=8080",
+    "dev_mock_win": "SET ENABLED_MOCK=true&& nuxt dev --port=8080",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "lint": "eslint --ext .ts,.js,.vue .",

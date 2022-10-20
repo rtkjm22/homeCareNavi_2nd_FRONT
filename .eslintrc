@@ -9,5 +9,8 @@
         "argsIgnorePattern": "^_",
         "ignoreRestSiblings": true
     }]
-  }
+  },
+  "ignorePatterns": [
+    "/api/**/*"
+  ]
 }
