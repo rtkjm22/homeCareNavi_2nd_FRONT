@@ -171,14 +171,6 @@ const { $api, $user } = useNuxtApp()
 const router = useRouter()
 const { alert } = useUI()
 
-/**
- BUG: ログアウトした後にログインページに遷移すると、たまにヘッダーがログイン前のままになっているバグあり。
- $user.stateの値及びセッションストレージを確認したが、正常に全削除されていた。
- Nuxt3のページキャッシュ？の可能性があると思ったので、clearNuxtDataメソッドでキャッシュ削除しようとしたものの、
- RC11の時点でバグによりインポートできなかった。RC12で改善されるようなので、RC12がリリースされたらclearNuxtDataを試してみる
- @see https://v3.nuxtjs.org/api/utils/clear-nuxt-data#clearnuxtdata clearNuxtDataドキュメント
- @see https://github.com/nuxt/framework/issues/8153 インポートできないissue
-*/
 const logout = async () => {
   await $api.client.api.v1.auth.sign_out.$delete()
   $api.clearAuthHeaders()

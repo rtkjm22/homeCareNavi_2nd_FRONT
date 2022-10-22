@@ -110,7 +110,7 @@ const title = computed<string>(() => {
 
 /** アラートのバツボタンで閉じる際のメソッド */
 const manualClose = () => {
-  clearTimeout(alert.closeTimeoutID)
+  clearTimeout(alert.closeTimeoutID.value)
   alert.state.value.isShow = false
 }
 </script>

@@ -12,14 +12,14 @@ export const useUI = () => {
       type: 'success'
     })),
 
-    closeTimeoutID: undefined as NodeJS.Timeout | undefined,
+    closeTimeoutID: useState<NodeJS.Timeout | undefined>(),
 
     showAlert: (message: string, type: AlertStatus['type']) => {
-      clearTimeout(alert.closeTimeoutID)
+      clearTimeout(alert.closeTimeoutID.value)
       alert.state.value.message = message
       alert.state.value.type = type
       alert.state.value.isShow = true
-      alert.closeTimeoutID = setTimeout(() => { alert.state.value.isShow = false }, 5000)
+      alert.closeTimeoutID.value = setTimeout(() => { alert.state.value.isShow = false }, 5000)
     }
   }
 
