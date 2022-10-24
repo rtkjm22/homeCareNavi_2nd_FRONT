@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white">
+  <div class="bg-white select-none">
     <!-- メインビジュアル -->
     <swiper
       class="mySwiper"
@@ -42,7 +42,14 @@
   </div>
 </template>
 <script setup lang="ts">
-import SwiperClass, { Autoplay, Navigation, Thumbs } from 'Swiper'
+
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import SwiperClass, { Autoplay, Navigation, Thumbs } from 'swiper'
+
+// swiperモジュールのスタイルをインポート
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 
 // 画像ボタンの配列
 const thumbsSwiper = ref<SwiperClass>()
