@@ -1,7 +1,7 @@
 <template>
   <label class="myCheckbox">
     <!-- チェックボックス部 -->
-    <input class="myCheckbox_input" type="checkbox" value="shibuya" checked>
+    <input class="myCheckbox_input" type="checkbox" value="shibuya" checked />
     <span class="myCheckbox_dummy" />
     <!-- ラベル部 -->
     <span class="myCheckbox_text">渋谷区</span>

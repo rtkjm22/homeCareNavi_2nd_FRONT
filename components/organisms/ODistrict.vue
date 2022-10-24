@@ -22,7 +22,7 @@
             type="checkbox"
             :value="district.name"
             @change="addList(district.name)"
-          ><span class="checkbox-DummyInput" />
+          /><span class="checkbox-DummyInput" />
           <span class="checkbox-LabelText">{{
             district.name
           }}</span>

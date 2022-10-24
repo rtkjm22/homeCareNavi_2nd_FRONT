@@ -7,7 +7,7 @@
       </h2>
       <!-- 住所 -->
       <p class="mb-3 text-[13px] text-gray-base lg:mb-4">
-        〒157-0072<br>東京都世田谷区祖師谷4-3-15
+        〒157-0072<br />東京都世田谷区祖師谷4-3-15
       </p>
 
       <!-- アクセス・スタッフ数 -->
@@ -20,7 +20,7 @@
             width="16"
             height="16"
             class="mr-1.5 w-[11px] h-[11px] lg:mr-2 lg:w-4 lg:h-4"
-          >
+          />
           <span class="text-[11px] lg:text-[13px]">祖師ヶ谷大蔵駅 徒歩5分</span>
         </div>
         <!-- スタッフ数 -->
@@ -31,7 +31,7 @@
             width="16"
             height="16"
             class="mr-1.5 w-[11px] h-[11px] lg:mr-2 lg:w-4 lg:h-4"
-          >
+          />
           <span class="text-[11px] lg:text-[13px]">スタッフ数 5人</span>
         </div>
       </div>
@@ -46,7 +46,7 @@
             width="32"
             height="32"
             class="mr-2 w-5 h-5 lg:w-8 lg:h-8 lg:mr-3"
-          >
+          />
           <p class="font-bold text-4 text-pink lg:text-xl lg:text-gray-dark">
             00-0000-0000
           </p>

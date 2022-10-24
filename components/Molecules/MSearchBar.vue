@@ -28,7 +28,7 @@
       placeholder="事業所名、市区町村など"
       type="text"
       name="search"
-    >
+    />
   </label>
 </template>
 

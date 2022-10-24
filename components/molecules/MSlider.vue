@@ -17,7 +17,7 @@
       :thumbs="{ swiper: thumbsSwiper }"
     >
       <swiper-slide v-for="image in images" :key="image.id">
-        <img class="h-full w-full object-cover" :src="image.imageUrl" alt="">
+        <img class="h-full w-full object-cover" :src="image.imageUrl" alt="" />
       </swiper-slide>
     </swiper>
 
@@ -36,7 +36,7 @@
           class="w-[92px] h-[69px] object-cover"
           :src="image.imageUrl"
           alt=""
-        >
+        />
       </swiper-slide>
     </swiper>
   </div>

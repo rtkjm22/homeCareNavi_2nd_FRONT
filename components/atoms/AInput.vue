@@ -14,7 +14,7 @@
       :minlength="minlength"
       :maxlength="maxlength"
       :required="required"
-    >
+    />
 
     <slot name="bottom" />
   </div>

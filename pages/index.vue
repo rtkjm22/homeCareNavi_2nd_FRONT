@@ -26,7 +26,7 @@
 
         <!-- SP -->
         <div class="md:hidden">
-          <img src="~/assets/img/SPlogo.png" class="aspect-auto w-full" alt="">
+          <img src="~/assets/img/SPlogo.png" class="aspect-auto w-full" alt="" />
         </div>
       </div>
     </div>
