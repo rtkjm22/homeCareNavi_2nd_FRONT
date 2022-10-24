@@ -29,5 +29,10 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "dependencies": {
+    "daisyui": "^2.31.0",
+    "scule": "^0.3.2",
+    "swiper": "^8.4.2"
   }
 }
