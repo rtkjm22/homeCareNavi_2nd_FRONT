@@ -10,9 +10,10 @@
       </div>
       <!-- フォーム部分 -->
       <div class="mb-9 sm:mb-16 mx-auto sm:w-[520px]">
-        <form>
+        <form @submit.prevent="updateUser">
           <!-- お名前 -->
           <AInput
+            v-model="params.name"
             label-for="inputNm"
             label-text="お名前"
             input-type="text"
@@ -23,6 +24,7 @@
 
           <!-- メールアドレス -->
           <AInput
+            v-model="params.email"
             label-for="inputMail"
             label-text="メールアドレス"
             input-type="email"
@@ -34,6 +36,7 @@
 
           <!-- 現在のパスワード -->
           <AInput
+            v-model="params.current_password"
             label-for="inputCurrentPass"
             label-text="現在のパスワード"
             input-type="password"
@@ -41,20 +44,44 @@
             minlength="8"
             :required="true"
             class="mb-6"
-            :is-valid="isValid"
           />
+
           <!-- 新しいパスワード -->
           <AInput
+            v-model="params.password"
             label-for="inputNewPass"
             label-text="新しいパスワード"
             input-type="password"
             placeholder="半角英数字8文字以上"
             minlength="8"
-            :required="true"
             class="mb-6"
-          />
+          >
+            <template #bottom>
+              <span class="text-xs text-gray-base mt-1">省略可</span>
+            </template>
+          </AInput>
+
+          <!-- 新しいパスワード（確認） -->
+          <AInput
+            v-model="params.password_confirmation"
+            label-for="inputNewPassConfirm"
+            label-text="新しいパスワード（確認）"
+            input-type="password"
+            placeholder="半角英数字8文字以上"
+            minlength="8"
+            class="mb-6"
+          >
+            <template #bottom>
+              <span class="text-xs text-gray-base mt-1">省略可</span>
+              <span v-show="!isSamePassword" class="text-xs text-red-500 mt-1">
+                パスワードが一致しません
+              </span>
+            </template>
+          </AInput>
+
           <!-- 電話番号 -->
           <AInput
+            v-model="params.tel"
             label-for="inputTel"
             label-text="電話番号"
             input-type="tel"
@@ -67,6 +94,7 @@
 
           <!-- 住所 -->
           <AInput
+            v-model="params.address"
             label-for="inputPost"
             label-text="住所"
             input-type="text"
@@ -75,7 +103,7 @@
             class="mb-8"
           >
             <template #top>
-              <AInputAddressCd v-model="address" />
+              <AInputAddressCd v-model="params.postal" />
             </template>
           </AInput>
 
@@ -89,7 +117,7 @@
         <!-- 新規登録画面へ遷移 -->
         <div class="text-center mb-8">
           <NuxtLink
-            to="/client/profile"
+            to="/client/auth/profile"
             :class="`text-sm text-pink`"
           >
             変更せずに戻る
@@ -101,7 +129,41 @@
 </template>
 
 <script setup lang="ts">
-// レスポンスでエラーが帰ってきたとき、differentPassをtrueにする
-const isValid = false
-const address = ref('')
+// 現在のユーザーのステータス設定
+const { $api, $user } = useNuxtApp()
+const { name, email, tel, postal, address } = $user.state.value!
+const params = reactive({
+  name,
+  email,
+  tel,
+  postal,
+  address,
+  current_password: '',
+  password: '',
+  password_confirmation: ''
+})
+
+// パスワード確認
+const isSamePassword = computed(() => {
+  return params.password === params.password_confirmation
+})
+
+// ステータス変更送信
+const { alert } = useUI()
+const router = useRouter()
+const updateUser = async () => {
+  if (!isSamePassword.value) { return }
+
+  await $api.client.api.v1.auth.patch({ body: params })
+    .then(async ({ body, headers }) => {
+      $user.state.value = body.data
+      $api.setAuthHeaders(headers)
+      await router.push('/client/auth/profile')
+      alert.showAlert('登録情報を変更しました', 'success')
+    })
+    .catch(async (e) => {
+      const message = await $api.getErrorMessage(e)
+      alert.showAlert(message, 'danger')
+    })
+}
 </script>

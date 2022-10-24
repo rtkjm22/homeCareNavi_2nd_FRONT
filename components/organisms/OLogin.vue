@@ -16,8 +16,9 @@
       </div>
       <!-- フォーム部分 -->
       <div class="mb-9 sm:mb-16 mx-auto sm:w-[520px]">
-        <form>
+        <form @submit.prevent="signInSubmit">
           <AInput
+            v-model="params.email"
             label-for="inputMail"
             label-text="メールアドレス"
             input-type="email"
@@ -29,6 +30,7 @@
 
           <!-- パスワード -->
           <AInput
+            v-model="params.password"
             label-for="inputPass"
             label-text="パスワード"
             input-type="password"
@@ -97,5 +99,28 @@ switch (props.userType) {
     otherLoginText.value = '一般の方はこちら'
     otherLoginUrl.value = '/client/login'
     break
+}
+
+const params = reactive({
+  email: '',
+  password: ''
+})
+
+const { alert } = useUI()
+const router = useRouter()
+const { $api, $user } = useNuxtApp()
+
+const signInSubmit = async () => {
+  await $api.client.api.v1.auth.sign_in.post({ body: params })
+    .then(async ({ body, headers }) => {
+      $user.setUserState(body.data)
+      $api.setAuthHeaders(headers)
+      await router.push('/')
+      alert.showAlert(`ようこそ${body.data.name}さん`, 'success')
+    })
+    .catch(async (e) => {
+      const message = await $api.getErrorMessage(e)
+      alert.showAlert(message, 'danger')
+    })
 }
 </script>

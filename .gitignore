@@ -10,4 +10,4 @@ dist
 /test-results/
 /playwright-report/
 /playwright/.cache/
-/tests/screenshot.spec.ts-snapshots/
+/**/*.spec.ts-snapshots/

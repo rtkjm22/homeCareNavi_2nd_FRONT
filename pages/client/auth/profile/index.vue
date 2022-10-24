@@ -4,7 +4,7 @@
       class="mt-10 pb-10 sm:pd-16 mx-auto pt-4 flex justify-center max-w-pcCol1 bg-white relative rounded"
     >
       <NuxtLink
-        to="/"
+        to="/client/auth/profile/edit"
         class="absolute top-4 right-4 text-sm text-pink"
       >
         変更する
@@ -22,14 +22,14 @@
             <div class="py-2">
               <AHeadline :label-text="'お名前'" />
               <p class="profile-text">
-                {{ currentUser.name }}
+                {{ name }}
               </p>
             </div>
             <!-- メールアドレス -->
             <div class="py-2">
               <AHeadline :label-text="'メールアドレス'" />
               <p class="profile-text">
-                {{ currentUser.email }}
+                {{ email }}
               </p>
             </div>
             <!-- パスワード -->
@@ -43,29 +43,20 @@
             <div class="py-2">
               <AHeadline :label-text="'電話番号'" />
               <p class="profile-text">
-                {{ currentUser.tel }}
+                {{ tel }}
               </p>
             </div>
             <!-- 住所 -->
             <div class="py-2">
               <AHeadline :label-text="'住所'" />
               <p class="font-bold text-gray-base">
-                〒{{ currentUser.postal_code }}
+                〒{{ postal }}
               </p>
               <p class="font-bold text-gray-base">
-                {{ currentUser.address }}
+                {{ address }}
               </p>
             </div>
           </div>
-        </div>
-
-        <div class="flex justify-center">
-          <NuxtLink
-            to="/"
-            class="text-sm text-pink"
-          >
-            ログアウト
-          </NuxtLink>
         </div>
       </div>
     </div>
@@ -84,16 +75,9 @@
 </template>
 
 <script setup lang="ts">
-// ユーザー情報
-const currentUser = computed(() => {
-  return {
-    name: '田中 太郎',
-    email: 'homecarenavi@mail.com',
-    tel: '000-0000-0000',
-    postal_code: '000-0000',
-    address: '東京都世田谷区祖師谷4-3-15'
-  }
-})
+const { $user } = useNuxtApp()
+
+const { name, email, tel, postal, address } = $user.state.value!
 </script>
 
 <style scoped>

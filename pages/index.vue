@@ -207,7 +207,19 @@
 </template>
 
 <script setup lang="ts">
+const { $user } = useNuxtApp()
 
+// ユーザータイプのレイアウトを返す
+const dynamicLayout = computed(() => {
+  if ($user.isClient.value) { return 'client' }
+  if ($user.isManager.value) { return 'manager' }
+  return 'default'
+})
+
+// ユーザータイプが変更した際にレイアウトをセットする（immediate: trueにすることで初期化時も呼ばれる）
+watch(dynamicLayout, () => {
+  setPageLayout(dynamicLayout.value)
+}, { immediate: true })
 </script>
 
 <style scoped lang="scss">
