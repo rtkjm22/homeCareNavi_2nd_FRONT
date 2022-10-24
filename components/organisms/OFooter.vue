@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="relative bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="relative bg-white w-full">
+      <div class="max-w-7xl w-full mx-auto px-4 sm:px-6">
         <div
-          class="py-4 flex justify-between items-center flex-col-reverse sm:py-[15px] sm:flex-row sm:justify-start sm:space-x-10"
+          class="py-4 w-full flex justify-between  flex-col-reverse sm:py-[15px] sm:flex-row sm:space-x-10"
         >
           <!-- タイトル -->
           <div
-            class="flex justify-between w-full max-w-[343px] items-center sm:w-auto"
+            class="flex justify-between "
           >
             <NuxtLink
               href="/"
@@ -19,10 +19,10 @@
           </div>
           <!-- リンク -->
           <div
-            class="mb-4 flex items-center justify-end sm:mb-0 sm:flex-1 lg:w-0"
+            class="mb-4 flex items-center justify-center sm:mb-0"
           >
             <nav>
-              <ul class="flex">
+              <ul class="flex ">
                 <li v-for="link in links" :key="link.text" class="linkItem">
                   <NuxtLink :to="link.to">
                     {{ link.text }}
@@ -56,7 +56,7 @@ const links = [
 
 <style scoped lang="scss">
 .linkItem {
-  @apply text-[11px] text-pink;
+  @apply text-[11px] text-pink whitespace-nowrap;
 }
 .linkItem:not(:last-of-type) {
   @apply mr-5;
