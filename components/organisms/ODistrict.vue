@@ -28,7 +28,7 @@
           }}</span>
         </label>
         <label for="district" class="ml-2 text-sm checkbox" />
-        <ARightArrow />
+        <ARightArrow class="text-gray-light" />
       </li>
     </ul>
 
