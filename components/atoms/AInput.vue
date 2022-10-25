@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <label :for="labelFor" class="label">{{ labelText }}</label>
+    <label :for="labelFor" class="myLabel">{{ labelText }}</label>
 
     <slot name="top" />
 
@@ -44,7 +44,7 @@ const computedModelValue = computed({
 </script>
 
 <style scoped>
-.label {
+.myLabel {
   @apply mb-2 text-[13px] font-bold text-gray-base;
 }
 

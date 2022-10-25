@@ -1,3 +1,5 @@
 <template>
-  <OSignup user-type="manager" />
+  <div>
+    <OSignup user-type="manager" />
+  </div>
 </template>
