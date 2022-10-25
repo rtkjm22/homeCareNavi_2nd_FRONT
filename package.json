@@ -1,19 +1,38 @@
 {
+  "name": "front",
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --port=8080",
+    "dev_mock": "ENABLED_MOCK=true nuxt dev --port=8080",
+    "dev_mock_win": "SET ENABLED_MOCK=true&& nuxt dev --port=8080",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "lint": "eslint --ext .ts,.js,.vue .",
-    "lint_fix": "eslint --ext .ts,.js,.vue . --fix"
+    "lint_fix": "eslint --ext .ts,.js,.vue . --fix",
+    "generate_api": "rm -fr api && npx openapi2aspida -i https://raw.githubusercontent.com/rahhi555/homeCareNavi_2nd_OpenAPI/master/reference/home-care-navi-second-open-api.yaml -o=api",
+    "fetch_openapi": "npx swagger-cli bundle -o openapi.json -r https://raw.githubusercontent.com/rahhi555/homeCareNavi_2nd_OpenAPI/master/reference/home-care-navi-second-open-api.yaml",
+    "screenshot": "playwright test tests/screenshot.spec.ts",
+    "screenshot_update": "playwright test tests/screenshot.spec.ts --update-snapshots"
   },
   "devDependencies": {
-    "@nuxt/ui": "^0.3.0",
-    "@nuxtjs/eslint-config-typescript": "^10.0.0",
-    "@nuxtjs/tailwindcss": "^5.3.1",
-    "eslint": "^8.21.0",
-    "nuxt": "3.0.0-rc.6",
-    "sass": "^1.54.8"
+    "@aspida/fetch": "^1.11.0",
+    "@nuxt/ui": "^0.3.2",
+    "@nuxtjs/eslint-config-typescript": "^11.0.0",
+    "@nuxtjs/tailwindcss": "^5.3.2",
+    "@playwright/test": "^1.27.1",
+    "eslint": "^8.23.0",
+    "msw": "^0.47.4",
+    "nuxt": "3.0.0-rc.9",
+    "sass": "^1.54.9",
+    "typescript": "^4.8.4"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  },
+  "dependencies": {
+    "daisyui": "^2.31.0",
+    "scule": "^0.3.2",
+    "swiper": "^8.4.2"
   }
 }
