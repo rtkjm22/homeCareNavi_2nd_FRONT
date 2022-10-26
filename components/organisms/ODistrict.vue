@@ -14,20 +14,20 @@
           m-auto
         "
       >
-        <label class="checkbox">
+        <label class="myCheckbox">
           <input
             id="district"
             v-model="clickValue"
-            class="checkbox-Input"
+            class="myCheckbox-Input"
             type="checkbox"
             :value="district.name"
             @change="addList(district.name)"
-          ><span class="checkbox-DummyInput" />
-          <span class="checkbox-LabelText">{{
+          ><span class="myCheckbox-DummyInput" />
+          <span class="myCheckbox-LabelText">{{
             district.name
           }}</span>
         </label>
-        <label for="district" class="ml-2 text-sm checkbox" />
+        <label for="district" class="ml-2 text-sm myCheckbox" />
         <ARightArrow class="text-gray-light" />
       </li>
     </ul>
@@ -105,66 +105,68 @@ const districts = [
 </script>
 
 <style scoped lang="scss">
-.checkbox {
+
+.myCheckbox {
   padding: 12px 8px;
   display: flex;
   align-items: center;
   cursor: pointer;
-}
 
-.checkbox-Input {
-  margin: 0;
-  width: 0;
-  opacity: 0;
-}
+  .myCheckbox-Input {
+    margin: 0;
+    width: 0;
+    opacity: 0;
 
-.checkbox-Input:checked+.checkbox-DummyInput {
-  background: #F06364;
-  border: #F06364;
-}
+    &:checked+.myCheckbox-DummyInput {
+      background: #F06364;
+      border: #F06364;
 
-.checkbox-Input:checked+.checkbox-DummyInput::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 25%;
-  left: 60%;
-  width: 34%;
-  height: 1px;
-  border-radius: 2px;
-  transform: translate(-6px, 5px) rotateZ(-135deg);
-  transform-origin: 2px 2px;
-  background: #FFFFFF;
-}
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 25%;
+        left: 60%;
+        width: 34%;
+        height: 1px;
+        border-radius: 2px;
+        transform: translate(-6px, 5px) rotateZ(-135deg);
+        transform-origin: 2px 2px;
+        background: #FFFFFF;
+      }
 
-.checkbox-Input:checked+.checkbox-DummyInput::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 35%;
-  left: 73%;
-  width: 60%;
-  height: 1px;
-  border-radius: 2px;
-  transform: translate(-6px, 5px) rotateZ(-45deg);
-  transform-origin: 2px 2px;
-  background: #FFFFFF;
-}
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 35%;
+        left: 73%;
+        width: 60%;
+        height: 1px;
+        border-radius: 2px;
+        transform: translate(-6px, 5px) rotateZ(-45deg);
+        transform-origin: 2px 2px;
+        background: #FFFFFF;
+      }
+    }
+  }
 
-.checkbox-DummyInput {
-  position: relative;
-  top: 0;
-  left: 0;
-  display: block;
-  width: 20px;
-  height: 20px;
-  border: solid 1px #D9DEDE;
-  background: #fff;
-  border-radius: 3px;
-}
+  .myCheckbox-DummyInput {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: solid 1px #D9DEDE;
+    background: #fff;
+    border-radius: 3px;
+  }
 
-.checkbox-LabelText {
+  .myCheckbox-LabelText {
   margin-left: 12px;
   display: block;
 }
+}
+
 </style>

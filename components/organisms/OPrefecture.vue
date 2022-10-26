@@ -20,7 +20,7 @@
       "
     >
       {{ prefecture.name }}
-      <ARightArrow />
+      <ARightArrow class="text-gray-light" />
     </li>
   </div>
 </template>

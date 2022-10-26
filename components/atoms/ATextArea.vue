@@ -1,8 +1,14 @@
 <template>
   <div class="flex flex-col">
-    <label :for="labelFor" class="label">{{ labelText }}</label>
+    <label :for="labelFor" class="myLabel">{{ labelText }}</label>
 
-    <textarea :id="labelFor" :placeholder="placeholder" :class="`${ validateBorder }`" :required="required" class="textAreaItem" />
+    <textarea
+      :id="labelFor"
+      :placeholder="placeholder"
+      :class="`${validateBorder}`"
+      :required="required"
+      class="textAreaItem"
+    />
   </div>
 </template>
 
@@ -11,8 +17,8 @@ interface Props {
   labelFor: string
   labelText: string;
   placeholder: string;
-required?: boolean;
-isValid?: boolean;
+  required?: boolean;
+  isValid?: boolean;
 }
 
 const validateBorder = computed(() => {
@@ -27,7 +33,7 @@ const props = defineProps<Props>()
 </script>
 
 <style scoped>
-.label {
+.myLabel {
   @apply mb-2 text-[13px] font-bold text-gray-base;
 }
 
