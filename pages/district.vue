@@ -5,7 +5,7 @@
     <div class="bg-white w-11/12 rounded mx-auto mb-[130px]">
       <ul class="text-gray-dark">
         <li class="bg-gray-lighter rounded-t h-[32px] flex items-center">
-          <ALeftArrow />東京都
+          <ALeftArrow class="text-gray-light" />東京都
         </li>
         <li class="font-base w-[331px] m-auto text-base mt-4 mb-3">
           東京都
