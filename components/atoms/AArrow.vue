@@ -2,7 +2,7 @@
   <div>
     <!-- 矢印の上 -->
     <div
-      class="arrow"
+      class="myArrow"
       :class="[
         ArrowLength,
         ArrowWeight,
@@ -14,7 +14,7 @@
     />
     <!-- 矢印の下 -->
     <div
-      class="arrow"
+      class="myArrow"
       :class="[
         ArrowLength,
         ArrowWeight,
@@ -82,7 +82,7 @@ const ArrowDownTranslateY = computed(() => {
 })
 </script>
 <style scoped lang="scss">
-.arrow {
+.myArrow {
   @apply block absolute rounded transform;
 }
 </style>

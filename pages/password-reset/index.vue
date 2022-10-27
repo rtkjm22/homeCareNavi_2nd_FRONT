@@ -4,7 +4,7 @@
   >
     <div class="w-full px-4">
       <div class="mb-6 sm:mb-12 sm:mt-4 sm:text-center">
-        <ATitle :ttl-text="'パスワードのリセット'" />
+        <ATitle ttl-text="パスワードリセット" />
       </div>
 
       <form class="mx-auto sm:w-[520px] mb-2" @submit.prevent="sendEmail">
@@ -20,7 +20,7 @@
         />
 
         <AButtonSubmit
-          inner-text="パスワードをリセットする"
+          inner-text="パスワード再設定メール送信"
           user-type="client"
           class="py-3 sm:py-4"
         />
@@ -40,9 +40,18 @@
 <script setup lang="ts">
 const router = useRouter()
 const email = ref('')
+const { $api } = useNuxtApp()
+const { alert } = useUI()
 
-const sendEmail = () => {
-  // TODO: メール送信の処理を書く
-  router.push('/password-reset/complete')
+const sendEmail = async () => {
+  await $api.client.api.v1.auth.password.$post({
+    body: { email: email.value }
+  }).then(({ message }) => {
+    router.push('/password-reset/complete')
+    alert.showAlert(message, 'success')
+  }).catch(async (e) => {
+    const message = await $api.getErrorMessage(e)
+    alert.showAlert(message, 'danger')
+  })
 }
 </script>

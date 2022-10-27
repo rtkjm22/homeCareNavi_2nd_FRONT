@@ -54,7 +54,7 @@
       <button
         class="
       text-sm
-      ont-semibold
+      font-semibold
      text-white
      bg-pink
       rounded
@@ -105,7 +105,6 @@ const districts = [
 </script>
 
 <style scoped lang="scss">
-
 .myCheckbox {
   padding: 12px 8px;
   display: flex;

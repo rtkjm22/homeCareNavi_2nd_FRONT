@@ -1,14 +1,20 @@
 <template>
-  <div class="bg-[#F5F7F7]">
+  <div class="wrapper bg-[#F5F7F7]">
     <OHeader />
+    <AAlert />
     <slot class="main" />
-    <OFooter />
+    <OFooter class="footer" />
   </div>
 </template>
 <script setup lang="ts"></script>
 <style scoped>
-.main {
-  display: block;
-  flex: 1 0 auto;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.footer {
+  width: 100vw;
+  margin-top: auto;
 }
 </style>
