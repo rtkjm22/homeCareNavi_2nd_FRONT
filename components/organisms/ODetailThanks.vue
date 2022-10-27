@@ -14,7 +14,7 @@
           :src="user.imgSrc"
           alt="スタッフの画像 - PC"
           class="hidden w-20 h-20 rounded-full object-cover sm:block"
-        >
+        />
         <!-- スタッフ紹介フィールド -->
         <div class="w-full">
           <div class="mb-3 flex gap-5 items-center sm:block">
@@ -23,7 +23,7 @@
               :src="user.imgSrc"
               alt="スタッフの画像 - SP"
               class="w-20 h-20 rounded-full object-cover sm:hidden"
-            >
+            />
             <div class="sm:flex sm:justify-between">
               <!-- 名前フィールド -->
               <div class="mb-2 sm:mb-4">
@@ -45,7 +45,7 @@
 
           <!-- お礼コメントフィールド -->
           <div class="p-2.5 flex gap-2 items-start bg-lightGreen">
-            <img src="@/assets/img/user.svg" width="16" height="16" alt="">
+            <img src="@/assets/img/user.svg" width="16" height="16" alt="" />
             <div>
               <p class="mb-[2px] text-[10px] leading-[10px] font-bold">
                 ユーザーからのお礼コメント

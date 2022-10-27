@@ -12,7 +12,7 @@
                 class="h-8 w-auto sm:h-8"
                 src="@/assets/img/logo.svg"
                 alt=""
-              >
+              />
             </NuxtLink>
           </div>
 
@@ -88,7 +88,7 @@
                     <img
                       class="h-7 w-auto sm:h-8"
                       src="@/assets/img/logo.svg"
-                    >
+                    />
                   </NuxtLink>
                   <p class="mb-6 text-xs text-gray-base">
                     {{ $user.state.value?.name || 'ゲスト' }}さん

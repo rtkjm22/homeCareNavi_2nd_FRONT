@@ -14,20 +14,20 @@
           m-auto
         "
       >
-        <label class="checkbox">
+        <label class="myCheckbox">
           <input
             id="district"
             v-model="clickValue"
-            class="checkbox-Input"
+            class="myCheckbox-Input"
             type="checkbox"
             :value="district.name"
             @change="addList(district.name)"
-          ><span class="checkbox-DummyInput" />
-          <span class="checkbox-LabelText">{{
+          /><span class="myCheckbox-DummyInput" />
+          <span class="myCheckbox-LabelText">{{
             district.name
           }}</span>
         </label>
-        <label for="district" class="ml-2 text-sm checkbox" />
+        <label for="district" class="ml-2 text-sm myCheckbox" />
         <ARightArrow />
       </li>
     </ul>
@@ -54,7 +54,7 @@
       <button
         class="
       text-sm
-      ont-semibold
+      font-semibold
      text-white
      bg-pink
       rounded
@@ -105,25 +105,25 @@ const districts = [
 </script>
 
 <style scoped lang="scss">
-.checkbox {
+.myCheckbox {
   padding: 12px 8px;
   display: flex;
   align-items: center;
   cursor: pointer;
 }
 
-.checkbox-Input {
+.myCheckbox-Input {
   margin: 0;
   width: 0;
   opacity: 0;
 }
 
-.checkbox-Input:checked+.checkbox-DummyInput {
+.myCheckbox-Input:checked+.myCheckbox-DummyInput {
   background: #F06364;
   border: #F06364;
 }
 
-.checkbox-Input:checked+.checkbox-DummyInput::before {
+.myCheckbox-Input:checked+.myCheckbox-DummyInput::before {
   content: "";
   display: block;
   position: absolute;
@@ -137,7 +137,7 @@ const districts = [
   background: #FFFFFF;
 }
 
-.checkbox-Input:checked+.checkbox-DummyInput::after {
+.myCheckbox-Input:checked+.myCheckbox-DummyInput::after {
   content: "";
   display: block;
   position: absolute;
@@ -151,7 +151,7 @@ const districts = [
   background: #FFFFFF;
 }
 
-.checkbox-DummyInput {
+.myCheckbox-DummyInput {
   position: relative;
   top: 0;
   left: 0;
@@ -163,7 +163,7 @@ const districts = [
   border-radius: 3px;
 }
 
-.checkbox-LabelText {
+.myCheckbox-LabelText {
   margin-left: 12px;
   display: block;
 }

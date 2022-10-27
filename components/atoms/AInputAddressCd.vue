@@ -10,7 +10,7 @@
       pattern="\d{7}"
       maxlength="8"
       required
-    >
+    />
   </div>
 </template>
 

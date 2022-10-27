@@ -8,6 +8,15 @@
         "varsIgnorePattern": "[A-Z].*|^_",
         "argsIgnorePattern": "^_",
         "ignoreRestSiblings": true
+    }],
+    /*
+    * <img />のように閉じタグ無しで記述した際にerrorが出ないようにしました。
+    * @see https://eslint.vuejs.org/rules/html-self-closing.html
+    */
+    "vue/html-self-closing": ["error", {
+      "html": {
+        "void": "always"
+      }
     }]
   },
   "ignorePatterns": [
