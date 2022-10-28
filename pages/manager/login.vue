@@ -6,6 +6,8 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ middleware: 'auth-not' })
+
 const { alert } = useUI()
 const route = useRoute()
 

@@ -9,6 +9,8 @@
   </div>
 </template>
 <script lang="ts" setup>
+definePageMeta({ middleware: 'auth-not' })
+
 const completeTitle = 'パスワードのリセット完了'
 const completeText = '入力いただいたメールアドレスに\n新しいパスワードを送付いたしました。'
 const completeTextToPage = 'ホームケアナビトップに戻る'

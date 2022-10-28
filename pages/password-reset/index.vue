@@ -40,6 +40,8 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({ middleware: 'auth-not' })
+
 const router = useRouter()
 const email = ref('')
 const { $api } = useNuxtApp()

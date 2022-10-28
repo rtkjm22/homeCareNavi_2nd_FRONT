@@ -168,14 +168,13 @@ const links = computed<Link[] | undefined>(() => {
 const isNavOpened = ref(false)
 
 const { $api, $user } = useNuxtApp()
-const router = useRouter()
 const { alert } = useUI()
 
 const logout = async () => {
   await $api.client.api.v1.auth.sign_out.$delete()
   $api.clearAuthHeaders()
   $user.clearUserState()
-  await router.push('/')
+  await navigateTo('/client/login')
   alert.showAlert('ログアウトしました', 'success')
 }
 </script>
