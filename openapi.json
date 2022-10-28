@@ -1183,18 +1183,25 @@
                     "type": "string",
                     "example": "password",
                     "description": "パスワード"
+                  },
+                  "type": {
+                    "type": "string",
+                    "example": "Client",
+                    "description": "ユーザーの種別"
                   }
                 },
                 "required": [
                   "email",
-                  "password"
+                  "password",
+                  "type"
                 ]
               },
               "examples": {
                 "example-1": {
                   "value": {
                     "email": "test1@example.com",
-                    "password": "password"
+                    "password": "password",
+                    "type": "Client"
                   }
                 }
               }
