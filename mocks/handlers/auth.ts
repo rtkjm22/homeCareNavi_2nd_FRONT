@@ -45,6 +45,15 @@ export const auth = [
 
   /** トークン検証 */
   rest.get(`${BASE_PATH}/api/v1/auth/validate_token`, (req, res, ctx) => {
+    // ヘッダーに必要事項がない場合はエラーレスポンスを返す
+    if (!(req.headers.get('uid') && req.headers.get('client') && req.headers.get('access-token') && req.headers.get('expiry'))) {
+      const body = openapi.paths['/api/v1/auth/validate_token'].get.responses['401'].content['application/json'].examples['example-1'].value
+      return res(
+        ctx.json(body),
+        ctx.status(401)
+      )
+    }
+
     const body = openapi.paths['/api/v1/auth/validate_token'].get.responses['200'].content['application/json'].examples['example-1'].value
     let headers = CLIENT_HEADERS
 

@@ -30,6 +30,25 @@ for (const path of MANAGER_AUTH_PATHS) {
   })
 }
 
+const AUTH_NOT_PATHS = [
+  '/client/signup',
+  '/client/signup/complete',
+  '/client/login',
+  '/manager/signup',
+  '/manager/signup/complete',
+  '/manager/login',
+  '/password-reset',
+  '/password-reset/complete'
+]
+for (const path of AUTH_NOT_PATHS) {
+  test(`${path}ページにはログイン中はアクセス出来ないこと`, async ({ page, context }) => {
+    await setAuthStorage(context, 'client')
+    await page.goto(path)
+    await expect(page.getByRole('alert')).toHaveText(/ログイン中はアクセス出来ません/)
+    await expect(page).toHaveURL('/')
+  })
+}
+
 test('パスワードリセット編集ページは、クエリパラメータに必要情報がないとアクセスできないこと', async ({ page }) => {
   await page.goto('/password-reset/edit')
   await expect(page).toHaveURL('/')
@@ -80,5 +99,5 @@ test('クライアントが新規登録、ログイン、ログアウトの一�
   await page.getByText('ログアウト').click()
 
   await expect(page.getByRole('alert')).toHaveText(/ログアウトしました/)
-  await expect(page).toHaveURL('/')
+  await expect(page).toHaveURL('/client/login')
 })

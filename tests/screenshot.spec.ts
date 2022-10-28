@@ -5,7 +5,7 @@ import { setAuthStorage, waitMount } from './support'
 export const CLIENT_AUTH_PATHS = [
   '/client/auth/profile/edit',
   '/client/auth/profile',
-  '/client/auth/reserve/complete',
+  '/client/auth/reserves/complete',
   '/client/auth/thanks/complete'
 ] as const
 
@@ -19,12 +19,12 @@ export const MANAGER_AUTH_PATHS = [
 const PATHS = [
   '/client/signup/complete',
   '/client/signup',
-  '/client/detail',
   '/client/login',
-  '/client/search',
   '/manager/signup/complete',
   '/manager/signup',
   '/manager/login',
+  '/offices',
+  '/offices/1',
   '/password-reset/complete',
   '/password-reset',
   '/district',
