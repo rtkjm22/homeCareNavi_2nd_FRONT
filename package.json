@@ -32,5 +32,11 @@
   },
   "msw": {
     "workerDirectory": "public"
+  },
+  "dependencies": {
+    "@vuepic/vue-datepicker": "^3.5.2",
+    "daisyui": "^2.31.0",
+    "scule": "^0.3.2",
+    "swiper": "^8.4.2"
   }
 }
