@@ -9,14 +9,16 @@
         h-[40px]
         flex
         items-center
+        justify-between
         space-x-3
-        border-b border-gray-lighter
+        m-auto
+        py-[11px]
+        border-b
+      border-gray-lighter
         last:border-b-transparent
         md:last:border-b-gray-lighter
-        m-auto
-        justify-between
         text-sm
-        py-[11px]
+      text-gray-dark
       "
     >
       {{ prefecture.name }}
