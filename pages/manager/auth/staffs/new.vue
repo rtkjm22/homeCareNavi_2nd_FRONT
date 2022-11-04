@@ -35,14 +35,14 @@
           />
 
           <label class="myCheckbox mt-6">
-            <input class="myCheckbox-Input" type="checkbox"><span class="myCheckbox-DummyInput" />
+            <input class="myCheckbox-Input" type="checkbox" /><span class="myCheckbox-DummyInput" />
             <span class="myCheckbox-LabelText">ケアマネージャー</span>
           </label>
           <label class="myCheckbox">
-            <input class="myCheckbox-Input" type="checkbox"><span class="myCheckbox-DummyInput" />
+            <input class="myCheckbox-Input" type="checkbox" /><span class="myCheckbox-DummyInput" />
             <span class="myCheckbox-LabelText">一般スタッフ</span>
           </label>
-          <AButtonSubmit inner-text="変更する" user-type="manager" class="py-3 sm:py-4 mt-8" />
+          <AButtonSubmit inner-text="追加する" user-type="manager" class="py-3 sm:py-4 mt-8" />
           <div class="text-center mt-2 pb-8">
             <NuxtLink to="/" :class="`text-sm text-orange`">
               もどる
