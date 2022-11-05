@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { setAuthStorage } from '../support'
-import { CLIENT_AUTH_PATHS } from '../screenshot.spec'
+import { CLIENT_AUTH_PATHS, MANAGER_AUTH_PATHS } from '../screenshot.spec'
 
 for (const path of CLIENT_AUTH_PATHS) {
   test(`${path}ページにはクライアントでログインしないとアクセス出来ないこと`, async ({ page, context }) => {
@@ -15,6 +15,46 @@ for (const path of CLIENT_AUTH_PATHS) {
     await expect(page).toHaveURL('/')
   })
 }
+
+for (const path of MANAGER_AUTH_PATHS) {
+  test(`${path}ページにはケアマネでログインしないとアクセス出来ないこと`, async ({ page, context }) => {
+    await page.goto(path)
+    await expect(page.getByRole('alert')).toHaveText(/ログインしてください/)
+    await expect(page).toHaveURL('/manager/login')
+
+    await setAuthStorage(context, 'client')
+
+    await page.goto(path)
+    await expect(page.getByRole('alert')).toHaveText(/ページのアクセス権がありませんでした/)
+    await expect(page).toHaveURL('/')
+  })
+}
+
+const AUTH_NOT_PATHS = [
+  '/client/signup',
+  '/client/signup/complete',
+  '/client/login',
+  '/manager/signup',
+  '/manager/signup/complete',
+  '/manager/login',
+  '/password-reset',
+  '/password-reset/complete'
+]
+for (const path of AUTH_NOT_PATHS) {
+  test(`${path}ページにはログイン中はアクセス出来ないこと`, async ({ page, context }) => {
+    await setAuthStorage(context, 'client')
+    await page.goto(path)
+    await expect(page.getByRole('alert')).toHaveText(/ログイン中はアクセス出来ません/)
+    await expect(page).toHaveURL('/')
+  })
+}
+
+test('パスワードリセット編集ページは、クエリパラメータに必要情報がないとアクセスできないこと', async ({ page }) => {
+  await page.goto('/password-reset/edit')
+  await expect(page).toHaveURL('/')
+  await page.goto('/password-reset/edit?access-token=hoge&client=hoge&uid=hoge')
+  await expect(page).toHaveURL('/password-reset/edit?access-token=hoge&client=hoge&uid=hoge')
+})
 
 test('クライアントが新規登録、ログイン、ログアウトの一連の動作ができること', async ({ page }) => {
   await page.goto('/')
@@ -59,5 +99,5 @@ test('クライアントが新規登録、ログイン、ログアウトの一�
   await page.getByText('ログアウト').click()
 
   await expect(page.getByRole('alert')).toHaveText(/ログアウトしました/)
-  await expect(page).toHaveURL('/')
+  await expect(page).toHaveURL('/client/login')
 })

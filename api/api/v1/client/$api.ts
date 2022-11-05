@@ -5,10 +5,11 @@ import type { Methods as Methods1 } from './book_mark/_id@number'
 import type { Methods as Methods2 } from './bookmarks'
 import type { Methods as Methods3 } from './histories'
 import type { Methods as Methods4 } from './office/_id@number'
-import type { Methods as Methods5 } from './offices'
-import type { Methods as Methods6 } from './staffs'
-import type { Methods as Methods7 } from './thank/_id@number'
-import type { Methods as Methods8 } from './thanks'
+import type { Methods as Methods5 } from './offices/area'
+import type { Methods as Methods6 } from './offices/nearest'
+import type { Methods as Methods7 } from './offices/search'
+import type { Methods as Methods8 } from './thank/_id@number'
+import type { Methods as Methods9 } from './thanks'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? 'http://localhost:3000' : baseURL).replace(/\/$/, '')
@@ -17,10 +18,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH2 = '/api/v1/client/bookmarks'
   const PATH3 = '/api/v1/client/histories'
   const PATH4 = '/api/v1/client/office'
-  const PATH5 = '/api/v1/client/offices'
-  const PATH6 = '/api/v1/client/staffs'
-  const PATH7 = '/api/v1/client/thank'
-  const PATH8 = '/api/v1/client/thanks'
+  const PATH5 = '/api/v1/client/offices/area'
+  const PATH6 = '/api/v1/client/offices/nearest'
+  const PATH7 = '/api/v1/client/offices/search'
+  const PATH8 = '/api/v1/client/thank'
+  const PATH9 = '/api/v1/client/thanks'
   const GET = 'GET'
   const POST = 'POST'
   const DELETE = 'DELETE'
@@ -125,57 +127,74 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       }
     },
     offices: {
-      /**
-       * 事業所一覧を取得する。
-       */
-      get: (option?: { query?: Methods5['get']['query'] | undefined, config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods5['get']['status']>(prefix, PATH5, GET, option).send(),
-      /**
-       * 事業所一覧を取得する。
-       */
-      $get: (option?: { query?: Methods5['get']['query'] | undefined, config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods5['get']['status']>(prefix, PATH5, GET, option).send().then(r => r.body),
-      $path: (option?: { method?: 'get' | undefined; query: Methods5['get']['query'] } | undefined) =>
-        `${prefix}${PATH5}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
-    },
-    staffs: {
-      /**
-       * スタッフ一覧を取得する
-       */
-      get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods6['get']['status']>(prefix, PATH6, GET, option).send(),
-      /**
-       * スタッフ一覧を取得する
-       */
-      $get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods6['get']['status']>(prefix, PATH6, GET, option).send().then(r => r.body),
-      $path: () => `${prefix}${PATH6}`
+      area: {
+        /**
+         * 事業所一覧を取得する。住所で絞り込む。
+         */
+        get: (option?: { query?: Methods5['get']['query'] | undefined, config?: T | undefined } | undefined) =>
+          fetch<void, BasicHeaders, Methods5['get']['status']>(prefix, PATH5, GET, option).send(),
+        /**
+         * 事業所一覧を取得する。住所で絞り込む。
+         */
+        $get: (option?: { query?: Methods5['get']['query'] | undefined, config?: T | undefined } | undefined) =>
+          fetch<void, BasicHeaders, Methods5['get']['status']>(prefix, PATH5, GET, option).send().then(r => r.body),
+        $path: (option?: { method?: 'get' | undefined; query: Methods5['get']['query'] } | undefined) =>
+          `${prefix}${PATH5}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
+      },
+      nearest: {
+        /**
+         * 事業所一覧を取得する。現在地で絞り込む。
+         */
+        get: (option?: { query?: Methods6['get']['query'] | undefined, config?: T | undefined } | undefined) =>
+          fetch<void, BasicHeaders, Methods6['get']['status']>(prefix, PATH6, GET, option).send(),
+        /**
+         * 事業所一覧を取得する。現在地で絞り込む。
+         */
+        $get: (option?: { query?: Methods6['get']['query'] | undefined, config?: T | undefined } | undefined) =>
+          fetch<void, BasicHeaders, Methods6['get']['status']>(prefix, PATH6, GET, option).send().then(r => r.body),
+        $path: (option?: { method?: 'get' | undefined; query: Methods6['get']['query'] } | undefined) =>
+          `${prefix}${PATH6}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
+      },
+      search: {
+        /**
+         * 事業所一覧を取得する。全文一致で絞り込む。
+         */
+        get: (option?: { query?: Methods7['get']['query'] | undefined, config?: T | undefined } | undefined) =>
+          fetch<void, BasicHeaders, Methods7['get']['status']>(prefix, PATH7, GET, option).send(),
+        /**
+         * 事業所一覧を取得する。全文一致で絞り込む。
+         */
+        $get: (option?: { query?: Methods7['get']['query'] | undefined, config?: T | undefined } | undefined) =>
+          fetch<void, BasicHeaders, Methods7['get']['status']>(prefix, PATH7, GET, option).send().then(r => r.body),
+        $path: (option?: { method?: 'get' | undefined; query: Methods7['get']['query'] } | undefined) =>
+          `${prefix}${PATH7}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
+      }
     },
     thank: {
       _id: (val1: number) => {
-        const prefix1 = `${PATH7}/${val1}`
+        const prefix1 = `${PATH8}/${val1}`
 
         return {
           /**
            * お礼を削除する
            */
           delete: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods7['delete']['status']>(prefix, prefix1, DELETE, option).send(),
+            fetch<void, BasicHeaders, Methods8['delete']['status']>(prefix, prefix1, DELETE, option).send(),
           /**
            * お礼を削除する
            */
           $delete: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods7['delete']['status']>(prefix, prefix1, DELETE, option).send().then(r => r.body),
+            fetch<void, BasicHeaders, Methods8['delete']['status']>(prefix, prefix1, DELETE, option).send().then(r => r.body),
           /**
            * お礼を更新する
            */
           patch: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods7['patch']['status']>(prefix, prefix1, PATCH, option).send(),
+            fetch<void, BasicHeaders, Methods8['patch']['status']>(prefix, prefix1, PATCH, option).send(),
           /**
            * お礼を更新する
            */
           $patch: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods7['patch']['status']>(prefix, prefix1, PATCH, option).send().then(r => r.body),
+            fetch<void, BasicHeaders, Methods8['patch']['status']>(prefix, prefix1, PATCH, option).send().then(r => r.body),
           $path: () => `${prefix}${prefix1}`
         }
       }
@@ -185,23 +204,23 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * お礼を投稿する
        */
       post: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods8['post']['status']>(prefix, PATH8, POST, option).send(),
+        fetch<void, BasicHeaders, Methods9['post']['status']>(prefix, PATH9, POST, option).send(),
       /**
        * お礼を投稿する
        */
       $post: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods8['post']['status']>(prefix, PATH8, POST, option).send().then(r => r.body),
+        fetch<void, BasicHeaders, Methods9['post']['status']>(prefix, PATH9, POST, option).send().then(r => r.body),
       /**
        * お礼一覧を取得する
        */
       get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods8['get']['status']>(prefix, PATH8, GET, option).send(),
+        fetch<void, BasicHeaders, Methods9['get']['status']>(prefix, PATH9, GET, option).send(),
       /**
        * お礼一覧を取得する
        */
       $get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods8['get']['status']>(prefix, PATH8, GET, option).send().then(r => r.body),
-      $path: () => `${prefix}${PATH8}`
+        fetch<void, BasicHeaders, Methods9['get']['status']>(prefix, PATH9, GET, option).send().then(r => r.body),
+      $path: () => `${prefix}${PATH9}`
     }
   }
 }

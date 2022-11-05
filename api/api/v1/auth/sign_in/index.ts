@@ -28,6 +28,8 @@ export type Methods = {
       email: string
       /** パスワード */
       password: string
+      /** ユーザーの種別 */
+      type: string
     }
   }
 }
