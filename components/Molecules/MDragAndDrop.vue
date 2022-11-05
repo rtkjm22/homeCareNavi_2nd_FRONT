@@ -13,12 +13,12 @@
         class="dragAndDrop_dummy"
         :class="{ hidden: isUploaded, flex: !isUploaded }"
       >
-        <div class="block w-[140px]">
+        <div class="block w-16  sm:w-[110px]">
           <img src="@/assets/img/dragAndDrop.svg" alt="" class="w-full" />
         </div>
       </div>
       <!-- 選択された画像 -->
-      <img :src="url" :class="{ hidden: !isUploaded }" class="max-h-[400px]" />
+      <img :src="url" :class="{ hidden: !isUploaded }" />
     </div>
   </div>
 </template>
@@ -38,8 +38,11 @@ const IMAGE_TYPE = {
   JPEG: 'image/jpeg',
   PNG: 'image/png'
 } as const
+
+/* eslint-disable no-redeclare */
 type IS_DRAGGED = typeof IS_DRAGGED[keyof typeof IS_DRAGGED]
 type IMAGE_TYPE = typeof IMAGE_TYPE[keyof typeof IMAGE_TYPE]
+/* eslint-disable no-redeclare */
 
 // ファイルサイズ
 const SIZE_LIMIT = 5000000
@@ -127,7 +130,7 @@ const upload = async (e: any) => {
     }
   }
   &_dummy {
-    @apply p-4 w-full h-full justify-center items-center;
+    @apply p-4 w-full h-[120px] justify-center items-center;
   }
 }
 </style>
