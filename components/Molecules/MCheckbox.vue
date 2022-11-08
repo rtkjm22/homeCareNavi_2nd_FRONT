@@ -5,8 +5,15 @@
       type="checkbox"
       :name="checkboxName"
       :value="val"
+      @click="isChecked = !isChecked"
     />
-    <span class="myCheckbox_DummyInput" />
+    <span
+      class="myCheckbox_DummyInput"
+      :class="{
+        '!bg-pink !border-pink': isChecked && userType === 'client',
+        '!bg-orange !border-orange': isChecked && userType === 'manager'
+      }"
+    />
     <span class="myCheckbox_LabelText">{{ labelText }}</span>
   </label>
 </template>
@@ -16,9 +23,15 @@ interface Props {
   checkboxName: string
   labelText: string
   val: string | number
+  userType: 'client' | 'manager'
 }
 
-defineProps<Props>()
+withDefaults(defineProps<Props>(), {
+  userType: 'client'
+})
+
+const isChecked = ref<boolean>(false)
+
 </script>
 
 <style scoped lang="scss">
@@ -47,9 +60,6 @@ defineProps<Props>()
   }
 }
 .myCheckbox_Input:checked + .myCheckbox_DummyInput {
-  background: #f09c3c;
-  border: #f09c3c;
-
   &::before {
     content: '';
     display: block;

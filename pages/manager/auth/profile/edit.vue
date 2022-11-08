@@ -6,7 +6,7 @@
     <form>
       <!-- 事業所名 -->
       <AInput
-        label-for="compNm"
+        label-for="name"
         label-text="事業所名"
         input-type="text"
         placeholder="祖師谷ケアパークそよ風"
@@ -16,7 +16,7 @@
 
       <!-- 住所 -->
       <AInput
-        label-for="inputPost"
+        label-for="address"
         label-text="住所"
         input-type="text"
         placeholder="東京都世田谷区祖師谷4-3-15"
@@ -30,7 +30,7 @@
 
       <!-- アクセス -->
       <AInput
-        label-for="access"
+        label-for="nearest_station"
         label-text="アクセス"
         input-type="text"
         placeholder="祖師谷大蔵駅5分"
@@ -40,7 +40,7 @@
 
       <!-- 電話番号 -->
       <AInput
-        label-for="inputTel"
+        label-for="tel"
         label-text="電話番号"
         input-type="tel"
         placeholder="000-0000-0000"
@@ -65,7 +65,7 @@
       <!-- 営業日 -->
       <div class="mb-6">
         <ALabel
-          label-for="workDay"
+          label-for="workday"
           label-text="営業日（営業日のみチェックしてください）"
           class="mb-2"
         />
@@ -76,6 +76,7 @@
             checkbox-name="weekDay"
             :label-text="week.labelText"
             :val="week.weekVal"
+            user-type="manager"
             class="px-2"
           />
         </div>
@@ -83,7 +84,7 @@
 
       <!-- 営業日時についてのテキスト -->
       <ATextArea
-        label-for="workDayDetail"
+        label-for="workDay_detail"
         label-text="営業日時について"
         placeholder="営業日時についてのテキストが入ります。営業日時についてのテキストが入ります。営業日時についてのテキストが入ります。営業日時についてのテキストが入ります。営業日時についてのテキストが入ります。"
         :required="true"
@@ -93,7 +94,7 @@
 
       <!-- 特徴タイトル -->
       <ATextArea
-        label-for="featureTtl"
+        label-for="feature_title"
         label-text="特徴タイトル"
         placeholder="事業所紹介タイトル事業所紹介タイトル事業所紹介タイトル事業所紹介タイトル"
         :required="true"
@@ -102,7 +103,7 @@
 
       <!-- 特徴詳細 -->
       <ATextArea
-        label-for="featureDetail"
+        label-for="feature_detail"
         label-text="特徴詳細"
         placeholder="ここに事業所の特徴テキストが入ります。ここに事業所の特徴テキストが入ります。ここに事業所の特徴テキストが入ります。ここに事業所の特徴テキストが入ります。ここに事業所の特徴テキストが入ります。ここに事業所の特徴テキストが入ります。ここに事業所の特徴テキストが入ります。ここに事業所の特徴テキストが入ります。ここに事業所の特徴テキストが入ります。ここに事業所の特徴テキストが入ります。"
         :required="true"
@@ -112,20 +113,21 @@
 
       <!-- 特徴画像1 -->
       <div class="mb-6">
-        <ALabel label-for="featureImg1" label-text="特徴画像1" class="mb-2" />
-        <MDragAndDrop label-target="featureImg1" class="mb-2" />
+        <ALabel label-for="feature_img_1" label-text="特徴画像1" class="mb-2" />
+        <MDragAndDrop label-target="feature_img_1" class="mb-2" />
         <div class="text-right">
           <label
-            for="featureImg1"
+            for="feature_img_1"
             class="text-orange text-sm text-right cursor-pointer hover:opacity-80"
-            >画像をアップロードする</label
           >
+            画像をアップロードする
+          </label>
         </div>
       </div>
 
       <!-- 特徴画像1の説明 -->
       <ATextArea
-        label-for="featureImg1Exp"
+        label-for="feature_img_exp_1"
         label-text="特徴画像1の説明"
         placeholder="画像の説明テキストが入ります画像の説明テキストが入ります"
         class="mb-6"
@@ -133,11 +135,11 @@
 
       <!-- 特徴画像2 -->
       <div class="mb-6">
-        <ALabel label-for="featureImg2" label-text="特徴画像2" class="mb-2" />
-        <MDragAndDrop label-target="featureImg2" class="mb-2" />
+        <ALabel label-for="feature_img_2" label-text="特徴画像2" class="mb-2" />
+        <MDragAndDrop label-target="feature_img_2" class="mb-2" />
         <div class="text-right">
           <label
-            for="featureImg2"
+            for="feature_img_2"
             class="text-orange text-sm text-right cursor-pointer hover:opacity-80"
           >
             画像をアップロードする
@@ -147,7 +149,7 @@
 
       <!-- 特徴画像2の説明 -->
       <ATextArea
-        label-for="featureImg2Exp"
+        label-for="feature_img_exp_2"
         label-text="特徴画像2の説明"
         placeholder="画像の説明テキストが入ります画像の説明テキストが入ります"
         class="mb-8"
