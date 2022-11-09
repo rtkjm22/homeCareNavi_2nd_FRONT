@@ -17,7 +17,18 @@
       "html": {
         "void": "always"
       }
-    }]
+    }],
+    "no-trailing-spaces": [
+      "error", {
+        "skipBlankLines": true
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "error", {
+        "max": 3
+      }
+    ],
+    "no-console": "off"
   },
   "ignorePatterns": [
     "/api/**/*"

@@ -111,11 +111,11 @@
                         "id": {
                           "type": "number",
                           "example": 1,
-                          "description": "ID"
+                          "description": "User主キー"
                         },
                         "name": {
                           "type": "string",
-                          "description": "名前",
+                          "description": "ユーザー名",
                           "example": "テスト 太郎"
                         },
                         "email": {
@@ -166,15 +166,11 @@
                         },
                         "created_at": {
                           "type": "string",
-                          "format": "date-time",
-                          "example": "2022-09-23T00:33:53.961+09:00",
-                          "description": "作成日時(新規作成時のみ返ってくる)"
+                          "format": "date-time"
                         },
                         "updated_at": {
                           "type": "string",
-                          "example": "2022-09-23T00:33:53.961+09:00",
-                          "format": "date-time",
-                          "description": "更新日時(新規作成時のみ返ってくる)"
+                          "format": "date-time"
                         }
                       },
                       "required": [
@@ -196,7 +192,7 @@
                   ]
                 },
                 "examples": {
-                  "example-1": {
+                  "Example 1": {
                     "value": {
                       "status": "success",
                       "data": {
@@ -210,7 +206,9 @@
                         "provider": "email",
                         "uid": "test1@example.com",
                         "allow_password_change": false
-                      }
+                      },
+                      "created_at": "2019-08-24T14:15:22Z",
+                      "updated_at": "2019-08-24T14:15:22Z"
                     }
                   }
                 }
@@ -365,7 +363,7 @@
                         "allow_password_change": false,
                         "name": "テスト　太郎",
                         "email": "test@example.com",
-                        "tel": "000-1111-2222",
+                        "tel": "000-1111-2223",
                         "address": "東京都新宿区市ヶ谷本村町5番1号",
                         "postal": "1234567",
                         "created_at": null,
@@ -451,16 +449,28 @@
                 ]
               },
               "examples": {
-                "example-1": {
+                "client sign_up": {
                   "value": {
                     "name": "テスト 太郎",
-                    "email": "test@example.com",
+                    "email": "client@example.com",
                     "tel": "090-1111-2222",
                     "postal": "1234567",
                     "address": "東京都新宿区市ヶ谷本村町5番1号",
                     "password": "password",
                     "type": "Client",
-                    "confirm_success_url": "http://localhost:8080"
+                    "confirm_success_url": "http://localhost:8080/client/login"
+                  }
+                },
+                "manager sign_up": {
+                  "value": {
+                    "name": "テスト 太郎",
+                    "email": "manager@example.com",
+                    "tel": "090-1111-2222",
+                    "postal": "1234567",
+                    "address": "東京都新宿区市ヶ谷本村町5番1号",
+                    "password": "password",
+                    "type": "Manager",
+                    "confirm_success_url": "http://localhost:8080/manager/login"
                   }
                 }
               }
@@ -512,11 +522,11 @@
                         "id": {
                           "type": "number",
                           "example": 1,
-                          "description": "ID"
+                          "description": "User主キー"
                         },
                         "name": {
                           "type": "string",
-                          "description": "名前",
+                          "description": "ユーザー名",
                           "example": "テスト 太郎"
                         },
                         "email": {
@@ -567,15 +577,11 @@
                         },
                         "created_at": {
                           "type": "string",
-                          "format": "date-time",
-                          "example": "2022-09-23T00:33:53.961+09:00",
-                          "description": "作成日時(新規作成時のみ返ってくる)"
+                          "format": "date-time"
                         },
                         "updated_at": {
                           "type": "string",
-                          "example": "2022-09-23T00:33:53.961+09:00",
-                          "format": "date-time",
-                          "description": "更新日時(新規作成時のみ返ってくる)"
+                          "format": "date-time"
                         }
                       },
                       "required": [
@@ -597,7 +603,7 @@
                   ]
                 },
                 "examples": {
-                  "example-1": {
+                  "Example 1": {
                     "value": {
                       "status": "success",
                       "data": {
@@ -611,7 +617,9 @@
                         "provider": "email",
                         "uid": "test1@example.com",
                         "allow_password_change": false
-                      }
+                      },
+                      "created_at": "2019-08-24T14:15:22Z",
+                      "updated_at": "2019-08-24T14:15:22Z"
                     }
                   }
                 }
@@ -803,21 +811,48 @@
             }
           }
         },
-        "security": [
+        "parameters": [
           {
-            "access-token": []
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
           },
           {
-            "client": []
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
           },
           {
-            "expiry": []
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
           },
           {
-            "uid": []
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
           }
-        ],
-        "parameters": []
+        ]
       },
       "delete": {
         "summary": "退会",
@@ -905,18 +940,46 @@
           "auth"
         ],
         "description": "退会する",
-        "security": [
+        "parameters": [
           {
-            "access-token": []
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
           },
           {
-            "client": []
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
           },
           {
-            "expiry": []
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
           },
           {
-            "uid": []
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
           }
         ]
       }
@@ -926,19 +989,46 @@
         "summary": "トークン検証",
         "operationId": "validateToken",
         "description": "ヘッダー内のaccess-token,client,expiry,uidを検証する",
-        "parameters": [],
-        "security": [
+        "parameters": [
           {
-            "access-token": []
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
           },
           {
-            "client": []
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
           },
           {
-            "expiry": []
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
           },
           {
-            "uid": []
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
           }
         ],
         "responses": {
@@ -981,11 +1071,11 @@
                         "id": {
                           "type": "number",
                           "example": 1,
-                          "description": "ID"
+                          "description": "User主キー"
                         },
                         "name": {
                           "type": "string",
-                          "description": "名前",
+                          "description": "ユーザー名",
                           "example": "テスト 太郎"
                         },
                         "email": {
@@ -1036,15 +1126,11 @@
                         },
                         "created_at": {
                           "type": "string",
-                          "format": "date-time",
-                          "example": "2022-09-23T00:33:53.961+09:00",
-                          "description": "作成日時(新規作成時のみ返ってくる)"
+                          "format": "date-time"
                         },
                         "updated_at": {
                           "type": "string",
-                          "example": "2022-09-23T00:33:53.961+09:00",
-                          "format": "date-time",
-                          "description": "更新日時(新規作成時のみ返ってくる)"
+                          "format": "date-time"
                         }
                       },
                       "required": [
@@ -1066,7 +1152,7 @@
                   ]
                 },
                 "examples": {
-                  "example-1": {
+                  "Example 1": {
                     "value": {
                       "status": "success",
                       "data": {
@@ -1080,7 +1166,9 @@
                         "provider": "email",
                         "uid": "test1@example.com",
                         "allow_password_change": false
-                      }
+                      },
+                      "created_at": "2019-08-24T14:15:22Z",
+                      "updated_at": "2019-08-24T14:15:22Z"
                     }
                   }
                 }
@@ -1197,7 +1285,14 @@
                 ]
               },
               "examples": {
-                "example-1": {
+                "client login": {
+                  "value": {
+                    "email": "client@example.com",
+                    "password": "password",
+                    "type": "Client"
+                  }
+                },
+                "manager login": {
                   "value": {
                     "email": "test1@example.com",
                     "password": "password",
@@ -1255,11 +1350,11 @@
                         "id": {
                           "type": "number",
                           "example": 1,
-                          "description": "ID"
+                          "description": "User主キー"
                         },
                         "name": {
                           "type": "string",
-                          "description": "名前",
+                          "description": "ユーザー名",
                           "example": "テスト 太郎"
                         },
                         "email": {
@@ -1310,15 +1405,11 @@
                         },
                         "created_at": {
                           "type": "string",
-                          "format": "date-time",
-                          "example": "2022-09-23T00:33:53.961+09:00",
-                          "description": "作成日時(新規作成時のみ返ってくる)"
+                          "format": "date-time"
                         },
                         "updated_at": {
                           "type": "string",
-                          "example": "2022-09-23T00:33:53.961+09:00",
-                          "format": "date-time",
-                          "description": "更新日時(新規作成時のみ返ってくる)"
+                          "format": "date-time"
                         }
                       },
                       "required": [
@@ -1340,7 +1431,7 @@
                   ]
                 },
                 "examples": {
-                  "example-1": {
+                  "Example 1": {
                     "value": {
                       "status": "success",
                       "data": {
@@ -1354,7 +1445,9 @@
                         "provider": "email",
                         "uid": "test1@example.com",
                         "allow_password_change": false
-                      }
+                      },
+                      "created_at": "2019-08-24T14:15:22Z",
+                      "updated_at": "2019-08-24T14:15:22Z"
                     }
                   }
                 }
@@ -1470,22 +1563,50 @@
           }
         },
         "description": "ヘッダーに`access-token`,`uid`,`client`必須。ログアウトする。",
-        "security": [
-          {
-            "access-token": []
-          },
-          {
-            "client": []
-          },
-          {
-            "expiry": []
-          },
-          {
-            "uid": []
-          }
-        ],
         "tags": [
           "auth"
+        ],
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
         ]
       },
       "parameters": []
@@ -1632,11 +1753,11 @@
                         "id": {
                           "type": "number",
                           "example": 1,
-                          "description": "ID"
+                          "description": "User主キー"
                         },
                         "name": {
                           "type": "string",
-                          "description": "名前",
+                          "description": "ユーザー名",
                           "example": "テスト 太郎"
                         },
                         "email": {
@@ -1687,15 +1808,11 @@
                         },
                         "created_at": {
                           "type": "string",
-                          "format": "date-time",
-                          "example": "2022-09-23T00:33:53.961+09:00",
-                          "description": "作成日時(新規作成時のみ返ってくる)"
+                          "format": "date-time"
                         },
                         "updated_at": {
                           "type": "string",
-                          "example": "2022-09-23T00:33:53.961+09:00",
-                          "format": "date-time",
-                          "description": "更新日時(新規作成時のみ返ってくる)"
+                          "format": "date-time"
                         }
                       },
                       "required": [
@@ -1737,9 +1854,7 @@
                         "type": "Client",
                         "provider": "email",
                         "uid": "test1@example.com",
-                        "allow_password_change": false,
-                        "created_at": "2022-09-23T00:33:53.961+09:00",
-                        "updated_at": "2022-09-23T00:33:53.961+09:00"
+                        "allow_password_change": false
                       },
                       "message": "パスワードの更新に成功しました"
                     }
@@ -1857,17 +1972,6 @@
           "auth"
         ],
         "description": "パスワードリセットを確定する。",
-        "security": [
-          {
-            "access-token": []
-          },
-          {
-            "client": []
-          },
-          {
-            "uid": []
-          }
-        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1893,7 +1997,39 @@
             }
           },
           "description": "ヘッダーにclient,access-token,uid。ボディにpassword,password_confirmationが必須。"
-        }
+        },
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ]
       }
     },
     "/api/v1/client/offices/area": {
@@ -2297,8 +2433,51 @@
             }
           }
         },
+        "description": "Manager自身の事業所画像を更新する",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ],
         "tags": [
-          "office"
+          "office_image"
         ],
         "description": "Manager自身の事務所を更新する"
       }
@@ -2659,10 +2838,10 @@
             "description": "OK"
           }
         },
+        "description": "ホームケアを予約する",
         "tags": [
-          "appointment"
-        ],
-        "description": "ホームケアを予約する"
+          "reserve"
+        ]
       },
       "get": {
         "summary": "予約一覧取得(事業所利用者)",
@@ -2674,7 +2853,7 @@
         },
         "description": "予約一覧を取得する",
         "tags": [
-          "appointment"
+          "reserve"
         ]
       },
       "parameters": []
@@ -2690,7 +2869,7 @@
         },
         "description": "予約一覧を取得する",
         "tags": [
-          "appointment"
+          "reserve"
         ]
       },
       "parameters": []
@@ -2719,7 +2898,7 @@
         },
         "description": "予約を更新する",
         "tags": [
-          "appointment"
+          "reserve"
         ]
       }
     },
@@ -2925,7 +3104,49 @@
         "tags": [
           "staff"
         ],
-        "description": "スタッフ一覧を取得する"
+        "description": "スタッフ一覧を取得する",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ]
       },
       "post": {
         "summary": "スタッフ作成(ケアマネ)",
@@ -3082,11 +3303,11 @@
           "id": {
             "type": "number",
             "example": 1,
-            "description": "ID"
+            "description": "User主キー"
           },
           "name": {
             "type": "string",
-            "description": "名前",
+            "description": "ユーザー名",
             "example": "テスト 太郎"
           },
           "email": {
@@ -3137,15 +3358,11 @@
           },
           "created_at": {
             "type": "string",
-            "format": "date-time",
-            "example": "2022-09-23T00:33:53.961+09:00",
-            "description": "作成日時(新規作成時のみ返ってくる)"
+            "format": "date-time"
           },
           "updated_at": {
             "type": "string",
-            "example": "2022-09-23T00:33:53.961+09:00",
-            "format": "date-time",
-            "description": "更新日時(新規作成時のみ返ってくる)"
+            "format": "date-time"
           }
         },
         "required": [
@@ -3418,11 +3635,11 @@
                     "id": {
                       "type": "number",
                       "example": 1,
-                      "description": "ID"
+                      "description": "User主キー"
                     },
                     "name": {
                       "type": "string",
-                      "description": "名前",
+                      "description": "ユーザー名",
                       "example": "テスト 太郎"
                     },
                     "email": {
@@ -3473,15 +3690,11 @@
                     },
                     "created_at": {
                       "type": "string",
-                      "format": "date-time",
-                      "example": "2022-09-23T00:33:53.961+09:00",
-                      "description": "作成日時(新規作成時のみ返ってくる)"
+                      "format": "date-time"
                     },
                     "updated_at": {
                       "type": "string",
-                      "example": "2022-09-23T00:33:53.961+09:00",
-                      "format": "date-time",
-                      "description": "更新日時(新規作成時のみ返ってくる)"
+                      "format": "date-time"
                     }
                   },
                   "required": [
@@ -3503,7 +3716,7 @@
               ]
             },
             "examples": {
-              "example-1": {
+              "Example 1": {
                 "value": {
                   "status": "success",
                   "data": {
@@ -3517,7 +3730,9 @@
                     "provider": "email",
                     "uid": "test1@example.com",
                     "allow_password_change": false
-                  }
+                  },
+                  "created_at": "2019-08-24T14:15:22Z",
+                  "updated_at": "2019-08-24T14:15:22Z"
                 }
               }
             }
@@ -3581,39 +3796,51 @@
       }
     },
     "requestBodies": {},
-    "parameters": {},
-    "securitySchemes": {
+    "parameters": {
       "access-token": {
         "name": "access-token",
-        "type": "apiKey",
         "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "7sbMLu90-fDnajzasuhOTQ"
+        },
         "description": "トークン認証に必要なヘッダー(1/4)"
       },
       "client": {
         "name": "client",
-        "type": "apiKey",
         "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+        },
         "description": "トークン認証に必要なヘッダー(2/4)"
       },
       "expiry": {
         "name": "expiry",
-        "type": "apiKey",
         "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "1660145125"
+        },
         "description": "トークン認証に必要なヘッダー(3/4)"
       },
       "uid": {
         "name": "uid",
-        "type": "apiKey",
         "in": "header",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "example": "test1@example.com"
+        },
         "description": "トークン認証に必要なヘッダー(4/4)"
       }
-    }
+    },
+    "securitySchemes": {}
   },
   "tags": [
-    {
-      "name": "appointment",
-      "description": "予約"
-    },
     {
       "name": "auth",
       "description": "認証"
