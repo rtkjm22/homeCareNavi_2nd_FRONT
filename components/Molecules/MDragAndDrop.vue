@@ -3,22 +3,22 @@
     <div
       class="dragAndDrop_field"
       :class="{ over: isDragOver }"
-      @drop.stop="upload"
+      @drop.stop="preview"
       @dragover.prevent="onDrag('over')"
       @dragleave="onDrag('leave')"
     >
-      <input :id="labelTarget" type="file" @change="upload" />
+      <input :id="labelTarget" type="file" accept="image/jpeg, image/png" @change="preview" />
       <!-- ダミー画像 -->
       <div
         class="dragAndDrop_dummy"
-        :class="{ hidden: isUploaded, flex: !isUploaded }"
+        :class="{ hidden: isPreviewMode, flex: !isPreviewMode }"
       >
         <div class="block w-16  sm:w-[110px]">
           <img src="@/assets/img/dragAndDrop.svg" alt="" class="w-full" />
         </div>
       </div>
       <!-- 選択された画像 -->
-      <img :src="url" :class="{ hidden: !isUploaded }" />
+      <img :src="url" :class="{ hidden: !isPreviewMode }" />
     </div>
   </div>
 </template>
@@ -28,12 +28,12 @@ interface Props {
 }
 defineProps<Props>()
 
-// ドラッグの判定値
+/* ドラッグの判定値 */
 const IS_DRAGGED = {
   OVER: 'over',
   LEAVE: 'leave'
 } as const
-// 許容する画像の種類
+/* 許容する画像の種類 */
 const IMAGE_TYPE = {
   JPEG: 'image/jpeg',
   PNG: 'image/png'
@@ -45,10 +45,10 @@ type IMAGE_TYPE = typeof IMAGE_TYPE[keyof typeof IMAGE_TYPE]
 /* eslint-disable no-redeclare */
 
 // ファイルサイズ
-const SIZE_LIMIT = 5000000
+const SIZE_LIMIT = 500
 
-// アップロードされているか
-const isUploaded = ref(false)
+// アップロードされているか()
+const isPreviewMode = ref(false)
 // ドラッグ中かどうか
 const isDragOver = ref(false)
 // アップロードされた画像のURL（Blob）
@@ -97,16 +97,16 @@ const checkFile = (file: File): boolean => {
 }
 
 // アップロード実行関数
-const upload = async (e: any) => {
+const preview = async (e: any) => {
   isDragOver.value = false
-  isUploaded.value = true
   const files: FileList =
-    (e.target as HTMLInputElement).files || // クリック時に選択した画像の参照先
-    (e.dataTransfer as DataTransfer).files // ドラッグ・アンド・ドロップ時に選択した画像の参照先
+  (e.target as HTMLInputElement).files || // クリック時に選択した画像の参照先
+  (e.dataTransfer as DataTransfer).files // ドラッグ・アンド・ドロップ時に選択した画像の参照先
   const file = files[0]
-
+  
   // 画像バリデーション実行
   if (checkFile(file)) {
+    isPreviewMode.value = true
     // バックとのつなぎ込み処理 etc..
 
     const picture = await getBase64(file)

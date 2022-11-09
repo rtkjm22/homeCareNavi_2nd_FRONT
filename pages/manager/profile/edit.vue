@@ -69,7 +69,7 @@
           label-text="営業日（営業日のみチェックしてください）"
           class="mb-2"
         />
-        <div class="flex">
+        <div class="flex flex-wrap">
           <MCheckbox
             v-for="(week, index) in weeks"
             :key="index"
@@ -77,7 +77,7 @@
             :label-text="week.labelText"
             :val="week.weekVal"
             user-type="manager"
-            class="px-2"
+            class="px-2 mb-2"
           />
         </div>
       </div>
