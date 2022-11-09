@@ -163,6 +163,14 @@
                           "type": "boolean",
                           "default": false,
                           "description": "パスワード変更中判定"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time"
                         }
                       },
                       "required": [
@@ -184,7 +192,7 @@
                   ]
                 },
                 "examples": {
-                  "example-1": {
+                  "Example 1": {
                     "value": {
                       "status": "success",
                       "data": {
@@ -198,7 +206,9 @@
                         "provider": "email",
                         "uid": "test1@example.com",
                         "allow_password_change": false
-                      }
+                      },
+                      "created_at": "2019-08-24T14:15:22Z",
+                      "updated_at": "2019-08-24T14:15:22Z"
                     }
                   }
                 }
@@ -353,7 +363,7 @@
                         "allow_password_change": false,
                         "name": "テスト　太郎",
                         "email": "test@example.com",
-                        "tel": "000-1111-2222",
+                        "tel": "000-1111-2223",
                         "address": "東京都新宿区市ヶ谷本村町5番1号",
                         "postal": "1234567",
                         "created_at": null,
@@ -564,6 +574,14 @@
                           "type": "boolean",
                           "default": false,
                           "description": "パスワード変更中判定"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time"
                         }
                       },
                       "required": [
@@ -585,7 +603,7 @@
                   ]
                 },
                 "examples": {
-                  "example-1": {
+                  "Example 1": {
                     "value": {
                       "status": "success",
                       "data": {
@@ -599,7 +617,9 @@
                         "provider": "email",
                         "uid": "test1@example.com",
                         "allow_password_change": false
-                      }
+                      },
+                      "created_at": "2019-08-24T14:15:22Z",
+                      "updated_at": "2019-08-24T14:15:22Z"
                     }
                   }
                 }
@@ -1103,6 +1123,14 @@
                           "type": "boolean",
                           "default": false,
                           "description": "パスワード変更中判定"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time"
                         }
                       },
                       "required": [
@@ -1124,7 +1152,7 @@
                   ]
                 },
                 "examples": {
-                  "example-1": {
+                  "Example 1": {
                     "value": {
                       "status": "success",
                       "data": {
@@ -1138,7 +1166,9 @@
                         "provider": "email",
                         "uid": "test1@example.com",
                         "allow_password_change": false
-                      }
+                      },
+                      "created_at": "2019-08-24T14:15:22Z",
+                      "updated_at": "2019-08-24T14:15:22Z"
                     }
                   }
                 }
@@ -1372,6 +1402,14 @@
                           "type": "boolean",
                           "default": false,
                           "description": "パスワード変更中判定"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time"
                         }
                       },
                       "required": [
@@ -1393,7 +1431,7 @@
                   ]
                 },
                 "examples": {
-                  "example-1": {
+                  "Example 1": {
                     "value": {
                       "status": "success",
                       "data": {
@@ -1407,7 +1445,9 @@
                         "provider": "email",
                         "uid": "test1@example.com",
                         "allow_password_change": false
-                      }
+                      },
+                      "created_at": "2019-08-24T14:15:22Z",
+                      "updated_at": "2019-08-24T14:15:22Z"
                     }
                   }
                 }
@@ -1765,6 +1805,14 @@
                           "type": "boolean",
                           "default": false,
                           "description": "パスワード変更中判定"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "format": "date-time"
                         }
                       },
                       "required": [
@@ -2136,7 +2184,7 @@
             "content": {
               "application/json": {
                 "examples": {
-                  "Example 1": {
+                  "全画像作成済みパターン": {
                     "value": {
                       "id": 1,
                       "name": "ホームケア事務所_1",
@@ -2157,49 +2205,72 @@
                       "thumbnail_image": {
                         "id": 1,
                         "role": "thumbnail",
-                        "url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                        "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
                       },
                       "feature_images": [
                         {
                           "id": 2,
                           "caption": "画像の特徴テキストが入ります1",
                           "role": "feature",
-                          "url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
                         },
                         {
                           "id": 3,
                           "caption": "画像の特徴テキストが入ります2",
                           "role": "feature",
-                          "url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
                         }
                       ],
                       "carousel_images": [
                         {
                           "id": 4,
                           "role": "carousel",
-                          "url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
                         },
                         {
                           "id": 5,
                           "role": "carousel",
-                          "url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
                         },
                         {
                           "id": 6,
                           "role": "carousel",
-                          "url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
                         },
                         {
                           "id": 7,
                           "role": "carousel",
-                          "url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
                         },
                         {
                           "id": 8,
                           "role": "carousel",
-                          "url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
                         }
                       ]
+                    }
+                  },
+                  "全画像未作成パターン": {
+                    "value": {
+                      "id": 1,
+                      "name": "ホームケア事務所_1",
+                      "feature_title": "事業所紹介タイトル",
+                      "feature_detail": "ここに事業所の特徴テキストが入ります",
+                      "workday": [
+                        "mon",
+                        "tue",
+                        "wed",
+                        "thu",
+                        "fri"
+                      ],
+                      "workday_detail": "営業日時についてのテキストが入ります",
+                      "lat": "43.073211",
+                      "lng": "41.350427",
+                      "fax": "111-2222-3333",
+                      "nearest_station": "北12条駅 徒歩5分",
+                      "thumbnail_image": null,
+                      "feature_images": [],
+                      "carousel_images": []
                     }
                   }
                 },
@@ -2316,157 +2387,184 @@
                       "type": "object",
                       "properties": {
                         "thumbnail_image": {
-                          "title": "OfficeImage",
-                          "x-stoplight": {
-                            "id": "6vrskiww5y6eu"
-                          },
-                          "type": "object",
-                          "description": "事業所画像",
-                          "x-examples": {
-                            "Example 1": {
-                              "id": 1,
-                              "caption": "画像の説明テキストが入ります",
-                              "role": "thumbnail",
-                              "url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          "anyOf": [
+                            {
+                              "title": "OfficeImage",
+                              "x-stoplight": {
+                                "id": "6vrskiww5y6eu"
+                              },
+                              "type": "object",
+                              "description": "事業所画像",
+                              "x-examples": {
+                                "Example 1": {
+                                  "id": 1,
+                                  "caption": "画像の説明テキストが入ります",
+                                  "role": "thumbnail",
+                                  "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                                }
+                              },
+                              "properties": {
+                                "id": {
+                                  "type": "integer",
+                                  "description": "OfficeImage主キー",
+                                  "example": 1
+                                },
+                                "caption": {
+                                  "type": "string",
+                                  "example": "画像の説明テキストが入ります",
+                                  "description": "画像の見出しテキスト"
+                                },
+                                "role": {
+                                  "type": "string",
+                                  "enum": [
+                                    "thumbnail",
+                                    "carousel",
+                                    "feature"
+                                  ],
+                                  "description": "画像の役割",
+                                  "example": "thumbnail"
+                                },
+                                "image_url": {
+                                  "type": "string",
+                                  "description": "画像URL",
+                                  "format": "uri",
+                                  "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "role",
+                                "image_url"
+                              ]
+                            },
+                            {
+                              "type": "object",
+                              "nullable": true,
+                              "description": "未作成の場合はnullが返ってくる"
                             }
-                          },
-                          "properties": {
-                            "id": {
-                              "type": "integer",
-                              "description": "OfficeImage主キー",
-                              "example": 1
-                            },
-                            "caption": {
-                              "type": "string",
-                              "example": "画像の説明テキストが入ります",
-                              "description": "画像の見出しテキスト"
-                            },
-                            "role": {
-                              "type": "string",
-                              "enum": [
-                                "thumbnail",
-                                "carousel",
-                                "feature"
-                              ],
-                              "description": "画像の役割",
-                              "example": "thumbnail"
-                            },
-                            "url": {
-                              "type": "string",
-                              "description": "画像URL",
-                              "format": "uri",
-                              "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                            }
-                          },
-                          "required": [
-                            "id",
-                            "role",
-                            "url"
                           ]
                         },
                         "feature_images": {
-                          "type": "array",
-                          "items": {
-                            "title": "OfficeImage",
-                            "x-stoplight": {
-                              "id": "6vrskiww5y6eu"
-                            },
-                            "type": "object",
-                            "description": "事業所画像",
-                            "x-examples": {
-                              "Example 1": {
-                                "id": 1,
-                                "caption": "画像の説明テキストが入ります",
-                                "role": "thumbnail",
-                                "url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          "anyOf": [
+                            {
+                              "items": {
+                                "title": "OfficeImage",
+                                "x-stoplight": {
+                                  "id": "6vrskiww5y6eu"
+                                },
+                                "type": "object",
+                                "description": "事業所画像",
+                                "x-examples": {
+                                  "Example 1": {
+                                    "id": 1,
+                                    "caption": "画像の説明テキストが入ります",
+                                    "role": "thumbnail",
+                                    "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                                  }
+                                },
+                                "properties": {
+                                  "id": {
+                                    "type": "integer",
+                                    "description": "OfficeImage主キー",
+                                    "example": 1
+                                  },
+                                  "caption": {
+                                    "type": "string",
+                                    "example": "画像の説明テキストが入ります",
+                                    "description": "画像の見出しテキスト"
+                                  },
+                                  "role": {
+                                    "type": "string",
+                                    "enum": [
+                                      "thumbnail",
+                                      "carousel",
+                                      "feature"
+                                    ],
+                                    "description": "画像の役割",
+                                    "example": "thumbnail"
+                                  },
+                                  "image_url": {
+                                    "type": "string",
+                                    "description": "画像URL",
+                                    "format": "uri",
+                                    "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "role",
+                                  "image_url"
+                                ]
                               }
                             },
-                            "properties": {
-                              "id": {
-                                "type": "integer",
-                                "description": "OfficeImage主キー",
-                                "example": 1
-                              },
-                              "caption": {
-                                "type": "string",
-                                "example": "画像の説明テキストが入ります",
-                                "description": "画像の見出しテキスト"
-                              },
-                              "role": {
-                                "type": "string",
-                                "enum": [
-                                  "thumbnail",
-                                  "carousel",
-                                  "feature"
-                                ],
-                                "description": "画像の役割",
-                                "example": "thumbnail"
-                              },
-                              "url": {
-                                "type": "string",
-                                "description": "画像URL",
-                                "format": "uri",
-                                "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                              }
-                            },
-                            "required": [
-                              "id",
-                              "role",
-                              "url"
-                            ]
-                          }
+                            {
+                              "maxItems": 0,
+                              "description": "未作成の場合は空配列が返ってくる",
+                              "items": {}
+                            }
+                          ],
+                          "type": "array"
                         },
                         "carousel_images": {
-                          "type": "array",
-                          "items": {
-                            "title": "OfficeImage",
-                            "x-stoplight": {
-                              "id": "6vrskiww5y6eu"
-                            },
-                            "type": "object",
-                            "description": "事業所画像",
-                            "x-examples": {
-                              "Example 1": {
-                                "id": 1,
-                                "caption": "画像の説明テキストが入ります",
-                                "role": "thumbnail",
-                                "url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          "anyOf": [
+                            {
+                              "items": {
+                                "title": "OfficeImage",
+                                "x-stoplight": {
+                                  "id": "6vrskiww5y6eu"
+                                },
+                                "type": "object",
+                                "description": "事業所画像",
+                                "x-examples": {
+                                  "Example 1": {
+                                    "id": 1,
+                                    "caption": "画像の説明テキストが入ります",
+                                    "role": "thumbnail",
+                                    "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                                  }
+                                },
+                                "properties": {
+                                  "id": {
+                                    "type": "integer",
+                                    "description": "OfficeImage主キー",
+                                    "example": 1
+                                  },
+                                  "caption": {
+                                    "type": "string",
+                                    "example": "画像の説明テキストが入ります",
+                                    "description": "画像の見出しテキスト"
+                                  },
+                                  "role": {
+                                    "type": "string",
+                                    "enum": [
+                                      "thumbnail",
+                                      "carousel",
+                                      "feature"
+                                    ],
+                                    "description": "画像の役割",
+                                    "example": "thumbnail"
+                                  },
+                                  "image_url": {
+                                    "type": "string",
+                                    "description": "画像URL",
+                                    "format": "uri",
+                                    "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                                  }
+                                },
+                                "required": [
+                                  "id",
+                                  "role",
+                                  "image_url"
+                                ]
                               }
                             },
-                            "properties": {
-                              "id": {
-                                "type": "integer",
-                                "description": "OfficeImage主キー",
-                                "example": 1
-                              },
-                              "caption": {
-                                "type": "string",
-                                "example": "画像の説明テキストが入ります",
-                                "description": "画像の見出しテキスト"
-                              },
-                              "role": {
-                                "type": "string",
-                                "enum": [
-                                  "thumbnail",
-                                  "carousel",
-                                  "feature"
-                                ],
-                                "description": "画像の役割",
-                                "example": "thumbnail"
-                              },
-                              "url": {
-                                "type": "string",
-                                "description": "画像URL",
-                                "format": "uri",
-                                "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                              }
-                            },
-                            "required": [
-                              "id",
-                              "role",
-                              "url"
-                            ]
-                          }
+                            {
+                              "maxItems": 0,
+                              "description": "未作成の場合は空配列が返ってくる",
+                              "items": {}
+                            }
+                          ],
+                          "type": "array"
                         }
                       }
                     }
@@ -2660,12 +2758,149 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "バリデーションチェック失敗時。status: :bad_requestで返ってくるときの値。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "description": "エラーの値",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "類型は200文字以内で入力してください"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ]
+                }
+              }
+            }
           }
         },
         "tags": [
           "office"
         ],
-        "description": "Manager自身の事務所を更新する"
+        "description": "Manager自身の事務所を更新する",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "description": "新事業所名",
+                    "example": "ニューホームケア"
+                  },
+                  "feature_title": {
+                    "type": "string",
+                    "description": "新事業所タイトル",
+                    "example": "新しいタイトルです"
+                  },
+                  "feature_detail": {
+                    "type": "string",
+                    "description": "新事業所詳細",
+                    "example": "新しい詳細です"
+                  },
+                  "workday": {
+                    "type": "array",
+                    "description": "新事業所営業曜日",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "sun",
+                        "mon",
+                        "tue",
+                        "wed",
+                        "thu",
+                        "fri",
+                        "sat"
+                      ]
+                    }
+                  },
+                  "workday_detail": {
+                    "type": "string",
+                    "example": "新営業日テキスト",
+                    "description": "新営業日テキスト"
+                  },
+                  "fax": {
+                    "type": "string",
+                    "description": "新FAX番号",
+                    "example": "111-1111-1111"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "name": "ニューホームケア",
+                    "feature_title": "新しいタイトルです",
+                    "feature_detail": "新しい詳細です",
+                    "workday": [
+                      "mon",
+                      "tue",
+                      "wed",
+                      "thu",
+                      "fri"
+                    ],
+                    "workday_detail": "新営業日テキスト",
+                    "fax": "111-1111-1111"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/v1/manager/office_overview": {
@@ -3062,6 +3297,374 @@
         ]
       }
     },
+    "/api/v1/manager/office_images": {
+      "parameters": [],
+      "post": {
+        "summary": "事業所画像作成(ケアマネ)",
+        "operationId": "createManagerOfficeImage",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "OfficeImage",
+                  "x-stoplight": {
+                    "id": "6vrskiww5y6eu"
+                  },
+                  "type": "object",
+                  "description": "事業所画像",
+                  "x-examples": {
+                    "Example 1": {
+                      "id": 1,
+                      "caption": "画像の説明テキストが入ります",
+                      "role": "thumbnail",
+                      "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                    }
+                  },
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "OfficeImage主キー",
+                      "example": 1
+                    },
+                    "caption": {
+                      "type": "string",
+                      "example": "画像の説明テキストが入ります",
+                      "description": "画像の見出しテキスト"
+                    },
+                    "role": {
+                      "type": "string",
+                      "enum": [
+                        "thumbnail",
+                        "carousel",
+                        "feature"
+                      ],
+                      "description": "画像の役割",
+                      "example": "thumbnail"
+                    },
+                    "image_url": {
+                      "type": "string",
+                      "description": "画像URL",
+                      "format": "uri",
+                      "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "role",
+                    "image_url"
+                  ]
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "id": 1,
+                      "caption": "画像の説明テキストが入ります",
+                      "role": "thumbnail",
+                      "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Manager自身の事業所画像を作成する",
+        "tags": [
+          "office_image"
+        ],
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "画像のバイナリデータ"
+                  },
+                  "caption": {
+                    "type": "string",
+                    "description": "キャプション",
+                    "example": "画像の説明テキストが入ります"
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "thumbnail",
+                      "carousel",
+                      "feature"
+                    ],
+                    "example": "thumbnail",
+                    "description": "役割。thumbnailが一覧のサムネイル。carouselが5枚のカルーセル。featureが2枚の説明画像"
+                  }
+                },
+                "required": [
+                  "image",
+                  "role"
+                ]
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "image": "string",
+                    "caption": "画像の説明テキストが入ります",
+                    "role": "thumbnail"
+                  }
+                }
+              }
+            }
+          },
+          "description": "※画像はContentTypeがapplication/jsonでは送信出来ないため、multipart/form-dataかつformDataでラップして送信すること"
+        }
+      }
+    },
+    "/api/v1/manager/office_images/{id}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "number",
+            "example": 1
+          },
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "更新するOfficeImageのID"
+        }
+      ],
+      "patch": {
+        "summary": "事業所画像更新(ケアマネ)",
+        "operationId": "updateManagerOfficeImage",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "title": "OfficeImage",
+                  "x-stoplight": {
+                    "id": "6vrskiww5y6eu"
+                  },
+                  "type": "object",
+                  "description": "事業所画像",
+                  "x-examples": {
+                    "Example 1": {
+                      "id": 1,
+                      "caption": "画像の説明テキストが入ります",
+                      "role": "thumbnail",
+                      "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                    }
+                  },
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "OfficeImage主キー",
+                      "example": 1
+                    },
+                    "caption": {
+                      "type": "string",
+                      "example": "画像の説明テキストが入ります",
+                      "description": "画像の見出しテキスト"
+                    },
+                    "role": {
+                      "type": "string",
+                      "enum": [
+                        "thumbnail",
+                        "carousel",
+                        "feature"
+                      ],
+                      "description": "画像の役割",
+                      "example": "thumbnail"
+                    },
+                    "image_url": {
+                      "type": "string",
+                      "description": "画像URL",
+                      "format": "uri",
+                      "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "role",
+                    "image_url"
+                  ]
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "id": 1,
+                      "caption": "画像の説明テキストが入ります",
+                      "role": "thumbnail",
+                      "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "バリデーションチェック失敗時。status: :bad_requestで返ってくるときの値。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "errors": {
+                      "type": "array",
+                      "description": "エラーの値",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "類型は200文字以内で入力してください"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "errors"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "description": "Manager自身の事業所画像を更新する",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ],
+        "tags": [
+          "office_image"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "画像のバイナリデータ"
+                  },
+                  "caption": {
+                    "type": "string",
+                    "description": "キャプション",
+                    "example": "画像の説明テキストが入ります"
+                  },
+                  "role": {
+                    "type": "string",
+                    "enum": [
+                      "thumbnail",
+                      "carousel",
+                      "feature"
+                    ],
+                    "example": "thumbnail",
+                    "description": "役割。thumbnailが一覧のサムネイル。carouselが5枚のカルーセル。featureが2枚の説明画像"
+                  }
+                },
+                "required": [
+                  "image",
+                  "role"
+                ]
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "image": "string",
+                    "caption": "画像の説明テキストが入ります",
+                    "role": "thumbnail"
+                  }
+                }
+              }
+            }
+          },
+          "description": "※画像はContentTypeがapplication/jsonでは送信出来ないため、multipart/form-dataかつformDataでラップして送信すること"
+        }
+      }
+    },
     "/api/v1/client/reserves": {
       "post": {
         "summary": "予約作成(事業所利用者)",
@@ -3071,10 +3674,10 @@
             "description": "OK"
           }
         },
+        "description": "ホームケアを予約する",
         "tags": [
-          "appointment"
-        ],
-        "description": "ホームケアを予約する"
+          "reserve"
+        ]
       },
       "get": {
         "summary": "予約一覧取得(事業所利用者)",
@@ -3086,7 +3689,7 @@
         },
         "description": "予約一覧を取得する",
         "tags": [
-          "appointment"
+          "reserve"
         ]
       },
       "parameters": []
@@ -3102,7 +3705,7 @@
         },
         "description": "予約一覧を取得する",
         "tags": [
-          "appointment"
+          "reserve"
         ]
       },
       "parameters": []
@@ -3131,7 +3734,7 @@
         },
         "description": "予約を更新する",
         "tags": [
-          "appointment"
+          "reserve"
         ]
       }
     },
@@ -3337,7 +3940,49 @@
         "tags": [
           "staff"
         ],
-        "description": "スタッフ一覧を取得する"
+        "description": "スタッフ一覧を取得する",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ]
       },
       "post": {
         "summary": "スタッフ作成(ケアマネ)",
@@ -3546,6 +4191,14 @@
             "type": "boolean",
             "default": false,
             "description": "パスワード変更中判定"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "required": [
@@ -3751,7 +4404,7 @@
             "id": 1,
             "caption": "画像の説明テキストが入ります",
             "role": "thumbnail",
-            "url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+            "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
           }
         },
         "properties": {
@@ -3775,7 +4428,7 @@
             "description": "画像の役割",
             "example": "thumbnail"
           },
-          "url": {
+          "image_url": {
             "type": "string",
             "description": "画像URL",
             "format": "uri",
@@ -3785,7 +4438,7 @@
         "required": [
           "id",
           "role",
-          "url"
+          "image_url"
         ]
       },
       "OfficeStaff": {
@@ -3937,6 +4590,14 @@
                       "type": "boolean",
                       "default": false,
                       "description": "パスワード変更中判定"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "format": "date-time"
                     }
                   },
                   "required": [
@@ -3958,7 +4619,7 @@
               ]
             },
             "examples": {
-              "example-1": {
+              "Example 1": {
                 "value": {
                   "status": "success",
                   "data": {
@@ -3972,7 +4633,9 @@
                     "provider": "email",
                     "uid": "test1@example.com",
                     "allow_password_change": false
-                  }
+                  },
+                  "created_at": "2019-08-24T14:15:22Z",
+                  "updated_at": "2019-08-24T14:15:22Z"
                 }
               }
             }
@@ -4082,10 +4745,6 @@
   },
   "tags": [
     {
-      "name": "appointment",
-      "description": "予約"
-    },
-    {
       "name": "auth",
       "description": "認証"
     },
@@ -4118,8 +4777,16 @@
       "description": "事業所で管理しているクライアント"
     },
     {
+      "name": "office_image",
+      "description": "事業所画像"
+    },
+    {
       "name": "office_overview",
       "description": "施設概要"
+    },
+    {
+      "name": "reserve",
+      "description": "予約"
     },
     {
       "name": "staff",
