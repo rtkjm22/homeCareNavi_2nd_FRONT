@@ -2,7 +2,7 @@
   <div>
     <ul class="mt-5">
       <li
-        v-for="(district,i) in districts"
+        v-for="(district, i) in districts"
         :key="i"
         class="
           md:w-[220px]
@@ -10,8 +10,10 @@
           h-[40px]
           flex
           items-center
-          border-b border-gray-lighter
           m-auto
+          border-b
+        border-gray-lighter
+        text-gray-dark
         "
       >
         <label class="myCheckbox">
@@ -22,7 +24,7 @@
             type="checkbox"
             :value="district.name"
             @change="addList(district.name)"
-          ><span class="myCheckbox-DummyInput" />
+          /><span class="myCheckbox-DummyInput" />
           <span class="myCheckbox-LabelText">{{
             district.name
           }}</span>
@@ -163,9 +165,8 @@ const districts = [
   }
 
   .myCheckbox-LabelText {
-  margin-left: 12px;
-  display: block;
+    margin-left: 12px;
+    display: block;
+  }
 }
-}
-
 </style>

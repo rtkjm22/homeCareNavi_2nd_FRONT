@@ -12,10 +12,8 @@
  * @see https://github.com/nuxt/framework/issues/5501
  * */
 definePageMeta({
-  layout: 'client',
-
   middleware: [
-    'auth',
+    'auth-client',
 
     // このページは子ファイルを設定するためだけのページなので、認証の有無にかかわらず訪れた場合は弾くようにする
     ({ path }) => {

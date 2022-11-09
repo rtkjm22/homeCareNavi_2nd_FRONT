@@ -103,7 +103,9 @@ switch (props.userType) {
 
 const params = reactive({
   email: '',
-  password: ''
+  password: '',
+  // 頭文字を大文字にしたuserType。 'client' => 'Client', 'manager' => 'Manager'。APIの仕様上必要。
+  type: props.userType[0].toUpperCase() + props.userType.slice(1)
 })
 
 const { alert } = useUI()

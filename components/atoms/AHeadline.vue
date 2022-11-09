@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="label">
+    <p class="myLabel">
       {{ labelText }}
     </p>
   </div>
@@ -13,7 +13,7 @@ interface Props {
 defineProps<Props>()
 </script>
 <style scoped>
-.label {
+.myLabel {
   @apply mb-2 text-[13px] font-bold text-gray-base;
 }
 </style>

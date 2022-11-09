@@ -1294,9 +1294,9 @@
                 },
                 "manager login": {
                   "value": {
-                    "email": "manager@example.com",
+                    "email": "test1@example.com",
                     "password": "password",
-                    "type": "Manager"
+                    "type": "Client"
                   }
                 }
               }
@@ -2183,471 +2183,25 @@
             "description": "OK",
             "content": {
               "application/json": {
-                "examples": {
-                  "全画像作成済みパターン": {
-                    "value": {
-                      "id": 1,
-                      "name": "ホームケア事務所_1",
-                      "feature_title": "事業所紹介タイトル",
-                      "feature_detail": "ここに事業所の特徴テキストが入ります",
-                      "workday": [
-                        "mon",
-                        "tue",
-                        "wed",
-                        "thu",
-                        "fri"
-                      ],
-                      "workday_detail": "営業日時についてのテキストが入ります",
-                      "lat": "43.073211",
-                      "lng": "41.350427",
-                      "fax": "111-2222-3333",
-                      "nearest_station": "北12条駅 徒歩5分",
-                      "thumbnail_image": {
-                        "id": 1,
-                        "role": "thumbnail",
-                        "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                      },
-                      "feature_images": [
-                        {
-                          "id": 2,
-                          "caption": "画像の特徴テキストが入ります1",
-                          "role": "feature",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                        },
-                        {
-                          "id": 3,
-                          "caption": "画像の特徴テキストが入ります2",
-                          "role": "feature",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                        }
-                      ],
-                      "carousel_images": [
-                        {
-                          "id": 4,
-                          "role": "carousel",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                        },
-                        {
-                          "id": 5,
-                          "role": "carousel",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                        },
-                        {
-                          "id": 6,
-                          "role": "carousel",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                        },
-                        {
-                          "id": 7,
-                          "role": "carousel",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                        },
-                        {
-                          "id": 8,
-                          "role": "carousel",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                        }
-                      ]
-                    }
-                  },
-                  "全画像未作成パターン": {
-                    "value": {
-                      "id": 1,
-                      "name": "ホームケア事務所_1",
-                      "feature_title": "事業所紹介タイトル",
-                      "feature_detail": "ここに事業所の特徴テキストが入ります",
-                      "workday": [
-                        "mon",
-                        "tue",
-                        "wed",
-                        "thu",
-                        "fri"
-                      ],
-                      "workday_detail": "営業日時についてのテキストが入ります",
-                      "lat": "43.073211",
-                      "lng": "41.350427",
-                      "fax": "111-2222-3333",
-                      "nearest_station": "北12条駅 徒歩5分",
-                      "thumbnail_image": null,
-                      "feature_images": [],
-                      "carousel_images": []
-                    }
-                  }
-                },
-                "schema": {
-                  "allOf": [
-                    {
-                      "type": "object",
-                      "x-examples": {
-                        "Example 1": {
-                          "id": 1,
-                          "name": "ホームケア事務所_1",
-                          "feature_title": "事業所紹介タイトル",
-                          "feature_detail": "ここに事業所の特徴テキストが入ります",
-                          "workday": [
-                            "mon",
-                            "tue",
-                            "wed",
-                            "thu",
-                            "fri"
-                          ],
-                          "workday_detail": "営業日時についてのテキストが入ります",
-                          "lat": "43.073211",
-                          "lng": "41.350427",
-                          "fax": "111-2222-3333",
-                          "nearest_station": "北12条駅 徒歩5分"
-                        }
-                      },
-                      "title": "Office",
-                      "description": "事業所",
-                      "properties": {
-                        "id": {
-                          "type": "integer",
-                          "example": 1,
-                          "description": "Office主キー"
-                        },
-                        "name": {
-                          "type": "string",
-                          "example": "ホームケア事務所_1",
-                          "description": "事業所名"
-                        },
-                        "feature_title": {
-                          "type": "string",
-                          "example": "事業所紹介タイトル",
-                          "description": "特徴タイトル"
-                        },
-                        "feature_detail": {
-                          "type": "string",
-                          "example": "ここに事業所の特徴テキストが入ります",
-                          "description": "特徴詳細テキスト"
-                        },
-                        "workday": {
-                          "type": "array",
-                          "example": [
-                            "mon",
-                            "tue",
-                            "wed",
-                            "thu",
-                            "fri"
-                          ],
-                          "description": "営業曜日",
-                          "items": {
-                            "type": "string",
-                            "enum": [
-                              "sun",
-                              "mon",
-                              "tue",
-                              "wed",
-                              "thu",
-                              "fri",
-                              "sat"
-                            ]
-                          }
-                        },
-                        "workday_detail": {
-                          "type": "string",
-                          "example": "営業日時についてのテキストが入ります",
-                          "description": "営業曜日についての詳細テキスト"
-                        },
-                        "lat": {
-                          "type": "string",
-                          "example": "43.073211",
-                          "description": "緯度"
-                        },
-                        "lng": {
-                          "type": "string",
-                          "example": "41.350427",
-                          "description": "経度"
-                        },
-                        "fax": {
-                          "type": "string",
-                          "example": "111-2222-3333",
-                          "description": "FAX番号"
-                        },
-                        "nearest_station": {
-                          "type": "string",
-                          "example": "北12条駅 徒歩5分",
-                          "description": "最寄り駅"
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "name",
-                        "feature_title",
-                        "feature_detail",
-                        "workday",
-                        "workday_detail",
-                        "lat",
-                        "lng",
-                        "fax",
-                        "nearest_station"
-                      ]
-                    },
-                    {
-                      "type": "object",
-                      "properties": {
-                        "thumbnail_image": {
-                          "anyOf": [
-                            {
-                              "title": "OfficeImage",
-                              "x-stoplight": {
-                                "id": "6vrskiww5y6eu"
-                              },
-                              "type": "object",
-                              "description": "事業所画像",
-                              "x-examples": {
-                                "Example 1": {
-                                  "id": 1,
-                                  "caption": "画像の説明テキストが入ります",
-                                  "role": "thumbnail",
-                                  "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                                }
-                              },
-                              "properties": {
-                                "id": {
-                                  "type": "integer",
-                                  "description": "OfficeImage主キー",
-                                  "example": 1
-                                },
-                                "caption": {
-                                  "type": "string",
-                                  "example": "画像の説明テキストが入ります",
-                                  "description": "画像の見出しテキスト"
-                                },
-                                "role": {
-                                  "type": "string",
-                                  "enum": [
-                                    "thumbnail",
-                                    "carousel",
-                                    "feature"
-                                  ],
-                                  "description": "画像の役割",
-                                  "example": "thumbnail"
-                                },
-                                "image_url": {
-                                  "type": "string",
-                                  "description": "画像URL",
-                                  "format": "uri",
-                                  "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                                }
-                              },
-                              "required": [
-                                "id",
-                                "role",
-                                "image_url"
-                              ]
-                            },
-                            {
-                              "type": "object",
-                              "nullable": true,
-                              "description": "未作成の場合はnullが返ってくる"
-                            }
-                          ]
-                        },
-                        "feature_images": {
-                          "anyOf": [
-                            {
-                              "items": {
-                                "title": "OfficeImage",
-                                "x-stoplight": {
-                                  "id": "6vrskiww5y6eu"
-                                },
-                                "type": "object",
-                                "description": "事業所画像",
-                                "x-examples": {
-                                  "Example 1": {
-                                    "id": 1,
-                                    "caption": "画像の説明テキストが入ります",
-                                    "role": "thumbnail",
-                                    "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                                  }
-                                },
-                                "properties": {
-                                  "id": {
-                                    "type": "integer",
-                                    "description": "OfficeImage主キー",
-                                    "example": 1
-                                  },
-                                  "caption": {
-                                    "type": "string",
-                                    "example": "画像の説明テキストが入ります",
-                                    "description": "画像の見出しテキスト"
-                                  },
-                                  "role": {
-                                    "type": "string",
-                                    "enum": [
-                                      "thumbnail",
-                                      "carousel",
-                                      "feature"
-                                    ],
-                                    "description": "画像の役割",
-                                    "example": "thumbnail"
-                                  },
-                                  "image_url": {
-                                    "type": "string",
-                                    "description": "画像URL",
-                                    "format": "uri",
-                                    "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                                  }
-                                },
-                                "required": [
-                                  "id",
-                                  "role",
-                                  "image_url"
-                                ]
-                              }
-                            },
-                            {
-                              "maxItems": 0,
-                              "description": "未作成の場合は空配列が返ってくる",
-                              "items": {}
-                            }
-                          ],
-                          "type": "array"
-                        },
-                        "carousel_images": {
-                          "anyOf": [
-                            {
-                              "items": {
-                                "title": "OfficeImage",
-                                "x-stoplight": {
-                                  "id": "6vrskiww5y6eu"
-                                },
-                                "type": "object",
-                                "description": "事業所画像",
-                                "x-examples": {
-                                  "Example 1": {
-                                    "id": 1,
-                                    "caption": "画像の説明テキストが入ります",
-                                    "role": "thumbnail",
-                                    "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                                  }
-                                },
-                                "properties": {
-                                  "id": {
-                                    "type": "integer",
-                                    "description": "OfficeImage主キー",
-                                    "example": 1
-                                  },
-                                  "caption": {
-                                    "type": "string",
-                                    "example": "画像の説明テキストが入ります",
-                                    "description": "画像の見出しテキスト"
-                                  },
-                                  "role": {
-                                    "type": "string",
-                                    "enum": [
-                                      "thumbnail",
-                                      "carousel",
-                                      "feature"
-                                    ],
-                                    "description": "画像の役割",
-                                    "example": "thumbnail"
-                                  },
-                                  "image_url": {
-                                    "type": "string",
-                                    "description": "画像URL",
-                                    "format": "uri",
-                                    "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                                  }
-                                },
-                                "required": [
-                                  "id",
-                                  "role",
-                                  "image_url"
-                                ]
-                              }
-                            },
-                            {
-                              "maxItems": 0,
-                              "description": "未作成の場合は空配列が返ってくる",
-                              "items": {}
-                            }
-                          ],
-                          "type": "array"
-                        }
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "operationId": "getManagerOffice",
-        "description": "Manager自身の事務所詳細を取得する",
-        "parameters": [
-          {
-            "name": "access-token",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "7sbMLu90-fDnajzasuhOTQ"
-            },
-            "description": "トークン認証に必要なヘッダー(1/4)"
-          },
-          {
-            "name": "client",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
-            },
-            "description": "トークン認証に必要なヘッダー(2/4)"
-          },
-          {
-            "name": "expiry",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1660145125"
-            },
-            "description": "トークン認証に必要なヘッダー(3/4)"
-          },
-          {
-            "name": "uid",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "test1@example.com"
-            },
-            "description": "トークン認証に必要なヘッダー(4/4)"
-          }
-        ]
-      },
-      "parameters": [],
-      "patch": {
-        "summary": "事業所更新(ケアマネ)",
-        "operationId": "updateManagerOffice",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
                 "schema": {
                   "type": "object",
                   "x-examples": {
                     "Example 1": {
                       "id": 1,
+                      "manager_id": 5,
                       "name": "ホームケア事務所_1",
                       "feature_title": "事業所紹介タイトル",
                       "feature_detail": "ここに事業所の特徴テキストが入ります",
                       "workday": [
-                        "mon",
-                        "tue",
-                        "wed",
-                        "thu",
-                        "fri"
+                        "mon"
                       ],
                       "workday_detail": "営業日時についてのテキストが入ります",
                       "lat": "43.073211",
-                      "lng": "41.350427",
+                      "lng": "141.350427",
                       "fax": "111-2222-3333",
-                      "nearest_station": "北12条駅 徒歩5分"
+                      "nearest_station": "北12条駅 徒歩5分",
+                      "created_at": "2022-10-29T00:47:31.090+09:00",
+                      "updated_at": "2022-10-29T00:47:31.090+09:00"
                     }
                   },
                   "title": "Office",
@@ -2655,75 +2209,63 @@
                   "properties": {
                     "id": {
                       "type": "integer",
-                      "example": 1,
-                      "description": "Office主キー"
+                      "example": 1
+                    },
+                    "manager_id": {
+                      "type": "integer",
+                      "example": 5
                     },
                     "name": {
                       "type": "string",
-                      "example": "ホームケア事務所_1",
-                      "description": "事業所名"
+                      "example": "ホームケア事務所_1"
                     },
                     "feature_title": {
                       "type": "string",
-                      "example": "事業所紹介タイトル",
-                      "description": "特徴タイトル"
+                      "example": "事業所紹介タイトル"
                     },
                     "feature_detail": {
                       "type": "string",
-                      "example": "ここに事業所の特徴テキストが入ります",
-                      "description": "特徴詳細テキスト"
+                      "example": "ここに事業所の特徴テキストが入ります"
                     },
                     "workday": {
                       "type": "array",
                       "example": [
-                        "mon",
-                        "tue",
-                        "wed",
-                        "thu",
-                        "fri"
+                        "mon"
                       ],
-                      "description": "営業曜日",
                       "items": {
-                        "type": "string",
-                        "enum": [
-                          "sun",
-                          "mon",
-                          "tue",
-                          "wed",
-                          "thu",
-                          "fri",
-                          "sat"
-                        ]
+                        "type": "string"
                       }
                     },
                     "workday_detail": {
                       "type": "string",
-                      "example": "営業日時についてのテキストが入ります",
-                      "description": "営業曜日についての詳細テキスト"
+                      "example": "営業日時についてのテキストが入ります"
                     },
                     "lat": {
                       "type": "string",
-                      "example": "43.073211",
-                      "description": "緯度"
+                      "example": "43.073211"
                     },
                     "lng": {
                       "type": "string",
-                      "example": "41.350427",
-                      "description": "経度"
+                      "example": "41.350427"
                     },
                     "fax": {
                       "type": "string",
-                      "example": "111-2222-3333",
-                      "description": "FAX番号"
+                      "example": "111-2222-3333"
                     },
                     "nearest_station": {
                       "type": "string",
-                      "example": "北12条駅 徒歩5分",
-                      "description": "最寄り駅"
+                      "example": "北12条駅 徒歩5分"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
                     }
                   },
                   "required": [
                     "id",
+                    "manager_id",
                     "name",
                     "feature_title",
                     "feature_detail",
@@ -2758,37 +2300,140 @@
                 }
               }
             }
-          },
-          "400": {
-            "description": "バリデーションチェック失敗時。status: :bad_requestで返ってくるときの値。",
+          }
+        },
+        "operationId": "getManagerOffice",
+        "description": "Manager自身の事務所詳細を取得する"
+      },
+      "parameters": [],
+      "patch": {
+        "summary": "事業所更新(ケアマネ)",
+        "operationId": "updateManagerOffice",
+        "responses": {
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "id": 1,
+                      "manager_id": 5,
+                      "name": "ホームケア事務所_1",
+                      "feature_title": "事業所紹介タイトル",
+                      "feature_detail": "ここに事業所の特徴テキストが入ります",
+                      "workday": [
+                        "mon"
+                      ],
+                      "workday_detail": "営業日時についてのテキストが入ります",
+                      "lat": "43.073211",
+                      "lng": "141.350427",
+                      "fax": "111-2222-3333",
+                      "nearest_station": "北12条駅 徒歩5分",
+                      "created_at": "2022-10-29T00:47:31.090+09:00",
+                      "updated_at": "2022-10-29T00:47:31.090+09:00"
+                    }
+                  },
+                  "title": "Office",
+                  "description": "事業所",
                   "properties": {
-                    "errors": {
+                    "id": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "manager_id": {
+                      "type": "integer",
+                      "example": 5
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "ホームケア事務所_1"
+                    },
+                    "feature_title": {
+                      "type": "string",
+                      "example": "事業所紹介タイトル"
+                    },
+                    "feature_detail": {
+                      "type": "string",
+                      "example": "ここに事業所の特徴テキストが入ります"
+                    },
+                    "workday": {
                       "type": "array",
-                      "description": "エラーの値",
+                      "example": [
+                        "mon"
+                      ],
                       "items": {
                         "type": "string"
-                      },
-                      "example": [
-                        "類型は200文字以内で入力してください"
-                      ]
+                      }
+                    },
+                    "workday_detail": {
+                      "type": "string",
+                      "example": "営業日時についてのテキストが入ります"
+                    },
+                    "lat": {
+                      "type": "string",
+                      "example": "43.073211"
+                    },
+                    "lng": {
+                      "type": "string",
+                      "example": "41.350427"
+                    },
+                    "fax": {
+                      "type": "string",
+                      "example": "111-2222-3333"
+                    },
+                    "nearest_station": {
+                      "type": "string",
+                      "example": "北12条駅 徒歩5分"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
                     }
                   },
                   "required": [
-                    "errors"
+                    "id",
+                    "manager_id",
+                    "name",
+                    "feature_title",
+                    "feature_detail",
+                    "workday",
+                    "workday_detail",
+                    "lat",
+                    "lng",
+                    "fax",
+                    "nearest_station"
                   ]
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "id": 1,
+                      "manager_id": 5,
+                      "name": "ホームケア事務所_1",
+                      "feature_title": "事業所紹介タイトル",
+                      "feature_detail": "ここに事業所の特徴テキストが入ります",
+                      "workday": [
+                        "mon"
+                      ],
+                      "workday_detail": "営業日時についてのテキストが入ります",
+                      "lat": "43.073211",
+                      "lng": "41.350427",
+                      "fax": "111-2222-3333",
+                      "nearest_station": "北12条駅 徒歩5分",
+                      "created_at": "string",
+                      "updated_at": "string"
+                    }
+                  }
                 }
               }
             }
           }
         },
-        "tags": [
-          "office"
-        ],
-        "description": "Manager自身の事務所を更新する",
+        "description": "Manager自身の事業所画像を更新する",
         "parameters": [
           {
             "name": "access-token",
@@ -2831,76 +2476,10 @@
             "description": "トークン認証に必要なヘッダー(4/4)"
           }
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "新事業所名",
-                    "example": "ニューホームケア"
-                  },
-                  "feature_title": {
-                    "type": "string",
-                    "description": "新事業所タイトル",
-                    "example": "新しいタイトルです"
-                  },
-                  "feature_detail": {
-                    "type": "string",
-                    "description": "新事業所詳細",
-                    "example": "新しい詳細です"
-                  },
-                  "workday": {
-                    "type": "array",
-                    "description": "新事業所営業曜日",
-                    "items": {
-                      "type": "string",
-                      "enum": [
-                        "sun",
-                        "mon",
-                        "tue",
-                        "wed",
-                        "thu",
-                        "fri",
-                        "sat"
-                      ]
-                    }
-                  },
-                  "workday_detail": {
-                    "type": "string",
-                    "example": "新営業日テキスト",
-                    "description": "新営業日テキスト"
-                  },
-                  "fax": {
-                    "type": "string",
-                    "description": "新FAX番号",
-                    "example": "111-1111-1111"
-                  }
-                }
-              },
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "name": "ニューホームケア",
-                    "feature_title": "新しいタイトルです",
-                    "feature_detail": "新しい詳細です",
-                    "workday": [
-                      "mon",
-                      "tue",
-                      "wed",
-                      "thu",
-                      "fri"
-                    ],
-                    "workday_detail": "新営業日テキスト",
-                    "fax": "111-1111-1111"
-                  }
-                }
-              }
-            }
-          }
-        }
+        "tags": [
+          "office_image"
+        ],
+        "description": "Manager自身の事務所を更新する"
       }
     },
     "/api/v1/manager/office_overview": {
@@ -2917,14 +2496,17 @@
                   "type": "object",
                   "x-examples": {
                     "Example 1": {
-                      "id": 1,
+                      "id": 3,
+                      "office_id": 56,
                       "classify": "介護付きホーム（サービス付き高齢者向け住宅　特定施設）",
                       "opening_date": "2022-03-11",
                       "room_count": 30,
                       "requirements": "満60歳以上の方、入居時自立・要支援・要介護",
                       "shared_facilities": "エントランス、食堂兼機能訓練室、個浴、大浴場、特殊浴槽、和室、談話室、シアタールーム、屋上庭園",
                       "business_entity": "株式会社ユニマット　リタイアメント・コミュニティ",
-                      "official_site_url": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html"
+                      "official_site_url": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html",
+                      "created_at": "2022-10-29T18:22:43.829+09:00",
+                      "updated_at": "2022-10-29T18:22:43.829+09:00"
                     }
                   },
                   "title": "OfficeOverview",
@@ -2932,8 +2514,13 @@
                   "properties": {
                     "id": {
                       "type": "integer",
-                      "description": "OfficeOverview主キー",
+                      "description": "主キー",
                       "example": 1
+                    },
+                    "office_id": {
+                      "type": "integer",
+                      "description": "事業所外部キー",
+                      "example": 3
                     },
                     "classify": {
                       "type": "string",
@@ -2971,17 +2558,28 @@
                       "description": "公式サイトのURL",
                       "example": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html",
                       "format": "uri"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "example": "2022-10-29T18:22:43.829+09:00"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "example": "2022-10-29T18:22:43.829+09:00"
                     }
                   },
                   "required": [
                     "id",
+                    "office_id",
                     "classify",
                     "opening_date",
                     "room_count",
                     "requirements",
                     "shared_facilities",
                     "business_entity",
-                    "official_site_url"
+                    "official_site_url",
+                    "created_at",
+                    "updated_at"
                   ]
                 },
                 "examples": {
@@ -3104,48 +2702,6 @@
         },
         "tags": [
           "office_overview"
-        ],
-        "parameters": [
-          {
-            "name": "access-token",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "7sbMLu90-fDnajzasuhOTQ"
-            },
-            "description": "トークン認証に必要なヘッダー(1/4)"
-          },
-          {
-            "name": "client",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
-            },
-            "description": "トークン認証に必要なヘッダー(2/4)"
-          },
-          {
-            "name": "expiry",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1660145125"
-            },
-            "description": "トークン認証に必要なヘッダー(3/4)"
-          },
-          {
-            "name": "uid",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "test1@example.com"
-            },
-            "description": "トークン認証に必要なヘッダー(4/4)"
-          }
         ]
       },
       "get": {
@@ -3160,14 +2716,17 @@
                   "type": "object",
                   "x-examples": {
                     "Example 1": {
-                      "id": 1,
+                      "id": 3,
+                      "office_id": 56,
                       "classify": "介護付きホーム（サービス付き高齢者向け住宅　特定施設）",
                       "opening_date": "2022-03-11",
                       "room_count": 30,
                       "requirements": "満60歳以上の方、入居時自立・要支援・要介護",
                       "shared_facilities": "エントランス、食堂兼機能訓練室、個浴、大浴場、特殊浴槽、和室、談話室、シアタールーム、屋上庭園",
                       "business_entity": "株式会社ユニマット　リタイアメント・コミュニティ",
-                      "official_site_url": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html"
+                      "official_site_url": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html",
+                      "created_at": "2022-10-29T18:22:43.829+09:00",
+                      "updated_at": "2022-10-29T18:22:43.829+09:00"
                     }
                   },
                   "title": "OfficeOverview",
@@ -3175,8 +2734,13 @@
                   "properties": {
                     "id": {
                       "type": "integer",
-                      "description": "OfficeOverview主キー",
+                      "description": "主キー",
                       "example": 1
+                    },
+                    "office_id": {
+                      "type": "integer",
+                      "description": "事業所外部キー",
+                      "example": 3
                     },
                     "classify": {
                       "type": "string",
@@ -3214,17 +2778,28 @@
                       "description": "公式サイトのURL",
                       "example": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html",
                       "format": "uri"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "example": "2022-10-29T18:22:43.829+09:00"
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "example": "2022-10-29T18:22:43.829+09:00"
                     }
                   },
                   "required": [
                     "id",
+                    "office_id",
                     "classify",
                     "opening_date",
                     "room_count",
                     "requirements",
                     "shared_facilities",
                     "business_entity",
-                    "official_site_url"
+                    "official_site_url",
+                    "created_at",
+                    "updated_at"
                   ]
                 },
                 "examples": {
@@ -3245,424 +2820,13 @@
                   }
                 }
               }
-            },
-            "headers": {}
+            }
           }
         },
         "description": "Manager自身の施設概要を取得する",
         "tags": [
           "office_overview"
-        ],
-        "parameters": [
-          {
-            "name": "access-token",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "7sbMLu90-fDnajzasuhOTQ"
-            },
-            "description": "トークン認証に必要なヘッダー(1/4)"
-          },
-          {
-            "name": "client",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
-            },
-            "description": "トークン認証に必要なヘッダー(2/4)"
-          },
-          {
-            "name": "expiry",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1660145125"
-            },
-            "description": "トークン認証に必要なヘッダー(3/4)"
-          },
-          {
-            "name": "uid",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "test1@example.com"
-            },
-            "description": "トークン認証に必要なヘッダー(4/4)"
-          }
         ]
-      }
-    },
-    "/api/v1/manager/office_images": {
-      "parameters": [],
-      "post": {
-        "summary": "事業所画像作成(ケアマネ)",
-        "operationId": "createManagerOfficeImage",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "title": "OfficeImage",
-                  "x-stoplight": {
-                    "id": "6vrskiww5y6eu"
-                  },
-                  "type": "object",
-                  "description": "事業所画像",
-                  "x-examples": {
-                    "Example 1": {
-                      "id": 1,
-                      "caption": "画像の説明テキストが入ります",
-                      "role": "thumbnail",
-                      "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                    }
-                  },
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "description": "OfficeImage主キー",
-                      "example": 1
-                    },
-                    "caption": {
-                      "type": "string",
-                      "example": "画像の説明テキストが入ります",
-                      "description": "画像の見出しテキスト"
-                    },
-                    "role": {
-                      "type": "string",
-                      "enum": [
-                        "thumbnail",
-                        "carousel",
-                        "feature"
-                      ],
-                      "description": "画像の役割",
-                      "example": "thumbnail"
-                    },
-                    "image_url": {
-                      "type": "string",
-                      "description": "画像URL",
-                      "format": "uri",
-                      "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "role",
-                    "image_url"
-                  ]
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "id": 1,
-                      "caption": "画像の説明テキストが入ります",
-                      "role": "thumbnail",
-                      "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "description": "Manager自身の事業所画像を作成する",
-        "tags": [
-          "office_image"
-        ],
-        "parameters": [
-          {
-            "name": "access-token",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "7sbMLu90-fDnajzasuhOTQ"
-            },
-            "description": "トークン認証に必要なヘッダー(1/4)"
-          },
-          {
-            "name": "client",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
-            },
-            "description": "トークン認証に必要なヘッダー(2/4)"
-          },
-          {
-            "name": "expiry",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1660145125"
-            },
-            "description": "トークン認証に必要なヘッダー(3/4)"
-          },
-          {
-            "name": "uid",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "test1@example.com"
-            },
-            "description": "トークン認証に必要なヘッダー(4/4)"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "image": {
-                    "type": "string",
-                    "format": "binary",
-                    "description": "画像のバイナリデータ"
-                  },
-                  "caption": {
-                    "type": "string",
-                    "description": "キャプション",
-                    "example": "画像の説明テキストが入ります"
-                  },
-                  "role": {
-                    "type": "string",
-                    "enum": [
-                      "thumbnail",
-                      "carousel",
-                      "feature"
-                    ],
-                    "example": "thumbnail",
-                    "description": "役割。thumbnailが一覧のサムネイル。carouselが5枚のカルーセル。featureが2枚の説明画像"
-                  }
-                },
-                "required": [
-                  "image",
-                  "role"
-                ]
-              },
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "image": "string",
-                    "caption": "画像の説明テキストが入ります",
-                    "role": "thumbnail"
-                  }
-                }
-              }
-            }
-          },
-          "description": "※画像はContentTypeがapplication/jsonでは送信出来ないため、multipart/form-dataかつformDataでラップして送信すること"
-        }
-      }
-    },
-    "/api/v1/manager/office_images/{id}": {
-      "parameters": [
-        {
-          "schema": {
-            "type": "number",
-            "example": 1
-          },
-          "name": "id",
-          "in": "path",
-          "required": true,
-          "description": "更新するOfficeImageのID"
-        }
-      ],
-      "patch": {
-        "summary": "事業所画像更新(ケアマネ)",
-        "operationId": "updateManagerOfficeImage",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "title": "OfficeImage",
-                  "x-stoplight": {
-                    "id": "6vrskiww5y6eu"
-                  },
-                  "type": "object",
-                  "description": "事業所画像",
-                  "x-examples": {
-                    "Example 1": {
-                      "id": 1,
-                      "caption": "画像の説明テキストが入ります",
-                      "role": "thumbnail",
-                      "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                    }
-                  },
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "description": "OfficeImage主キー",
-                      "example": 1
-                    },
-                    "caption": {
-                      "type": "string",
-                      "example": "画像の説明テキストが入ります",
-                      "description": "画像の見出しテキスト"
-                    },
-                    "role": {
-                      "type": "string",
-                      "enum": [
-                        "thumbnail",
-                        "carousel",
-                        "feature"
-                      ],
-                      "description": "画像の役割",
-                      "example": "thumbnail"
-                    },
-                    "image_url": {
-                      "type": "string",
-                      "description": "画像URL",
-                      "format": "uri",
-                      "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                    }
-                  },
-                  "required": [
-                    "id",
-                    "role",
-                    "image_url"
-                  ]
-                },
-                "examples": {
-                  "Example 1": {
-                    "value": {
-                      "id": 1,
-                      "caption": "画像の説明テキストが入ります",
-                      "role": "thumbnail",
-                      "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "バリデーションチェック失敗時。status: :bad_requestで返ってくるときの値。",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "errors": {
-                      "type": "array",
-                      "description": "エラーの値",
-                      "items": {
-                        "type": "string"
-                      },
-                      "example": [
-                        "類型は200文字以内で入力してください"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "errors"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "description": "Manager自身の事業所画像を更新する",
-        "parameters": [
-          {
-            "name": "access-token",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "7sbMLu90-fDnajzasuhOTQ"
-            },
-            "description": "トークン認証に必要なヘッダー(1/4)"
-          },
-          {
-            "name": "client",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
-            },
-            "description": "トークン認証に必要なヘッダー(2/4)"
-          },
-          {
-            "name": "expiry",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1660145125"
-            },
-            "description": "トークン認証に必要なヘッダー(3/4)"
-          },
-          {
-            "name": "uid",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "test1@example.com"
-            },
-            "description": "トークン認証に必要なヘッダー(4/4)"
-          }
-        ],
-        "tags": [
-          "office_image"
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "image": {
-                    "type": "string",
-                    "format": "binary",
-                    "description": "画像のバイナリデータ"
-                  },
-                  "caption": {
-                    "type": "string",
-                    "description": "キャプション",
-                    "example": "画像の説明テキストが入ります"
-                  },
-                  "role": {
-                    "type": "string",
-                    "enum": [
-                      "thumbnail",
-                      "carousel",
-                      "feature"
-                    ],
-                    "example": "thumbnail",
-                    "description": "役割。thumbnailが一覧のサムネイル。carouselが5枚のカルーセル。featureが2枚の説明画像"
-                  }
-                },
-                "required": [
-                  "image",
-                  "role"
-                ]
-              },
-              "examples": {
-                "Example 1": {
-                  "value": {
-                    "image": "string",
-                    "caption": "画像の説明テキストが入ります",
-                    "role": "thumbnail"
-                  }
-                }
-              }
-            }
-          },
-          "description": "※画像はContentTypeがapplication/jsonでは送信出来ないため、multipart/form-dataかつformDataでラップして送信すること"
-        }
       }
     },
     "/api/v1/client/reserves": {
@@ -4219,21 +3383,20 @@
         "x-examples": {
           "Example 1": {
             "id": 1,
+            "manager_id": 5,
             "name": "ホームケア事務所_1",
             "feature_title": "事業所紹介タイトル",
             "feature_detail": "ここに事業所の特徴テキストが入ります",
             "workday": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri"
+              "mon"
             ],
             "workday_detail": "営業日時についてのテキストが入ります",
             "lat": "43.073211",
-            "lng": "41.350427",
+            "lng": "141.350427",
             "fax": "111-2222-3333",
-            "nearest_station": "北12条駅 徒歩5分"
+            "nearest_station": "北12条駅 徒歩5分",
+            "created_at": "2022-10-29T00:47:31.090+09:00",
+            "updated_at": "2022-10-29T00:47:31.090+09:00"
           }
         },
         "title": "Office",
@@ -4241,75 +3404,63 @@
         "properties": {
           "id": {
             "type": "integer",
-            "example": 1,
-            "description": "Office主キー"
+            "example": 1
+          },
+          "manager_id": {
+            "type": "integer",
+            "example": 5
           },
           "name": {
             "type": "string",
-            "example": "ホームケア事務所_1",
-            "description": "事業所名"
+            "example": "ホームケア事務所_1"
           },
           "feature_title": {
             "type": "string",
-            "example": "事業所紹介タイトル",
-            "description": "特徴タイトル"
+            "example": "事業所紹介タイトル"
           },
           "feature_detail": {
             "type": "string",
-            "example": "ここに事業所の特徴テキストが入ります",
-            "description": "特徴詳細テキスト"
+            "example": "ここに事業所の特徴テキストが入ります"
           },
           "workday": {
             "type": "array",
             "example": [
-              "mon",
-              "tue",
-              "wed",
-              "thu",
-              "fri"
+              "mon"
             ],
-            "description": "営業曜日",
             "items": {
-              "type": "string",
-              "enum": [
-                "sun",
-                "mon",
-                "tue",
-                "wed",
-                "thu",
-                "fri",
-                "sat"
-              ]
+              "type": "string"
             }
           },
           "workday_detail": {
             "type": "string",
-            "example": "営業日時についてのテキストが入ります",
-            "description": "営業曜日についての詳細テキスト"
+            "example": "営業日時についてのテキストが入ります"
           },
           "lat": {
             "type": "string",
-            "example": "43.073211",
-            "description": "緯度"
+            "example": "43.073211"
           },
           "lng": {
             "type": "string",
-            "example": "41.350427",
-            "description": "経度"
+            "example": "41.350427"
           },
           "fax": {
             "type": "string",
-            "example": "111-2222-3333",
-            "description": "FAX番号"
+            "example": "111-2222-3333"
           },
           "nearest_station": {
             "type": "string",
-            "example": "北12条駅 徒歩5分",
-            "description": "最寄り駅"
+            "example": "北12条駅 徒歩5分"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": "string"
           }
         },
         "required": [
           "id",
+          "manager_id",
           "name",
           "feature_title",
           "feature_detail",
@@ -4325,14 +3476,17 @@
         "type": "object",
         "x-examples": {
           "Example 1": {
-            "id": 1,
+            "id": 3,
+            "office_id": 56,
             "classify": "介護付きホーム（サービス付き高齢者向け住宅　特定施設）",
             "opening_date": "2022-03-11",
             "room_count": 30,
             "requirements": "満60歳以上の方、入居時自立・要支援・要介護",
             "shared_facilities": "エントランス、食堂兼機能訓練室、個浴、大浴場、特殊浴槽、和室、談話室、シアタールーム、屋上庭園",
             "business_entity": "株式会社ユニマット　リタイアメント・コミュニティ",
-            "official_site_url": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html"
+            "official_site_url": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html",
+            "created_at": "2022-10-29T18:22:43.829+09:00",
+            "updated_at": "2022-10-29T18:22:43.829+09:00"
           }
         },
         "title": "OfficeOverview",
@@ -4340,8 +3494,13 @@
         "properties": {
           "id": {
             "type": "integer",
-            "description": "OfficeOverview主キー",
+            "description": "主キー",
             "example": 1
+          },
+          "office_id": {
+            "type": "integer",
+            "description": "事業所外部キー",
+            "example": 3
           },
           "classify": {
             "type": "string",
@@ -4379,17 +3538,28 @@
             "description": "公式サイトのURL",
             "example": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html",
             "format": "uri"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2022-10-29T18:22:43.829+09:00"
+          },
+          "updated_at": {
+            "type": "string",
+            "example": "2022-10-29T18:22:43.829+09:00"
           }
         },
         "required": [
           "id",
+          "office_id",
           "classify",
           "opening_date",
           "room_count",
           "requirements",
           "shared_facilities",
           "business_entity",
-          "official_site_url"
+          "official_site_url",
+          "created_at",
+          "updated_at"
         ]
       },
       "OfficeImage": {
@@ -4399,19 +3569,16 @@
         },
         "type": "object",
         "description": "事業所画像",
-        "x-examples": {
-          "Example 1": {
-            "id": 1,
-            "caption": "画像の説明テキストが入ります",
-            "role": "thumbnail",
-            "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-          }
-        },
         "properties": {
           "id": {
             "type": "integer",
-            "description": "OfficeImage主キー",
-            "example": 1
+            "example": 1,
+            "description": "主キー"
+          },
+          "office_id": {
+            "type": "integer",
+            "example": 1,
+            "description": "事業所id"
           },
           "caption": {
             "type": "string",
@@ -4419,82 +3586,12 @@
             "description": "画像の見出しテキスト"
           },
           "role": {
-            "type": "string",
-            "enum": [
-              "thumbnail",
-              "carousel",
-              "feature"
-            ],
-            "description": "画像の役割",
-            "example": "thumbnail"
-          },
-          "image_url": {
-            "type": "string",
-            "description": "画像URL",
-            "format": "uri",
-            "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+            "type": "string"
           }
         },
         "required": [
           "id",
-          "role",
-          "image_url"
-        ]
-      },
-      "OfficeStaff": {
-        "title": "OfficeStaff",
-        "x-stoplight": {
-          "id": "u0uhoxrkdpmpu"
-        },
-        "type": "object",
-        "description": "事業所スタッフ",
-        "x-examples": {
-          "Example 1": {
-            "id": 1,
-            "name": "田中　太郎",
-            "furigana": "たなか　たろう",
-            "introduction": "スタッフ紹介テキストが入ります",
-            "role": "worker"
-          }
-        },
-        "properties": {
-          "id": {
-            "type": "integer",
-            "description": "OfficeStaff主キー",
-            "example": 1
-          },
-          "name": {
-            "type": "string",
-            "example": "田中　太郎",
-            "description": "スタッフ名"
-          },
-          "furigana": {
-            "type": "string",
-            "example": "たなか　たろう",
-            "description": "ふりがな"
-          },
-          "introduction": {
-            "type": "string",
-            "example": "スタッフ紹介テキストが入ります",
-            "pattern": "",
-            "description": "スタッフ紹介文"
-          },
-          "role": {
-            "type": "string",
-            "example": "worker",
-            "enum": [
-              "worker",
-              "care_manager"
-            ],
-            "description": "スタッフロール"
-          }
-        },
-        "required": [
-          "id",
-          "name",
-          "furigana",
-          "introduction",
-          "role"
+          "office_id"
         ]
       }
     },
@@ -4777,16 +3874,8 @@
       "description": "事業所で管理しているクライアント"
     },
     {
-      "name": "office_image",
-      "description": "事業所画像"
-    },
-    {
       "name": "office_overview",
       "description": "施設概要"
-    },
-    {
-      "name": "reserve",
-      "description": "予約"
     },
     {
       "name": "staff",

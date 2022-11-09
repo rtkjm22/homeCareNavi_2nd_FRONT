@@ -10,19 +10,20 @@ import type { Methods as Methods6 } from './v1/client/book_mark/_id@number'
 import type { Methods as Methods7 } from './v1/client/bookmarks'
 import type { Methods as Methods8 } from './v1/client/histories'
 import type { Methods as Methods9 } from './v1/client/office/_id@number'
-import type { Methods as Methods10 } from './v1/client/offices'
-import type { Methods as Methods11 } from './v1/client/staffs'
-import type { Methods as Methods12 } from './v1/client/thank/_id@number'
-import type { Methods as Methods13 } from './v1/client/thanks'
-import type { Methods as Methods14 } from './v1/manager/appointment/_id@number'
-import type { Methods as Methods15 } from './v1/manager/appointments'
-import type { Methods as Methods16 } from './v1/manager/office/_id@number'
-import type { Methods as Methods17 } from './v1/manager/office_client/_id@number'
-import type { Methods as Methods18 } from './v1/manager/office_clients'
-import type { Methods as Methods19 } from './v1/manager/staff/_id@number'
-import type { Methods as Methods20 } from './v1/manager/staffs'
-import type { Methods as Methods21 } from './v1/manager/thank/_id@number'
-import type { Methods as Methods22 } from './v1/manager/thanks'
+import type { Methods as Methods10 } from './v1/client/offices/area'
+import type { Methods as Methods11 } from './v1/client/offices/nearest'
+import type { Methods as Methods12 } from './v1/client/offices/search'
+import type { Methods as Methods13 } from './v1/client/thank/_id@number'
+import type { Methods as Methods14 } from './v1/client/thanks'
+import type { Methods as Methods15 } from './v1/manager/appointment/_id@number'
+import type { Methods as Methods16 } from './v1/manager/appointments'
+import type { Methods as Methods17 } from './v1/manager/office/_id@number'
+import type { Methods as Methods18 } from './v1/manager/office_client/_id@number'
+import type { Methods as Methods19 } from './v1/manager/office_clients'
+import type { Methods as Methods20 } from './v1/manager/staff/_id@number'
+import type { Methods as Methods21 } from './v1/manager/staffs'
+import type { Methods as Methods22 } from './v1/manager/thank/_id@number'
+import type { Methods as Methods23 } from './v1/manager/thanks'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? 'http://localhost:3000' : baseURL).replace(/\/$/, '')
@@ -36,19 +37,20 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH7 = '/api/v1/client/bookmarks'
   const PATH8 = '/api/v1/client/histories'
   const PATH9 = '/api/v1/client/office'
-  const PATH10 = '/api/v1/client/offices'
-  const PATH11 = '/api/v1/client/staffs'
-  const PATH12 = '/api/v1/client/thank'
-  const PATH13 = '/api/v1/client/thanks'
-  const PATH14 = '/api/v1/manager/appointment'
-  const PATH15 = '/api/v1/manager/appointments'
-  const PATH16 = '/api/v1/manager/office'
-  const PATH17 = '/api/v1/manager/office_client'
-  const PATH18 = '/api/v1/manager/office_clients'
-  const PATH19 = '/api/v1/manager/staff'
-  const PATH20 = '/api/v1/manager/staffs'
-  const PATH21 = '/api/v1/manager/thank'
-  const PATH22 = '/api/v1/manager/thanks'
+  const PATH10 = '/api/v1/client/offices/area'
+  const PATH11 = '/api/v1/client/offices/nearest'
+  const PATH12 = '/api/v1/client/offices/search'
+  const PATH13 = '/api/v1/client/thank'
+  const PATH14 = '/api/v1/client/thanks'
+  const PATH15 = '/api/v1/manager/appointment'
+  const PATH16 = '/api/v1/manager/appointments'
+  const PATH17 = '/api/v1/manager/office'
+  const PATH18 = '/api/v1/manager/office_client'
+  const PATH19 = '/api/v1/manager/office_clients'
+  const PATH20 = '/api/v1/manager/staff'
+  const PATH21 = '/api/v1/manager/staffs'
+  const PATH22 = '/api/v1/manager/thank'
+  const PATH23 = '/api/v1/manager/thanks'
   const GET = 'GET'
   const POST = 'POST'
   const DELETE = 'DELETE'
@@ -260,57 +262,74 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           }
         },
         offices: {
-          /**
-           * 事業所一覧を取得する。
-           */
-          get: (option?: { query?: Methods10['get']['query'] | undefined, config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods10['get']['status']>(prefix, PATH10, GET, option).send(),
-          /**
-           * 事業所一覧を取得する。
-           */
-          $get: (option?: { query?: Methods10['get']['query'] | undefined, config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods10['get']['status']>(prefix, PATH10, GET, option).send().then(r => r.body),
-          $path: (option?: { method?: 'get' | undefined; query: Methods10['get']['query'] } | undefined) =>
-            `${prefix}${PATH10}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
-        },
-        staffs: {
-          /**
-           * スタッフ一覧を取得する
-           */
-          get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods11['get']['status']>(prefix, PATH11, GET, option).send(),
-          /**
-           * スタッフ一覧を取得する
-           */
-          $get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods11['get']['status']>(prefix, PATH11, GET, option).send().then(r => r.body),
-          $path: () => `${prefix}${PATH11}`
+          area: {
+            /**
+             * 事業所一覧を取得する。住所で絞り込む。
+             */
+            get: (option?: { query?: Methods10['get']['query'] | undefined, config?: T | undefined } | undefined) =>
+              fetch<void, BasicHeaders, Methods10['get']['status']>(prefix, PATH10, GET, option).send(),
+            /**
+             * 事業所一覧を取得する。住所で絞り込む。
+             */
+            $get: (option?: { query?: Methods10['get']['query'] | undefined, config?: T | undefined } | undefined) =>
+              fetch<void, BasicHeaders, Methods10['get']['status']>(prefix, PATH10, GET, option).send().then(r => r.body),
+            $path: (option?: { method?: 'get' | undefined; query: Methods10['get']['query'] } | undefined) =>
+              `${prefix}${PATH10}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
+          },
+          nearest: {
+            /**
+             * 事業所一覧を取得する。現在地で絞り込む。
+             */
+            get: (option?: { query?: Methods11['get']['query'] | undefined, config?: T | undefined } | undefined) =>
+              fetch<void, BasicHeaders, Methods11['get']['status']>(prefix, PATH11, GET, option).send(),
+            /**
+             * 事業所一覧を取得する。現在地で絞り込む。
+             */
+            $get: (option?: { query?: Methods11['get']['query'] | undefined, config?: T | undefined } | undefined) =>
+              fetch<void, BasicHeaders, Methods11['get']['status']>(prefix, PATH11, GET, option).send().then(r => r.body),
+            $path: (option?: { method?: 'get' | undefined; query: Methods11['get']['query'] } | undefined) =>
+              `${prefix}${PATH11}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
+          },
+          search: {
+            /**
+             * 事業所一覧を取得する。全文一致で絞り込む。
+             */
+            get: (option?: { query?: Methods12['get']['query'] | undefined, config?: T | undefined } | undefined) =>
+              fetch<void, BasicHeaders, Methods12['get']['status']>(prefix, PATH12, GET, option).send(),
+            /**
+             * 事業所一覧を取得する。全文一致で絞り込む。
+             */
+            $get: (option?: { query?: Methods12['get']['query'] | undefined, config?: T | undefined } | undefined) =>
+              fetch<void, BasicHeaders, Methods12['get']['status']>(prefix, PATH12, GET, option).send().then(r => r.body),
+            $path: (option?: { method?: 'get' | undefined; query: Methods12['get']['query'] } | undefined) =>
+              `${prefix}${PATH12}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
+          }
         },
         thank: {
           _id: (val3: number) => {
-            const prefix3 = `${PATH12}/${val3}`
+            const prefix3 = `${PATH13}/${val3}`
 
             return {
               /**
                * お礼を削除する
                */
               delete: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods12['delete']['status']>(prefix, prefix3, DELETE, option).send(),
+                fetch<void, BasicHeaders, Methods13['delete']['status']>(prefix, prefix3, DELETE, option).send(),
               /**
                * お礼を削除する
                */
               $delete: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods12['delete']['status']>(prefix, prefix3, DELETE, option).send().then(r => r.body),
+                fetch<void, BasicHeaders, Methods13['delete']['status']>(prefix, prefix3, DELETE, option).send().then(r => r.body),
               /**
                * お礼を更新する
                */
               patch: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods12['patch']['status']>(prefix, prefix3, PATCH, option).send(),
+                fetch<void, BasicHeaders, Methods13['patch']['status']>(prefix, prefix3, PATCH, option).send(),
               /**
                * お礼を更新する
                */
               $patch: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods12['patch']['status']>(prefix, prefix3, PATCH, option).send().then(r => r.body),
+                fetch<void, BasicHeaders, Methods13['patch']['status']>(prefix, prefix3, PATCH, option).send().then(r => r.body),
               $path: () => `${prefix}${prefix3}`
             }
           }
@@ -320,41 +339,41 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            * お礼を投稿する
            */
           post: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods13['post']['status']>(prefix, PATH13, POST, option).send(),
+            fetch<void, BasicHeaders, Methods14['post']['status']>(prefix, PATH14, POST, option).send(),
           /**
            * お礼を投稿する
            */
           $post: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods13['post']['status']>(prefix, PATH13, POST, option).send().then(r => r.body),
+            fetch<void, BasicHeaders, Methods14['post']['status']>(prefix, PATH14, POST, option).send().then(r => r.body),
           /**
            * お礼一覧を取得する
            */
           get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods13['get']['status']>(prefix, PATH13, GET, option).send(),
+            fetch<void, BasicHeaders, Methods14['get']['status']>(prefix, PATH14, GET, option).send(),
           /**
            * お礼一覧を取得する
            */
           $get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods13['get']['status']>(prefix, PATH13, GET, option).send().then(r => r.body),
-          $path: () => `${prefix}${PATH13}`
+            fetch<void, BasicHeaders, Methods14['get']['status']>(prefix, PATH14, GET, option).send().then(r => r.body),
+          $path: () => `${prefix}${PATH14}`
         }
       },
       manager: {
         appointment: {
           _id: (val3: number) => {
-            const prefix3 = `${PATH14}/${val3}`
+            const prefix3 = `${PATH15}/${val3}`
 
             return {
               /**
                * 予約を更新する
                */
               patch: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods14['patch']['status']>(prefix, prefix3, PATCH, option).send(),
+                fetch<void, BasicHeaders, Methods15['patch']['status']>(prefix, prefix3, PATCH, option).send(),
               /**
                * 予約を更新する
                */
               $patch: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods14['patch']['status']>(prefix, prefix3, PATCH, option).send().then(r => r.body),
+                fetch<void, BasicHeaders, Methods15['patch']['status']>(prefix, prefix3, PATCH, option).send().then(r => r.body),
               $path: () => `${prefix}${prefix3}`
             }
           }
@@ -364,68 +383,68 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            * 予約一覧を取得する
            */
           get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods15['get']['status']>(prefix, PATH15, GET, option).send(),
+            fetch<void, BasicHeaders, Methods16['get']['status']>(prefix, PATH16, GET, option).send(),
           /**
            * 予約一覧を取得する
            */
           $get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods15['get']['status']>(prefix, PATH15, GET, option).send().then(r => r.body),
-          $path: () => `${prefix}${PATH15}`
+            fetch<void, BasicHeaders, Methods16['get']['status']>(prefix, PATH16, GET, option).send().then(r => r.body),
+          $path: () => `${prefix}${PATH16}`
         },
         office: {
           _id: (val3: number) => {
-            const prefix3 = `${PATH16}/${val3}`
+            const prefix3 = `${PATH17}/${val3}`
 
             return {
               /**
                * 単一の事務所の詳細を取得する
                */
               get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods16['get']['status']>(prefix, prefix3, GET, option).send(),
+                fetch<void, BasicHeaders, Methods17['get']['status']>(prefix, prefix3, GET, option).send(),
               /**
                * 単一の事務所の詳細を取得する
                */
               $get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods16['get']['status']>(prefix, prefix3, GET, option).send().then(r => r.body),
+                fetch<void, BasicHeaders, Methods17['get']['status']>(prefix, prefix3, GET, option).send().then(r => r.body),
               /**
                * 単一の事務所を更新する
                */
               patch: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods16['patch']['status']>(prefix, prefix3, PATCH, option).send(),
+                fetch<void, BasicHeaders, Methods17['patch']['status']>(prefix, prefix3, PATCH, option).send(),
               /**
                * 単一の事務所を更新する
                */
               $patch: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods16['patch']['status']>(prefix, prefix3, PATCH, option).send().then(r => r.body),
+                fetch<void, BasicHeaders, Methods17['patch']['status']>(prefix, prefix3, PATCH, option).send().then(r => r.body),
               $path: () => `${prefix}${prefix3}`
             }
           }
         },
         office_client: {
           _id: (val3: number) => {
-            const prefix3 = `${PATH17}/${val3}`
+            const prefix3 = `${PATH18}/${val3}`
 
             return {
               /**
                * 事業所で管理している事業所利用者一覧を更新する
                */
               patch: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods17['patch']['status']>(prefix, prefix3, PATCH, option).send(),
+                fetch<void, BasicHeaders, Methods18['patch']['status']>(prefix, prefix3, PATCH, option).send(),
               /**
                * 事業所で管理している事業所利用者一覧を更新する
                */
               $patch: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods17['patch']['status']>(prefix, prefix3, PATCH, option).send().then(r => r.body),
+                fetch<void, BasicHeaders, Methods18['patch']['status']>(prefix, prefix3, PATCH, option).send().then(r => r.body),
               /**
                * 事業所で管理している事業所利用者一覧を削除する
                */
               delete: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods17['delete']['status']>(prefix, prefix3, DELETE, option).send(),
+                fetch<void, BasicHeaders, Methods18['delete']['status']>(prefix, prefix3, DELETE, option).send(),
               /**
                * 事業所で管理している事業所利用者一覧を削除する
                */
               $delete: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods17['delete']['status']>(prefix, prefix3, DELETE, option).send().then(r => r.body),
+                fetch<void, BasicHeaders, Methods18['delete']['status']>(prefix, prefix3, DELETE, option).send().then(r => r.body),
               $path: () => `${prefix}${prefix3}`
             }
           }
@@ -435,49 +454,49 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            * 事業所で管理している事業所利用者一覧を取得する
            */
           get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods18['get']['status']>(prefix, PATH18, GET, option).send(),
+            fetch<void, BasicHeaders, Methods19['get']['status']>(prefix, PATH19, GET, option).send(),
           /**
            * 事業所で管理している事業所利用者一覧を取得する
            */
           $get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods18['get']['status']>(prefix, PATH18, GET, option).send().then(r => r.body),
+            fetch<void, BasicHeaders, Methods19['get']['status']>(prefix, PATH19, GET, option).send().then(r => r.body),
           /**
            * 事業所で管理している事業所利用者を作成する
            */
           post: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods18['post']['status']>(prefix, PATH18, POST, option).send(),
+            fetch<void, BasicHeaders, Methods19['post']['status']>(prefix, PATH19, POST, option).send(),
           /**
            * 事業所で管理している事業所利用者を作成する
            */
           $post: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods18['post']['status']>(prefix, PATH18, POST, option).send().then(r => r.body),
-          $path: () => `${prefix}${PATH18}`
+            fetch<void, BasicHeaders, Methods19['post']['status']>(prefix, PATH19, POST, option).send().then(r => r.body),
+          $path: () => `${prefix}${PATH19}`
         },
         staff: {
           _id: (val3: number) => {
-            const prefix3 = `${PATH19}/${val3}`
+            const prefix3 = `${PATH20}/${val3}`
 
             return {
               /**
                * スタッフを削除する
                */
               delete: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods19['delete']['status']>(prefix, prefix3, DELETE, option).send(),
+                fetch<void, BasicHeaders, Methods20['delete']['status']>(prefix, prefix3, DELETE, option).send(),
               /**
                * スタッフを削除する
                */
               $delete: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods19['delete']['status']>(prefix, prefix3, DELETE, option).send().then(r => r.body),
+                fetch<void, BasicHeaders, Methods20['delete']['status']>(prefix, prefix3, DELETE, option).send().then(r => r.body),
               /**
                * スタッフを更新する
                */
               patch: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods19['patch']['status']>(prefix, prefix3, PATCH, option).send(),
+                fetch<void, BasicHeaders, Methods20['patch']['status']>(prefix, prefix3, PATCH, option).send(),
               /**
                * スタッフを更新する
                */
               $patch: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods19['patch']['status']>(prefix, prefix3, PATCH, option).send().then(r => r.body),
+                fetch<void, BasicHeaders, Methods20['patch']['status']>(prefix, prefix3, PATCH, option).send().then(r => r.body),
               $path: () => `${prefix}${prefix3}`
             }
           }
@@ -487,39 +506,39 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            * スタッフ一覧を取得する
            */
           get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods20['get']['status']>(prefix, PATH20, GET, option).send(),
+            fetch<void, BasicHeaders, Methods21['get']['status']>(prefix, PATH21, GET, option).send(),
           /**
            * スタッフ一覧を取得する
            */
           $get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods20['get']['status']>(prefix, PATH20, GET, option).send().then(r => r.body),
+            fetch<void, BasicHeaders, Methods21['get']['status']>(prefix, PATH21, GET, option).send().then(r => r.body),
           /**
            * スタッフを追加する
            */
           post: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods20['post']['status']>(prefix, PATH20, POST, option).send(),
+            fetch<void, BasicHeaders, Methods21['post']['status']>(prefix, PATH21, POST, option).send(),
           /**
            * スタッフを追加する
            */
           $post: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods20['post']['status']>(prefix, PATH20, POST, option).send().then(r => r.body),
-          $path: () => `${prefix}${PATH20}`
+            fetch<void, BasicHeaders, Methods21['post']['status']>(prefix, PATH21, POST, option).send().then(r => r.body),
+          $path: () => `${prefix}${PATH21}`
         },
         thank: {
           _id: (val3: number) => {
-            const prefix3 = `${PATH21}/${val3}`
+            const prefix3 = `${PATH22}/${val3}`
 
             return {
               /**
                * お礼を削除する
                */
               delete: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods21['delete']['status']>(prefix, prefix3, DELETE, option).send(),
+                fetch<void, BasicHeaders, Methods22['delete']['status']>(prefix, prefix3, DELETE, option).send(),
               /**
                * お礼を削除する
                */
               $delete: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods21['delete']['status']>(prefix, prefix3, DELETE, option).send().then(r => r.body),
+                fetch<void, BasicHeaders, Methods22['delete']['status']>(prefix, prefix3, DELETE, option).send().then(r => r.body),
               $path: () => `${prefix}${prefix3}`
             }
           }
@@ -529,13 +548,13 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            * お礼一覧を取得する
            */
           get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods22['get']['status']>(prefix, PATH22, GET, option).send(),
+            fetch<void, BasicHeaders, Methods23['get']['status']>(prefix, PATH23, GET, option).send(),
           /**
            * お礼一覧を取得する
            */
           $get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods22['get']['status']>(prefix, PATH22, GET, option).send().then(r => r.body),
-          $path: () => `${prefix}${PATH22}`
+            fetch<void, BasicHeaders, Methods23['get']['status']>(prefix, PATH23, GET, option).send().then(r => r.body),
+          $path: () => `${prefix}${PATH23}`
         }
       }
     }
