@@ -13,8 +13,8 @@
         class="dragAndDrop_dummy"
         :class="{ hidden: isPreviewMode, flex: !isPreviewMode }"
       >
-        <div class="block w-16  sm:w-[110px]">
-          <img src="@/assets/img/dragAndDrop.svg" alt="" class="w-full" />
+        <div class="flex items-center justify-center w-16 sm:w-[110px]">
+          <img src="@/assets/img/person.svg" alt="" class="max-w-[60px]" />
         </div>
       </div>
       <!-- 選択された画像 -->
@@ -44,10 +44,10 @@ type IS_DRAGGED = typeof IS_DRAGGED[keyof typeof IS_DRAGGED]
 type IMAGE_TYPE = typeof IMAGE_TYPE[keyof typeof IMAGE_TYPE]
 /* eslint-disable no-redeclare */
 
-// ファイルサイズ
+/** ファイルサイズ */
 const SIZE_LIMIT = 5242880
 
-// アップロードされているか()
+// アップロードされているか
 const isPreviewMode = ref(false)
 // ドラッグ中かどうか
 const isDragOver = ref(false)
@@ -116,7 +116,7 @@ const preview = async (e: any) => {
 </script>
 <style scoped lang="scss">
 .dragAndDrop {
-  @apply block w-full bg-[rgb(240,249,255)] transition-all;
+  @apply block w-[120px] h-[120px] bg-gray-lighter rounded-full transition-all overflow-hidden;
   &_field {
     @apply relative flex justify-center items-center w-full h-full;
     &.over {
