@@ -24,7 +24,7 @@
 interface Props {
   labelFor: string;
   labelText: string;
-  inputType: 'text' | 'email' | 'password' | 'tel';
+  inputType: 'text' | 'email' | 'password' | 'tel' | 'number';
   placeholder: string;
   pattern?: string;
   minlength?: string;

@@ -1,7 +1,7 @@
 <template>
   <div class="block mt-10 mx-auto mb-20 p-4 pb-8 w-full bg-white max-w-[750px]">
     <!-- タイトル -->
-    <ATitle ttl-text="施設概要編集" class="mb-4" />
+    <ATitle ttl-text="事業所情報編集" class="mb-4" />
 
     <form>
       <!-- 事業所名 -->
