@@ -31,5 +31,10 @@ export default defineNuxtConfig({
       apiURL: 'http://localhost:3000',
       enabledMock: process.env.ENABLED_MOCK || false
     }
+  },
+  // vue-datepickerの依存関係をトランスパイルする
+  // https://vue3datepicker.com/installation/#nuxt
+  build: {
+    transpile: ['@vuepic/vue-datepicker']
   }
 })

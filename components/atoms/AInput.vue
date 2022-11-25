@@ -14,6 +14,7 @@
       :minlength="minlength"
       :maxlength="maxlength"
       :required="required"
+      :min="min"
     />
 
     <slot name="bottom" />
@@ -24,13 +25,14 @@
 interface Props {
   labelFor: string;
   labelText: string;
-  inputType: 'text' | 'email' | 'password' | 'tel';
+  inputType: 'text' | 'email' | 'password' | 'tel' | 'number';
   placeholder: string;
   pattern?: string;
   minlength?: string;
   maxlength?: string;
   required?: boolean;
-  modelValue?: string
+  modelValue?: string;
+  min?: number;
 }
 
 const props = defineProps<Props>()
