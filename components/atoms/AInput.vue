@@ -14,6 +14,7 @@
       :minlength="minlength"
       :maxlength="maxlength"
       :required="required"
+      :min="min"
     />
 
     <slot name="bottom" />
@@ -30,7 +31,8 @@ interface Props {
   minlength?: string;
   maxlength?: string;
   required?: boolean;
-  modelValue?: string
+  modelValue?: string;
+  min?: number;
 }
 
 const props = defineProps<Props>()

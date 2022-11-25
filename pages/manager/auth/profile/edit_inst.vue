@@ -30,6 +30,7 @@
           :enable-time-picker="false"
           hide-input-icon
           uid="opening_date"
+          :min-date="new Date()"
         />
       </div>
 
@@ -40,6 +41,7 @@
         input-type="number"
         placeholder="30"
         :required="true"
+        :min="0"
         class="mb-6"
       />
 
@@ -101,11 +103,10 @@ const reserveDate = ref()
 
 /** フォーマットされた日付（選択後の画面表示） */
 const formatDay = (reserveDate: any) => {
+  const year = reserveDate.getFullYear()
   const month = reserveDate.getMonth() + 1
   const date = reserveDate.getDate()
-  const day = reserveDate.getDay()
-  const dayString = ['日', '月', '火', '水', '木', '金', '土'][day]
-  return `${month}月${date}日(${dayString})`
+  return `${year}年${month}月${date}日`
 }
 </script>
 <style lang="scss">
