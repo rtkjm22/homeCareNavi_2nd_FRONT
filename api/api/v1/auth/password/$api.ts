@@ -25,14 +25,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
      * @param option.body - ヘッダーにclient,access-token,uid。ボディにpassword,password_confirmationが必須。
      * @returns OK
      */
-    patch: (option: { body: Methods0['patch']['reqBody'], config?: T | undefined }) =>
+    patch: (option: { body: Methods0['patch']['reqBody'], headers?: Methods0['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
       fetch<Methods0['patch']['resBody'], Methods0['patch']['resHeaders'], Methods0['patch']['status']>(prefix, PATH0, PATCH, option).json(),
     /**
      * パスワードリセットを確定する。
      * @param option.body - ヘッダーにclient,access-token,uid。ボディにpassword,password_confirmationが必須。
      * @returns OK
      */
-    $patch: (option: { body: Methods0['patch']['reqBody'], config?: T | undefined }) =>
+    $patch: (option: { body: Methods0['patch']['reqBody'], headers?: Methods0['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
       fetch<Methods0['patch']['resBody'], Methods0['patch']['resHeaders'], Methods0['patch']['status']>(prefix, PATH0, PATCH, option).json().then(r => r.body),
     $path: () => `${prefix}${PATH0}`
   }

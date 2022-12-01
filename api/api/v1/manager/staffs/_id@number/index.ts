@@ -1,43 +1,31 @@
 /* eslint-disable */
-import type * as Types from '../../../../@types'
+import type * as Types from '../../../../../@types'
 
 export type Methods = {
-  /** スタッフ一覧を取得する */
-  get: {
+  /** スタッフを削除する */
+  delete: {
     reqHeaders?: Types.Access_token & Types.Client & Types.Expiry & Types.Uid | undefined
-    status: 200
-
-    /** OK */
-    resBody: {
-      office_id: number
-      name: string
-      furigana: string
-      introduction: string
-      role: number
-    }
+    status: 204
   }
 
-  /** スタッフを追加する */
-  post: {
+  /** スタッフを更新する */
+  patch: {
     reqHeaders?: Types.Access_token & Types.Client & Types.Expiry & Types.Uid | undefined
     status: 200
 
     /** OK */
     resBody: {
-      office_id: number
       name: string
       furigana: string
       introduction: string
-      role: number
-      created_at: string
-      updated_at: string
+      role: string
     }
 
     reqBody: {
       name: string
       furigana: string
       introduction: string
-      role: number
+      role: string
     }
   }
 }

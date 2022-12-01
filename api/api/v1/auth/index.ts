@@ -45,6 +45,7 @@ export type Methods = {
 
   /** 登録者情報を更新する */
   patch: {
+    reqHeaders?: Types.Access_token & Types.Client & Types.Expiry & Types.Uid | undefined
     status: 200
 
     resBody: {
@@ -78,6 +79,7 @@ export type Methods = {
 
   /** 退会する */
   delete: {
+    reqHeaders?: Types.Access_token & Types.Client & Types.Expiry & Types.Uid | undefined
     status: 200
 
     /** OK */

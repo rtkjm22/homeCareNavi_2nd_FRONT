@@ -11,13 +11,13 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
      * ヘッダーに`access-token`,`uid`,`client`必須。ログアウトする。
      * @returns OK
      */
-    delete: (option?: { config?: T | undefined } | undefined) =>
+    delete: (option?: { headers?: Methods0['delete']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
       fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).json(),
     /**
      * ヘッダーに`access-token`,`uid`,`client`必須。ログアウトする。
      * @returns OK
      */
-    $delete: (option?: { config?: T | undefined } | undefined) =>
+    $delete: (option?: { headers?: Methods0['delete']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
       fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).json().then(r => r.body),
     $path: () => `${prefix}${PATH0}`
   }

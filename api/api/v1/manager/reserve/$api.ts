@@ -3,7 +3,7 @@ import type { Methods as Methods0 } from './_id@number'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? 'http://localhost:3000' : baseURL).replace(/\/$/, '')
-  const PATH0 = '/api/v1/manager/appointment'
+  const PATH0 = '/api/v1/manager/reserve'
   const PATCH = 'PATCH'
 
   return {
