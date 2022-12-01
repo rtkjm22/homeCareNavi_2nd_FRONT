@@ -5,19 +5,30 @@
     <div class="bg-white w-11/12 rounded mx-auto mb-[130px]">
       <ul class="text-gray-dark">
         <li class="bg-gray-lighter rounded-t h-[32px] flex items-center">
-          <ALeftArrow class="text-gray-light" />東京都
+          <NuxtLink :to="`/prefecture?area=${area}`">
+            <ALeftArrow class="text-gray-light" />{{ prefecture }}
+          </NuxtLink>
         </li>
         <li class="font-base w-[331px] m-auto text-base mt-4 mb-3">
-          東京都
+          {{ prefecture }}
         </li>
-        <ODistrict />
+        <ODistrict
+          :prefecture="prefecture"
+          :districts="districts"
+        />
       </ul>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+const { getDistricts } = useHeartRailsGeoAPI()
+const route = useRoute()
 
+const area = route.query.area as string
+const prefecture = route.query.prefecture as string
+
+const districts = await getDistricts(prefecture)
 </script>
 
 <style scoped lang="scss">

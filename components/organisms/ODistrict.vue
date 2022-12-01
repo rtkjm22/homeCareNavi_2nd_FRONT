@@ -19,14 +19,13 @@
         <label class="myCheckbox">
           <input
             id="district"
-            v-model="clickValue"
+            v-model="selectedDistricts"
             class="myCheckbox-Input"
             type="checkbox"
-            :value="district.name"
-            @change="addList(district.name)"
+            :value="district.city"
           /><span class="myCheckbox-DummyInput" />
           <span class="myCheckbox-LabelText">{{
-            district.name
+            district.city
           }}</span>
         </label>
         <label for="district" class="ml-2 text-sm myCheckbox" />
@@ -49,7 +48,7 @@
         mr-2
         hover:opacity-80
       "
-        @click="clearList"
+        @click="clearDistricts"
       >
         クリア
       </button>
@@ -64,6 +63,7 @@
       md:w-40
       h-10
       hover:opacity-80"
+        @click="areaSearch"
       >
         検索する
       </button>
@@ -72,38 +72,40 @@
 </template>
 
 <script setup lang="ts">
-const clickValue = ref<string[]>([])
-const addList = (name: string) => {
-  clickValue.value.push(name)
-}
-const clearList = () => {
-  clickValue.value = []
+const { alert } = useUI()
+const router = useRouter()
+
+const props = defineProps<{ districts?: { city: string }[], prefecture?: string }>()
+
+/** チェックボックスで選択中の市区町村 */
+const selectedDistricts = ref<string[]>([])
+
+/** 全チェックボックスの選択を外す処理。クリアボタン押下時に発火 */
+const clearDistricts = () => {
+  selectedDistricts.value = []
 }
 
-const districts = [
-  { name: '新宿区' },
-  { name: '港区' },
-  { name: '千代田区' },
-  { name: '渋谷区' },
-  { name: '豊島区' },
-  { name: '大田区' },
-  { name: '江東区' },
-  { name: '中央区' },
-  { name: '足立区' },
-  { name: '板橋区' },
-  { name: '練馬区' },
-  { name: '台東区' },
-  { name: '杉並区' },
-  { name: '江戸川区' },
-  { name: '目黒区' },
-  { name: '葛飾区' },
-  { name: '中野区' },
-  { name: '墨田区' },
-  { name: '文京区' },
-  { name: '北区' },
-  { name: '荒川区' }
-]
+/**
+ * 選択中の都道府県が変更される際に選択中の市区町村をリセットする。
+ * */
+watch(props, clearDistricts)
 
+const areaSearch = () => {
+  if (selectedDistricts.value.length === 0) {
+    alert.showAlert('検索エリアが選択されていません', 'warning')
+    return
+  }
+
+  const prefectureAndDistricts = selectedDistricts.value.map((district) => {
+    return props.prefecture + district
+  })
+
+  // カンマ区切りの検索文字列を作成
+  // 例："札幌市北区北十条西,東京都新宿区市谷本村町"
+  const q = prefectureAndDistricts.join()
+
+  router.push(`/offices?q=${q}`)
+}
 </script>
 
 <style scoped lang="scss">
