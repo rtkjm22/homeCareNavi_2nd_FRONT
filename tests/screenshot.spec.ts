@@ -6,12 +6,18 @@ export const CLIENT_AUTH_PATHS = [
   '/client/auth/profile/edit',
   '/client/auth/profile',
   '/client/auth/reserves/complete',
+  '/client/auth/reserves',
   '/client/auth/thanks/complete'
 ] as const
 
 // マネージャーログイン後
 export const MANAGER_AUTH_PATHS = [
+  '/manager/auth/clients/edit',
   '/manager/auth/clients',
+  '/manager/auth/profile/edit_inst',
+  '/manager/auth/profile/edit',
+  '/manager/auth/reserves',
+  '/manager/auth/staffs/edit',
   '/manager/auth/staffs/new'
 ]
 
@@ -23,9 +29,10 @@ const PATHS = [
   '/manager/signup/complete',
   '/manager/signup',
   '/manager/login',
-  '/offices',
   '/offices/1',
+  '/offices',
   '/password-reset/complete',
+  // '/password-reset/edit'
   '/password-reset',
   '/district',
   '/',
