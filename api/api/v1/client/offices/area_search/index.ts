@@ -6,7 +6,7 @@ export type Methods = {
   get: {
     query: {
       /** エリアの文字列。カンマで区切る。 */
-      q: string
+      areas: string
       /** 要求するページ番号。この項目が無い場合は自動的に1ページ目が返ってくる */
       page?: number | undefined
     }

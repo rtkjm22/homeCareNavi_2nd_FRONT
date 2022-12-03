@@ -125,6 +125,8 @@ export type Paginate = {
   next_page: number | null
   /** 総ページ数 */
   total_page: number
+  /** 対象モデルの総レコード数 */
+  total_count: number
 }
 
 /** 事業所管理のクライアント */
