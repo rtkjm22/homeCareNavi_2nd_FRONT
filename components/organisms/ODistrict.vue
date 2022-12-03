@@ -102,9 +102,9 @@ const areaSearch = () => {
 
   // カンマ区切りの検索文字列を作成
   // 例："札幌市北区北十条西,東京都新宿区市谷本村町"
-  const q = prefectureAndDistricts.join()
+  const areas = prefectureAndDistricts.join()
 
-  router.push(`/offices?q=${q}`)
+  router.push(`/offices?areas=${areas}&page=1`)
 }
 </script>
 
