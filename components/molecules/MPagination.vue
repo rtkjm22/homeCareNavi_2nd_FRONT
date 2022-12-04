@@ -19,7 +19,6 @@ defineProps<Paginate>()
 const emit = defineEmits<{(e: 'clickPaginate', requestPage: number): void; }>()
 
 const onClickHandler = (page: number) => {
-  console.log(page)
   emit('clickPaginate', page)
 }
 </script>
