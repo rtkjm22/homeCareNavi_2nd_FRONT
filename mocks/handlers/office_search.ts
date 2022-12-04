@@ -3,15 +3,15 @@ import { BASE_PATH } from './utils'
 import openapi from '~/openapi.json'
 
 
-/** TOTAL_COUNT件の事業所を含む検索結果を返す */
-const generateRandomSearchResponse = (req: RestRequest) => {
-  const TOTAL_COUNT = 125
+/** totalCount件の事業所を含む検索結果を返す */
+export const generateRandomSearchResponse = (req: RestRequest, totalCount?: number) => {
+  totalCount ||= 125 // 引数にtotalCountを渡されなければ,初期値125とする
 
   // ページネーションレスポンス作成
   const paginate = openapi.components.schemas.Paginate['x-examples']['Example 1']
 
   paginate.current_page = Number.parseInt(req.url.searchParams.get('page')!)
-  paginate.total_count = TOTAL_COUNT
+  paginate.total_count = totalCount
 
 
   // 事業所レスポンス作成
@@ -21,7 +21,7 @@ const generateRandomSearchResponse = (req: RestRequest) => {
   // 現在の表示より後に存在する事業所数。総事業所数から既に閲覧済みの事業所数を引いた値。
   // 例: totalCount = 69 current_page = 7 の場合は 9（60件閲覧済み、未閲覧9）
   //     totalCount = 100 current_page = 5 の場合は 60（40件閲覧済み、未閲覧60）
-  const currentTotalCount = TOTAL_COUNT - (paginate.current_page - 1) * 10
+  const currentTotalCount = totalCount - (paginate.current_page - 1) * 10
 
   // 画面に表示する事業所数。事業所数が10以上なら10,10より下ならその値
   const displayPerPage = Math.min(currentTotalCount, 10)

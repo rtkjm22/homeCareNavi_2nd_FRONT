@@ -1,6 +1,7 @@
 <template>
   <li
     class="relative mb-6 bg-white rounded-[4px] overflow-hidden shadow-[0_1px_6px_0_rgba(0,0,0,0.1)] max-w-[375px]"
+    role="listitem"
   >
     <!-- 事業所詳細情報 -->
     <a href="#" class="block p-3 w-full h-full z-10">

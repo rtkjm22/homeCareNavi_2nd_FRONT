@@ -8,7 +8,10 @@
       <h2 class="mb-1 font-bold text-[18px] text-gray-dark">
         検索結果
       </h2>
-      <p class="mb-1 pb-4 font-bold text-[13px] text-gray-base">
+      <p
+        class="mb-1 pb-4 font-bold text-[13px] text-gray-base"
+        :aria-rowcount="searchResults?.paginate.total_count"
+      >
         {{ searchResults?.paginate.total_count }}
       </p>
 

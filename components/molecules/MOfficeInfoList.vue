@@ -1,5 +1,5 @@
 <template>
-  <ul class="twoCol">
+  <ul class="twoCol" role="list">
     <MOfficeInfo
       v-for="office in offices"
       :key="office.id"
