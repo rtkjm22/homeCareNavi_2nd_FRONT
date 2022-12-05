@@ -4,7 +4,8 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     // インポートした型をdefinePropsに指定できるようにする（単純な型限定）
     // https://github.com/vuejs/core/issues/4294
-    'vite-plugin-vue-type-imports/nuxt'
+    'vite-plugin-vue-type-imports/nuxt',
+    '@vueuse/nuxt'
   ],
 
   ssr: false,
@@ -32,10 +33,5 @@ export default defineNuxtConfig({
       apiURL: 'http://localhost:3000',
       enabledMock: process.env.ENABLED_MOCK
     }
-  },
-  // vue-datepickerの依存関係をトランスパイルする
-  // https://vue3datepicker.com/installation/#nuxt
-  build: {
-    transpile: ['@vuepic/vue-datepicker']
   }
 })

@@ -42,7 +42,7 @@ const IMAGE_TYPE = {
 /* eslint-disable no-redeclare */
 type IS_DRAGGED = typeof IS_DRAGGED[keyof typeof IS_DRAGGED]
 type IMAGE_TYPE = typeof IMAGE_TYPE[keyof typeof IMAGE_TYPE]
-/* eslint-disable no-redeclare */
+ 
 
 // ファイルサイズ
 const SIZE_LIMIT = 5242880

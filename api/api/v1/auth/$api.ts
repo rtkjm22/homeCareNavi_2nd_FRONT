@@ -36,14 +36,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * @param option.body - ヘッダーにclient,access-token,uid。ボディにpassword,password_confirmationが必須。
        * @returns OK
        */
-      patch: (option: { body: Methods1['patch']['reqBody'], config?: T | undefined }) =>
+      patch: (option: { body: Methods1['patch']['reqBody'], headers?: Methods1['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
         fetch<Methods1['patch']['resBody'], Methods1['patch']['resHeaders'], Methods1['patch']['status']>(prefix, PATH1, PATCH, option).json(),
       /**
        * パスワードリセットを確定する。
        * @param option.body - ヘッダーにclient,access-token,uid。ボディにpassword,password_confirmationが必須。
        * @returns OK
        */
-      $patch: (option: { body: Methods1['patch']['reqBody'], config?: T | undefined }) =>
+      $patch: (option: { body: Methods1['patch']['reqBody'], headers?: Methods1['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
         fetch<Methods1['patch']['resBody'], Methods1['patch']['resHeaders'], Methods1['patch']['status']>(prefix, PATH1, PATCH, option).json().then(r => r.body),
       $path: () => `${prefix}${PATH1}`
     },
@@ -65,13 +65,13 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * ヘッダーに`access-token`,`uid`,`client`必須。ログアウトする。
        * @returns OK
        */
-      delete: (option?: { config?: T | undefined } | undefined) =>
+      delete: (option?: { headers?: Methods3['delete']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
         fetch<Methods3['delete']['resBody'], BasicHeaders, Methods3['delete']['status']>(prefix, PATH3, DELETE, option).json(),
       /**
        * ヘッダーに`access-token`,`uid`,`client`必須。ログアウトする。
        * @returns OK
        */
-      $delete: (option?: { config?: T | undefined } | undefined) =>
+      $delete: (option?: { headers?: Methods3['delete']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
         fetch<Methods3['delete']['resBody'], BasicHeaders, Methods3['delete']['status']>(prefix, PATH3, DELETE, option).json().then(r => r.body),
       $path: () => `${prefix}${PATH3}`
     },
@@ -79,12 +79,12 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       /**
        * ヘッダー内のaccess-token,client,expiry,uidを検証する
        */
-      get: (option?: { config?: T | undefined } | undefined) =>
+      get: (option?: { headers?: Methods4['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
         fetch<Methods4['get']['resBody'], Methods4['get']['resHeaders'], Methods4['get']['status']>(prefix, PATH4, GET, option).json(),
       /**
        * ヘッダー内のaccess-token,client,expiry,uidを検証する
        */
-      $get: (option?: { config?: T | undefined } | undefined) =>
+      $get: (option?: { headers?: Methods4['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
         fetch<Methods4['get']['resBody'], Methods4['get']['resHeaders'], Methods4['get']['status']>(prefix, PATH4, GET, option).json().then(r => r.body),
       $path: () => `${prefix}${PATH4}`
     },
@@ -101,24 +101,24 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     /**
      * 登録者情報を更新する
      */
-    patch: (option: { body: Methods0['patch']['reqBody'], config?: T | undefined }) =>
+    patch: (option: { body: Methods0['patch']['reqBody'], headers?: Methods0['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
       fetch<Methods0['patch']['resBody'], Methods0['patch']['resHeaders'], Methods0['patch']['status']>(prefix, PATH0, PATCH, option).json(),
     /**
      * 登録者情報を更新する
      */
-    $patch: (option: { body: Methods0['patch']['reqBody'], config?: T | undefined }) =>
+    $patch: (option: { body: Methods0['patch']['reqBody'], headers?: Methods0['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
       fetch<Methods0['patch']['resBody'], Methods0['patch']['resHeaders'], Methods0['patch']['status']>(prefix, PATH0, PATCH, option).json().then(r => r.body),
     /**
      * 退会する
      * @returns OK
      */
-    delete: (option?: { config?: T | undefined } | undefined) =>
+    delete: (option?: { headers?: Methods0['delete']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
       fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).json(),
     /**
      * 退会する
      * @returns OK
      */
-    $delete: (option?: { config?: T | undefined } | undefined) =>
+    $delete: (option?: { headers?: Methods0['delete']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
       fetch<Methods0['delete']['resBody'], BasicHeaders, Methods0['delete']['status']>(prefix, PATH0, DELETE, option).json().then(r => r.body),
     $path: () => `${prefix}${PATH0}`
   }

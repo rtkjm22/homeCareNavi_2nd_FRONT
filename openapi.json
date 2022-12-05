@@ -2044,12 +2044,13 @@
           {
             "schema": {
               "type": "string",
-              "example": "札幌市北区北十条西"
+              "example": "札幌市北区北十条西,東京都新宿区市谷本村町"
             },
             "in": "query",
-            "name": "q",
-            "description": "エリアの文字列",
-            "required": true
+            "name": "areas",
+            "description": "エリアの文字列。カンマで区切る。",
+            "required": true,
+            "explode": true
           },
           {
             "schema": {
@@ -2073,8 +2074,13 @@
                     "offices": {
                       "type": "array",
                       "items": {
+                        "title": "ResponseSearchOffice",
+                        "x-stoplight": {
+                          "id": "v63lkfb1fpxj3"
+                        },
                         "type": "object",
                         "additionalProperties": false,
+                        "description": "検索の事業所結果",
                         "properties": {
                           "id": {
                             "type": "integer",
@@ -2152,7 +2158,26 @@
                           "feature_title",
                           "workday",
                           "thumbnail_image"
-                        ]
+                        ],
+                        "x-examples": {
+                          "Example 1": {
+                            "id": 1,
+                            "name": "祖師谷ホームケアそよ風",
+                            "nearest_station": "札幌市南北線 北12条駅",
+                            "stuff_count": 30,
+                            "is_bookmark": false,
+                            "tel": "事業所の電話番号",
+                            "feature_title": "事業所紹介タイトル",
+                            "workday": [
+                              "mon",
+                              "tue",
+                              "wed",
+                              "thu",
+                              "fri"
+                            ],
+                            "thumbnail_image": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          }
+                        }
                       }
                     },
                     "paginate": {
@@ -2167,7 +2192,8 @@
                           "current_page": 2,
                           "prev_page": null,
                           "next_page": 2,
-                          "total_page": 10
+                          "total_page": 10,
+                          "total_count": 100
                         }
                       },
                       "additionalProperties": false,
@@ -2193,13 +2219,19 @@
                           "type": "integer",
                           "example": 10,
                           "description": "総ページ数"
+                        },
+                        "total_count": {
+                          "type": "integer",
+                          "description": "対象モデルの総レコード数",
+                          "example": 100
                         }
                       },
                       "required": [
                         "current_page",
                         "prev_page",
                         "next_page",
-                        "total_page"
+                        "total_page",
+                        "total_count"
                       ]
                     }
                   },
@@ -2234,7 +2266,8 @@
                         "current_page": 2,
                         "prev_page": null,
                         "next_page": 2,
-                        "total_page": 10
+                        "total_page": 10,
+                        "total_count": 100
                       }
                     }
                   }
@@ -2261,7 +2294,7 @@
               "example": "祖師谷ケアパーク"
             },
             "in": "query",
-            "name": "q",
+            "name": "words",
             "description": "検索単語",
             "required": true
           },
@@ -2287,8 +2320,13 @@
                     "offices": {
                       "type": "array",
                       "items": {
+                        "title": "ResponseSearchOffice",
+                        "x-stoplight": {
+                          "id": "v63lkfb1fpxj3"
+                        },
                         "type": "object",
                         "additionalProperties": false,
+                        "description": "検索の事業所結果",
                         "properties": {
                           "id": {
                             "type": "integer",
@@ -2366,7 +2404,26 @@
                           "feature_title",
                           "workday",
                           "thumbnail_image"
-                        ]
+                        ],
+                        "x-examples": {
+                          "Example 1": {
+                            "id": 1,
+                            "name": "祖師谷ホームケアそよ風",
+                            "nearest_station": "札幌市南北線 北12条駅",
+                            "stuff_count": 30,
+                            "is_bookmark": false,
+                            "tel": "事業所の電話番号",
+                            "feature_title": "事業所紹介タイトル",
+                            "workday": [
+                              "mon",
+                              "tue",
+                              "wed",
+                              "thu",
+                              "fri"
+                            ],
+                            "thumbnail_image": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          }
+                        }
                       }
                     },
                     "paginate": {
@@ -2381,7 +2438,8 @@
                           "current_page": 2,
                           "prev_page": null,
                           "next_page": 2,
-                          "total_page": 10
+                          "total_page": 10,
+                          "total_count": 100
                         }
                       },
                       "additionalProperties": false,
@@ -2407,13 +2465,19 @@
                           "type": "integer",
                           "example": 10,
                           "description": "総ページ数"
+                        },
+                        "total_count": {
+                          "type": "integer",
+                          "description": "対象モデルの総レコード数",
+                          "example": 100
                         }
                       },
                       "required": [
                         "current_page",
                         "prev_page",
                         "next_page",
-                        "total_page"
+                        "total_page",
+                        "total_count"
                       ]
                     }
                   },
@@ -2448,7 +2512,8 @@
                         "current_page": 2,
                         "prev_page": null,
                         "next_page": 2,
-                        "total_page": 10
+                        "total_page": 10,
+                        "total_count": 100
                       }
                     }
                   }
@@ -2471,7 +2536,11 @@
         "parameters": [
           {
             "schema": {
-              "type": "number"
+              "type": "number",
+              "format": "float",
+              "minimum": -90,
+              "maximum": 90,
+              "example": 35.7402129
             },
             "in": "query",
             "name": "lat",
@@ -2480,7 +2549,11 @@
           },
           {
             "schema": {
-              "type": "number"
+              "type": "number",
+              "format": "float",
+              "minimum": -180,
+              "maximum": 180,
+              "example": 139.7030313
             },
             "in": "query",
             "name": "lng",
@@ -2509,8 +2582,13 @@
                     "offices": {
                       "type": "array",
                       "items": {
+                        "title": "ResponseSearchOffice",
+                        "x-stoplight": {
+                          "id": "v63lkfb1fpxj3"
+                        },
                         "type": "object",
                         "additionalProperties": false,
+                        "description": "検索の事業所結果",
                         "properties": {
                           "id": {
                             "type": "integer",
@@ -2588,7 +2666,26 @@
                           "feature_title",
                           "workday",
                           "thumbnail_image"
-                        ]
+                        ],
+                        "x-examples": {
+                          "Example 1": {
+                            "id": 1,
+                            "name": "祖師谷ホームケアそよ風",
+                            "nearest_station": "札幌市南北線 北12条駅",
+                            "stuff_count": 30,
+                            "is_bookmark": false,
+                            "tel": "事業所の電話番号",
+                            "feature_title": "事業所紹介タイトル",
+                            "workday": [
+                              "mon",
+                              "tue",
+                              "wed",
+                              "thu",
+                              "fri"
+                            ],
+                            "thumbnail_image": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          }
+                        }
                       }
                     },
                     "paginate": {
@@ -2603,7 +2700,8 @@
                           "current_page": 2,
                           "prev_page": null,
                           "next_page": 2,
-                          "total_page": 10
+                          "total_page": 10,
+                          "total_count": 100
                         }
                       },
                       "additionalProperties": false,
@@ -2629,13 +2727,19 @@
                           "type": "integer",
                           "example": 10,
                           "description": "総ページ数"
+                        },
+                        "total_count": {
+                          "type": "integer",
+                          "description": "対象モデルの総レコード数",
+                          "example": 100
                         }
                       },
                       "required": [
                         "current_page",
                         "prev_page",
                         "next_page",
-                        "total_page"
+                        "total_page",
+                        "total_count"
                       ]
                     }
                   },
@@ -2670,7 +2774,8 @@
                         "current_page": 2,
                         "prev_page": null,
                         "next_page": 2,
-                        "total_page": 10
+                        "total_page": 10,
+                        "total_count": 100
                       }
                     }
                   }
@@ -2682,7 +2787,7 @@
       },
       "parameters": []
     },
-    "/api/v1/client/office/{id}": {
+    "/api/v1/client/offices/{id}": {
       "get": {
         "summary": "事業所詳細取得(事業所利用者)",
         "tags": [
@@ -2883,7 +2988,7 @@
                         ]
                       }
                     },
-                    "caroucel_images": {
+                    "carousel_images": {
                       "type": "array",
                       "description": "最大5枚のカルーセル画像",
                       "items": {
@@ -3064,7 +3169,7 @@
                   "required": [
                     "office",
                     "staffs",
-                    "caroucel_images",
+                    "carousel_images",
                     "feature_images",
                     "office_overview"
                   ]
@@ -3093,7 +3198,7 @@
                         "feature_detail": "ここに事業所の特徴テキストが入ります",
                         "is_bookmark": true
                       },
-                      "caroucel_images": [
+                      "carousel_images": [
                         {
                           "id": 1,
                           "caption": "画像の説明テキストが入ります",
@@ -5142,7 +5247,7 @@
       },
       "parameters": []
     },
-    "/api/v1/manager/staff/{id}": {
+    "/api/v1/manager/staffs/{id}": {
       "parameters": [
         {
           "name": "id",
@@ -5160,27 +5265,177 @@
         "summary": "スタッフ削除(ケアマネ)",
         "operationId": "deleteManagerStaff",
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           }
         },
         "tags": [
           "staff"
         ],
-        "description": "スタッフを削除する"
+        "description": "スタッフを削除する",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ]
       },
       "patch": {
         "summary": "スタッフ更新(ケアマネ)",
         "operationId": "updateManagerStaff",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "furigana": {
+                      "type": "string"
+                    },
+                    "introduction": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "office_id": 1,
+                      "name": "new name",
+                      "furigana": "new furigana",
+                      "introduction": "new introduction",
+                      "role": 0
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "tags": [
           "staff"
         ],
-        "description": "スタッフを更新する"
+        "description": "スタッフを更新する",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "furigana": {
+                    "type": "string"
+                  },
+                  "introduction": {
+                    "type": "string"
+                  },
+                  "role": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "name": "new name",
+                    "furigana": "new furigana",
+                    "introduction": "new introduction",
+                    "role": 0
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
       }
     },
     "/api/v1/manager/office_clients": {
@@ -5188,14 +5443,195 @@
         "summary": "事業所管理の事業所利用者一覧取得(ケアマネ)",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "office_clients": {
+                      "type": "array",
+                      "items": {
+                        "allOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer",
+                                "example": 1,
+                                "description": "利用者の主キー"
+                              },
+                              "staff_name": {
+                                "type": "string",
+                                "example": "山田　一郎",
+                                "description": "担当スタッフ名"
+                              },
+                              "avatar_url": {
+                                "type": "string",
+                                "format": "uri",
+                                "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg",
+                                "description": "アバター画像のurl",
+                                "nullable": true
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "staff_name",
+                              "avatar_url"
+                            ]
+                          },
+                          {
+                            "title": "OfficeClient",
+                            "x-stoplight": {
+                              "id": "xeh695uf8zavx"
+                            },
+                            "type": "object",
+                            "description": "事業所管理のクライアント",
+                            "x-examples": {
+                              "Example 1": {
+                                "name": "田中　太郎",
+                                "furigana": "たなか　たろう",
+                                "postal": "162-0014",
+                                "address": "東京都新宿区市ヶ谷本村町5-1",
+                                "family": "娘",
+                                "age": 40
+                              }
+                            },
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "事業所利用者名",
+                                "example": "田中　太郎"
+                              },
+                              "furigana": {
+                                "type": "string",
+                                "example": "たなか　たろう",
+                                "description": "ふりがな"
+                              },
+                              "postal": {
+                                "type": "string",
+                                "description": "郵便番号",
+                                "example": "162-0014"
+                              },
+                              "address": {
+                                "type": "string",
+                                "example": "東京都新宿区市ヶ谷本村町5-1",
+                                "description": "住所"
+                              },
+                              "family": {
+                                "type": "string",
+                                "example": "娘",
+                                "description": "家族情報"
+                              },
+                              "age": {
+                                "type": "integer",
+                                "example": 40,
+                                "exclusiveMaximum": true,
+                                "exclusiveMinimum": true,
+                                "description": "年齢",
+                                "minimum": 0,
+                                "maximum": 120
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "furigana",
+                              "postal",
+                              "address",
+                              "family",
+                              "age"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "office_clients"
+                  ]
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "office_clients": [
+                        {
+                          "id": 1,
+                          "staff_name": "山田　一郎",
+                          "avatar_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg",
+                          "name": "田中　太郎",
+                          "furigana": "たなか　たろう",
+                          "postal": "162-0014",
+                          "address": "東京都新宿区市ヶ谷本村町5-1",
+                          "family": "娘",
+                          "age": 40
+                        },
+                        {
+                          "id": 2,
+                          "staff_name": "山田　二郎",
+                          "avatar_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg",
+                          "name": "田中　二郎",
+                          "furigana": "たなか　じろう",
+                          "postal": "134-3245",
+                          "address": "埼玉県比企郡川島町大字下八ツ林870番地",
+                          "family": "息子",
+                          "age": 50
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "operationId": "getManagerOfficeClients",
         "tags": [
           "office_client"
         ],
-        "description": "事業所で管理している事業所利用者一覧を取得する"
+        "description": "事業所で管理している事業所利用者一覧を取得する",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ],
+        "x-extension-1": null
       },
       "parameters": [],
       "post": {
@@ -5209,10 +5645,158 @@
         "tags": [
           "office_client"
         ],
-        "description": "事業所で管理している事業所利用者を作成する"
+        "description": "事業所で管理している事業所利用者を作成する",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "allOf": [
+                  {
+                    "title": "OfficeClient",
+                    "x-stoplight": {
+                      "id": "xeh695uf8zavx"
+                    },
+                    "type": "object",
+                    "description": "事業所管理のクライアント",
+                    "x-examples": {
+                      "Example 1": {
+                        "name": "田中　太郎",
+                        "furigana": "たなか　たろう",
+                        "postal": "162-0014",
+                        "address": "東京都新宿区市ヶ谷本村町5-1",
+                        "family": "娘",
+                        "age": 40
+                      }
+                    },
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "事業所利用者名",
+                        "example": "田中　太郎"
+                      },
+                      "furigana": {
+                        "type": "string",
+                        "example": "たなか　たろう",
+                        "description": "ふりがな"
+                      },
+                      "postal": {
+                        "type": "string",
+                        "description": "郵便番号",
+                        "example": "162-0014"
+                      },
+                      "address": {
+                        "type": "string",
+                        "example": "東京都新宿区市ヶ谷本村町5-1",
+                        "description": "住所"
+                      },
+                      "family": {
+                        "type": "string",
+                        "example": "娘",
+                        "description": "家族情報"
+                      },
+                      "age": {
+                        "type": "integer",
+                        "example": 40,
+                        "exclusiveMaximum": true,
+                        "exclusiveMinimum": true,
+                        "description": "年齢",
+                        "minimum": 0,
+                        "maximum": 120
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "furigana",
+                      "postal",
+                      "address",
+                      "family",
+                      "age"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "avatar": {
+                        "type": "string",
+                        "format": "binary",
+                        "description": "画像のバイナリデータ"
+                      },
+                      "staff_id": {
+                        "type": "integer",
+                        "example": 1,
+                        "description": "担当スタッフのid"
+                      }
+                    },
+                    "required": [
+                      "avatar",
+                      "staff_id"
+                    ]
+                  }
+                ]
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "name": "田中　太郎",
+                    "furigana": "たなか　たろう",
+                    "postal": "162-0014",
+                    "address": "東京都新宿区市ヶ谷本村町5-1",
+                    "family": "娘",
+                    "age": 40,
+                    "avatar": "string",
+                    "staff_id": 1
+                  }
+                }
+              }
+            }
+          },
+          "description": "※画像はContentTypeがapplication/jsonでは送信出来ないため、multipart/form-dataかつformDataでラップして送信すること"
+        }
       }
     },
-    "/api/v1/manager/office_client/{id}": {
+    "/api/v1/manager/office_clients/{id}": {
       "patch": {
         "summary": "事業所管理の事業所利用者更新(ケアマネ)",
         "operationId": "updateManagerOfficeClient",
@@ -5224,7 +5808,155 @@
         "tags": [
           "office_client"
         ],
-        "description": "事業所で管理している事業所利用者一覧を更新する"
+        "description": "事業所で管理している事業所利用者を更新する",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "allOf": [
+                  {
+                    "title": "OfficeClient",
+                    "x-stoplight": {
+                      "id": "xeh695uf8zavx"
+                    },
+                    "type": "object",
+                    "description": "事業所管理のクライアント",
+                    "x-examples": {
+                      "Example 1": {
+                        "name": "田中　太郎",
+                        "furigana": "たなか　たろう",
+                        "postal": "162-0014",
+                        "address": "東京都新宿区市ヶ谷本村町5-1",
+                        "family": "娘",
+                        "age": 40
+                      }
+                    },
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "事業所利用者名",
+                        "example": "田中　太郎"
+                      },
+                      "furigana": {
+                        "type": "string",
+                        "example": "たなか　たろう",
+                        "description": "ふりがな"
+                      },
+                      "postal": {
+                        "type": "string",
+                        "description": "郵便番号",
+                        "example": "162-0014"
+                      },
+                      "address": {
+                        "type": "string",
+                        "example": "東京都新宿区市ヶ谷本村町5-1",
+                        "description": "住所"
+                      },
+                      "family": {
+                        "type": "string",
+                        "example": "娘",
+                        "description": "家族情報"
+                      },
+                      "age": {
+                        "type": "integer",
+                        "example": 40,
+                        "exclusiveMaximum": true,
+                        "exclusiveMinimum": true,
+                        "description": "年齢",
+                        "minimum": 0,
+                        "maximum": 120
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "furigana",
+                      "postal",
+                      "address",
+                      "family",
+                      "age"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "avatar": {
+                        "type": "string",
+                        "format": "binary",
+                        "description": "画像のバイナリデータ"
+                      },
+                      "staff_id": {
+                        "type": "integer",
+                        "example": 1,
+                        "description": "担当スタッフのid"
+                      }
+                    },
+                    "required": [
+                      "avatar",
+                      "staff_id"
+                    ]
+                  }
+                ]
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "name": "田中　太郎",
+                    "furigana": "たなか　たろう",
+                    "postal": "162-0014",
+                    "address": "東京都新宿区市ヶ谷本村町5-1",
+                    "family": "娘",
+                    "age": 40,
+                    "avatar": "string",
+                    "staff_id": 1
+                  }
+                }
+              }
+            }
+          },
+          "description": "※画像はContentTypeがapplication/jsonでは送信出来ないため、multipart/form-dataかつformDataでラップして送信すること"
+        }
       },
       "parameters": [
         {
@@ -5250,7 +5982,239 @@
         "tags": [
           "office_client"
         ],
-        "description": "事業所で管理している事業所利用者一覧を削除する"
+        "description": "事業所で管理している事業所利用者を削除する",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ]
+      },
+      "get": {
+        "summary": "事業所管理の事業所利用者取得(ケアマネ)",
+        "operationId": "getManagerOfficeClient",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "example": 1,
+                          "description": "主キー"
+                        },
+                        "avatar_url": {
+                          "type": "string",
+                          "format": "uri",
+                          "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg",
+                          "description": "アバター画像のurl",
+                          "nullable": true
+                        },
+                        "staffs": {
+                          "type": "array",
+                          "description": "紐付け対象のスタッフ一覧",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer",
+                                "description": "スタッフの主キー",
+                                "example": 1
+                              },
+                              "name": {
+                                "type": "string",
+                                "example": "山田　太郎",
+                                "description": "スタッフの名前"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "name"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "avatar_url",
+                        "staffs"
+                      ]
+                    },
+                    {
+                      "title": "OfficeClient",
+                      "x-stoplight": {
+                        "id": "xeh695uf8zavx"
+                      },
+                      "type": "object",
+                      "description": "事業所管理のクライアント",
+                      "x-examples": {
+                        "Example 1": {
+                          "name": "田中　太郎",
+                          "furigana": "たなか　たろう",
+                          "postal": "162-0014",
+                          "address": "東京都新宿区市ヶ谷本村町5-1",
+                          "family": "娘",
+                          "age": 40
+                        }
+                      },
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "事業所利用者名",
+                          "example": "田中　太郎"
+                        },
+                        "furigana": {
+                          "type": "string",
+                          "example": "たなか　たろう",
+                          "description": "ふりがな"
+                        },
+                        "postal": {
+                          "type": "string",
+                          "description": "郵便番号",
+                          "example": "162-0014"
+                        },
+                        "address": {
+                          "type": "string",
+                          "example": "東京都新宿区市ヶ谷本村町5-1",
+                          "description": "住所"
+                        },
+                        "family": {
+                          "type": "string",
+                          "example": "娘",
+                          "description": "家族情報"
+                        },
+                        "age": {
+                          "type": "integer",
+                          "example": 40,
+                          "exclusiveMaximum": true,
+                          "exclusiveMinimum": true,
+                          "description": "年齢",
+                          "minimum": 0,
+                          "maximum": 120
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "furigana",
+                        "postal",
+                        "address",
+                        "family",
+                        "age"
+                      ]
+                    }
+                  ]
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "id": 1,
+                      "avatar_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg",
+                      "staffs": [
+                        {
+                          "id": 1,
+                          "name": "山田　太郎"
+                        }
+                      ],
+                      "name": "田中　太郎",
+                      "furigana": "たなか　たろう",
+                      "postal": "162-0014",
+                      "address": "東京都新宿区市ヶ谷本村町5-1",
+                      "family": "娘",
+                      "age": 40
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "事業所で管理している事業所利用者を取得する（現時点では編集画面で使用する用途のみ）",
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
+        ],
+        "tags": [
+          "office_client"
+        ]
       }
     }
   },
@@ -5652,7 +6616,8 @@
             "current_page": 2,
             "prev_page": null,
             "next_page": 2,
-            "total_page": 10
+            "total_page": 10,
+            "total_count": 100
           }
         },
         "additionalProperties": false,
@@ -5678,14 +6643,188 @@
             "type": "integer",
             "example": 10,
             "description": "総ページ数"
+          },
+          "total_count": {
+            "type": "integer",
+            "description": "対象モデルの総レコード数",
+            "example": 100
           }
         },
         "required": [
           "current_page",
           "prev_page",
           "next_page",
-          "total_page"
+          "total_page",
+          "total_count"
         ]
+      },
+      "OfficeClient": {
+        "title": "OfficeClient",
+        "x-stoplight": {
+          "id": "xeh695uf8zavx"
+        },
+        "type": "object",
+        "description": "事業所管理のクライアント",
+        "x-examples": {
+          "Example 1": {
+            "name": "田中　太郎",
+            "furigana": "たなか　たろう",
+            "postal": "162-0014",
+            "address": "東京都新宿区市ヶ谷本村町5-1",
+            "family": "娘",
+            "age": 40
+          }
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "事業所利用者名",
+            "example": "田中　太郎"
+          },
+          "furigana": {
+            "type": "string",
+            "example": "たなか　たろう",
+            "description": "ふりがな"
+          },
+          "postal": {
+            "type": "string",
+            "description": "郵便番号",
+            "example": "162-0014"
+          },
+          "address": {
+            "type": "string",
+            "example": "東京都新宿区市ヶ谷本村町5-1",
+            "description": "住所"
+          },
+          "family": {
+            "type": "string",
+            "example": "娘",
+            "description": "家族情報"
+          },
+          "age": {
+            "type": "integer",
+            "example": 40,
+            "exclusiveMaximum": true,
+            "exclusiveMinimum": true,
+            "description": "年齢",
+            "minimum": 0,
+            "maximum": 120
+          }
+        },
+        "required": [
+          "name",
+          "furigana",
+          "postal",
+          "address",
+          "family",
+          "age"
+        ]
+      },
+      "ResponseSearchOffice": {
+        "title": "ResponseSearchOffice",
+        "x-stoplight": {
+          "id": "v63lkfb1fpxj3"
+        },
+        "type": "object",
+        "additionalProperties": false,
+        "description": "検索の事業所結果",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "事業所のid",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "祖師谷ホームケアそよ風",
+            "description": "事業所名"
+          },
+          "nearest_station": {
+            "type": "string",
+            "example": "札幌市南北線 北12条駅",
+            "description": "最寄り駅"
+          },
+          "stuff_count": {
+            "type": "integer",
+            "example": 30,
+            "description": "事業所に所属しているスタッフの総人数"
+          },
+          "is_bookmark": {
+            "type": "boolean",
+            "default": false,
+            "description": "現在のユーザーがこの事務所をブックマークしているかどうか"
+          },
+          "tel": {
+            "type": "string",
+            "example": "事業所の電話番号",
+            "description": "080-2916-9802"
+          },
+          "feature_title": {
+            "type": "string",
+            "example": "事業所紹介タイトル",
+            "description": "事業所紹介タイトル"
+          },
+          "workday": {
+            "type": "array",
+            "example": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "description": "営業曜日",
+            "items": {
+              "type": "string",
+              "enum": [
+                "sun",
+                "mon",
+                "tue",
+                "wed",
+                "thu",
+                "fri",
+                "sat"
+              ]
+            }
+          },
+          "thumbnail_image": {
+            "type": "string",
+            "format": "uri",
+            "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg",
+            "description": "サムネイルのイメージ画像",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "nearest_station",
+          "stuff_count",
+          "is_bookmark",
+          "tel",
+          "feature_title",
+          "workday",
+          "thumbnail_image"
+        ],
+        "x-examples": {
+          "Example 1": {
+            "id": 1,
+            "name": "祖師谷ホームケアそよ風",
+            "nearest_station": "札幌市南北線 北12条駅",
+            "stuff_count": 30,
+            "is_bookmark": false,
+            "tel": "事業所の電話番号",
+            "feature_title": "事業所紹介タイトル",
+            "workday": [
+              "mon",
+              "tue",
+              "wed",
+              "thu",
+              "fri"
+            ],
+            "thumbnail_image": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+          }
+        }
       }
     },
     "responses": {
@@ -5898,8 +7037,13 @@
                 "offices": {
                   "type": "array",
                   "items": {
+                    "title": "ResponseSearchOffice",
+                    "x-stoplight": {
+                      "id": "v63lkfb1fpxj3"
+                    },
                     "type": "object",
                     "additionalProperties": false,
+                    "description": "検索の事業所結果",
                     "properties": {
                       "id": {
                         "type": "integer",
@@ -5977,7 +7121,26 @@
                       "feature_title",
                       "workday",
                       "thumbnail_image"
-                    ]
+                    ],
+                    "x-examples": {
+                      "Example 1": {
+                        "id": 1,
+                        "name": "祖師谷ホームケアそよ風",
+                        "nearest_station": "札幌市南北線 北12条駅",
+                        "stuff_count": 30,
+                        "is_bookmark": false,
+                        "tel": "事業所の電話番号",
+                        "feature_title": "事業所紹介タイトル",
+                        "workday": [
+                          "mon",
+                          "tue",
+                          "wed",
+                          "thu",
+                          "fri"
+                        ],
+                        "thumbnail_image": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                      }
+                    }
                   }
                 },
                 "paginate": {
@@ -5992,7 +7155,8 @@
                       "current_page": 2,
                       "prev_page": null,
                       "next_page": 2,
-                      "total_page": 10
+                      "total_page": 10,
+                      "total_count": 100
                     }
                   },
                   "additionalProperties": false,
@@ -6018,13 +7182,19 @@
                       "type": "integer",
                       "example": 10,
                       "description": "総ページ数"
+                    },
+                    "total_count": {
+                      "type": "integer",
+                      "description": "対象モデルの総レコード数",
+                      "example": 100
                     }
                   },
                   "required": [
                     "current_page",
                     "prev_page",
                     "next_page",
-                    "total_page"
+                    "total_page",
+                    "total_count"
                   ]
                 }
               },
@@ -6059,7 +7229,8 @@
                     "current_page": 2,
                     "prev_page": null,
                     "next_page": 2,
-                    "total_page": 10
+                    "total_page": 10,
+                    "total_count": 100
                   }
                 }
               }

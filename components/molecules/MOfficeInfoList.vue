@@ -1,22 +1,20 @@
 <template>
-  <ul class="twoCol">
+  <ul class="twoCol" role="list">
     <MOfficeInfo
-      v-for="(item, index) in compItems"
-      :key="index"
+      v-for="office in offices"
+      :key="office.id"
       class="twoCol_item"
-      :office-info="item.detail"
-      :can-book-online="item.canBookOnline"
-      :thanks-msg="item.thanksMsg"
-      :work-day="(item.workDay as Weeks[])"
-      :is-bookmarked="item.isBookmarked"
+      v-bind="office"
     />
   </ul>
 </template>
 <script setup lang="ts">
-// サンプルデータ
-import { compItems } from '@/data'
-type Weeks = 'sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat';
+import type { ResponseSearchOffice } from '@/api/@types'
 
+type Props = {
+  offices: ResponseSearchOffice[]
+}
+defineProps<Props>()
 </script>
 <style scoped lang="scss">
 .twoCol {

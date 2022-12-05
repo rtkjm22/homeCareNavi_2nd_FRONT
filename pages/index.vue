@@ -118,29 +118,13 @@
               "
               >
                 <div class="w-screen grid grid-cols-3 gap-2 text-gray-base font-bold">
-                  <button class="areabase">
-                    北海道
-                  </button>
-                  <button class="areabase">
-                    東北
-                  </button>
-                  <button class="areabase">
-                    関東
-                  </button>
-                  <button class="areabase">
-                    中部
-                  </button>
-                  <button class="areabase">
-                    近畿
-                  </button>
-                  <button class="areabase">
-                    中国
-                  </button>
-                  <button class="areabase">
-                    四国
-                  </button>
-                  <button class="border border-bulegray">
-                    九州
+                  <button
+                    v-for="AREA in AREAS"
+                    :key="AREA"
+                    class="areabase"
+                    @click="selectArea(AREA)"
+                  >
+                    {{ AREA }}
                   </button>
                 </div>
               </div>
@@ -158,6 +142,8 @@
             border border-gray-lighter
             text-sm
             rounded
+            overflow-auto
+            scrollbar-hide
             before:before:content-['']
             before:absolute
             before:-translate-x-[0.2px]
@@ -179,7 +165,10 @@
           "
           >
             <ul class="mt-5 ml-5 mr-5">
-              <OPrefecture />
+              <OPrefecture
+                :prefectures="currentPrefectures"
+                @select-prefecture="selectPrefecture"
+              />
             </ul>
           </div>
         </div>
@@ -197,17 +186,77 @@
           hidden
           md:inline-block
           overflow-auto
+          scrollbar-hide
         "
         >
-          <ODistrict />
+          <ODistrict
+            :prefecture="selectedPrefecture"
+            :districts="currentDistricts"
+          />
         </div>
       </div>
     </div>
   </div>
 </template>
 
+<script setup lang="ts">
+import type { Area } from '@/composables/useHeartRailsGeoAPI'
+const { AREAS, getDistricts, getPrefectures } = useHeartRailsGeoAPI()
+const { alert } = useUI()
+const router = useRouter()
+
+/** 選択中の地域 */
+const selectedArea = ref<Area>('関東')
+
+/** 地方選択メソッド。SPの場合は/prefectureにページ遷移する */
+const selectArea = (area: Area) => {
+  selectedArea.value = area
+
+  const { matches } = window.matchMedia('(min-width: 768px)')
+
+  if (!matches) {
+    router.push(`/prefecture?area=${area}`) // SP
+  }
+}
+
+/** 選択中の地域に紐づく都道府県一覧 */
+const currentPrefectures = computed(() => getPrefectures(selectedArea.value))
+
+/** 選択中の都道府県 */
+const selectedPrefecture = ref<string>()
+
+/** 都道府県選択メソッド */
+const selectPrefecture = (prefecture: string) => {
+  selectedPrefecture.value = prefecture
+}
+
+/** 選択中の都道府県に紐づく市区町村一覧 */
+const currentDistricts = ref<{ city: string }[]>()
+
+/** 都道府県を切り替えるたびに市区町村をAPIから取得する処理 */
+watch(selectedPrefecture, () => {
+  if (selectedPrefecture.value === undefined) { return }
+
+  getDistricts(selectedPrefecture.value)
+    .then((res) => { currentDistricts.value = res })
+    .catch((e) => { alert.showAlert(e.message, 'danger') })
+})
+</script>
+  
+
 <style scoped lang="scss">
 .areabase {
   @apply hover:opacity-80 border border-gray-lighter rounded;
+}
+
+/* overflow-yのスクロールバー削除(Chrome, Safari, Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* IE, Edge, Firefox */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 </style>

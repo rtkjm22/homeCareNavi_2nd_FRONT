@@ -4,6 +4,7 @@ import type * as Types from '../../../../@types'
 export type Methods = {
   /** ヘッダー内のaccess-token,client,expiry,uidを検証する */
   get: {
+    reqHeaders?: Types.Access_token & Types.Client & Types.Expiry & Types.Uid | undefined
     status: 200
 
     resBody: {

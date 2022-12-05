@@ -30,13 +30,13 @@ const PATHS = [
   '/manager/signup',
   '/manager/login',
   '/offices/1',
-  '/offices',
+  "/offices?areas='東京都新宿区市ヶ谷本村町'&=page=1", // エリア検索
   '/password-reset/complete',
   // '/password-reset/edit'
   '/password-reset',
-  '/district',
+  '/district?area=関東&prefecture=東京都',
   '/',
-  'prefecture'
+  'prefecture?area=関東'
 ] as const
 
 for (const path of PATHS) {
