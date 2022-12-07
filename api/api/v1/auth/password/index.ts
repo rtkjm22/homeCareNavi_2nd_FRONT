@@ -20,6 +20,7 @@ export type Methods = {
 
   /** パスワードリセットを確定する。 */
   patch: {
+    reqHeaders?: Types.Access_token & Types.Client & Types.Uid | undefined
     status: 200
 
     /** OK */

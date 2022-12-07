@@ -6,12 +6,18 @@ export const CLIENT_AUTH_PATHS = [
   '/client/auth/profile/edit',
   '/client/auth/profile',
   '/client/auth/reserves/complete',
+  '/client/auth/reserves',
   '/client/auth/thanks/complete'
 ] as const
 
 // マネージャーログイン後
 export const MANAGER_AUTH_PATHS = [
+  '/manager/auth/clients/edit',
   '/manager/auth/clients',
+  '/manager/auth/profile/edit_inst',
+  '/manager/auth/profile/edit',
+  '/manager/auth/reserves',
+  '/manager/auth/staffs/edit',
   '/manager/auth/staffs/new'
 ]
 
@@ -23,13 +29,14 @@ const PATHS = [
   '/manager/signup/complete',
   '/manager/signup',
   '/manager/login',
-  '/offices',
   '/offices/1',
+  "/offices?areas='東京都新宿区市ヶ谷本村町'&=page=1", // エリア検索
   '/password-reset/complete',
+  // '/password-reset/edit'
   '/password-reset',
-  '/district',
+  '/district?area=関東&prefecture=東京都',
   '/',
-  'prefecture'
+  'prefecture?area=関東'
 ] as const
 
 for (const path of PATHS) {

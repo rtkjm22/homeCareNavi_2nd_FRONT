@@ -18,6 +18,8 @@
         "void": "always"
       }
     }],
+    // APIからの値がスネークケースであるため、propsの値はキャメルケース及びスネークケースどちらも許容
+    "vue/prop-name-casing": "off",
     "no-trailing-spaces": [
       "error", {
         "skipBlankLines": true

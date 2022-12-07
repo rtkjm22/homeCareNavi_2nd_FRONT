@@ -1,9 +1,10 @@
 <template>
   <div>
-    <li
-      v-for="prefecture in prefectures"
-      :key="prefecture.name"
-      class="
+    <ul class="last:mb-5">
+      <li
+        v-for="prefecture in prefectures"
+        :key="prefecture"
+        class="
         md:w-[220px]
         w-[331px]
         h-[40px]
@@ -19,26 +20,21 @@
         md:last:border-b-gray-lighter
         text-sm
       text-gray-dark
+        cursor-pointer
       "
-    >
-      {{ prefecture.name }}
-      <ARightArrow class="text-gray-light" />
-    </li>
+        @click="$emit('selectPrefecture', prefecture)"
+      >
+        {{ prefecture }}
+        <ARightArrow class="text-gray-light" />
+      </li>
+    </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-const prefectures = [
-  { name: '東京都' },
-  { name: '神奈川県' },
-  { name: '埼玉県' },
-  { name: '千葉県' },
-  { name: '茨城県' },
-  { name: '栃木県' },
-  { name: '群馬県' }
-]
+defineProps<{ prefectures: string[] }>()
+defineEmits<{(e: 'selectPrefecture', value: string): void}>()
 </script>
 
 <style scoped lang="scss">
-
 </style>

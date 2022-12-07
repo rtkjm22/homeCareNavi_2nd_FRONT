@@ -10,12 +10,12 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     /**
      * ヘッダー内のaccess-token,client,expiry,uidを検証する
      */
-    get: (option?: { config?: T | undefined } | undefined) =>
+    get: (option?: { headers?: Methods0['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
       fetch<Methods0['get']['resBody'], Methods0['get']['resHeaders'], Methods0['get']['status']>(prefix, PATH0, GET, option).json(),
     /**
      * ヘッダー内のaccess-token,client,expiry,uidを検証する
      */
-    $get: (option?: { config?: T | undefined } | undefined) =>
+    $get: (option?: { headers?: Methods0['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
       fetch<Methods0['get']['resBody'], Methods0['get']['resHeaders'], Methods0['get']['status']>(prefix, PATH0, GET, option).json().then(r => r.body),
     $path: () => `${prefix}${PATH0}`
   }
