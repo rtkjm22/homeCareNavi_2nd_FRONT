@@ -27,42 +27,77 @@
           size="sm"
           class="w-full text-pink mb-6"
         />
-        <a
-          href="#"
+        <NuxtLink
+          :to="breakpoint.isGreater('md') ? '/' : buildDistrictPageUrl({ area, prefecture })"
           class="flex relative items-center -mx-4 mb-3 w-[calc(100% + 32px)] bg-[#F5F7F7]"
         >
-          <span class="py-3 pl-7 text-xs text-gray-dark">東京都</span>
+          <span class="py-3 pl-7 text-xs text-gray-dark">{{ prefecture }}</span>
           <AArrow class="absolute left-3" line-direction="left" line-color="gray-base" />
-        </a>
+        </NuxtLink>
         <table class="city">
           <tr>
-            <th>東京都</th>
+            <th>{{ prefecture }}</th>
           </tr>
           <tr>
-            <td v-for="n in 10" :key="n">
-              <MCheckboxWithArrow />
+            <td
+              v-for="district in currentDistricts"
+              :key="district"
+            >
+              <MCheckboxWithArrow
+                v-model="selectedDistricts"
+                :text-label="district"
+              />
             </td>
           </tr>
         </table>
         <div
-          class="flex relative items-center -mx-4 w-[calc(100% + 32px)] px-3 py-[10px] bg-[#F5F7F7] rounded-b"
+          class="flex relative items-center -mx-4 w-[calc(100% + 32px)] px-3 py-[10px] bg-[#F5F7F7] rounded-b sticky bottom-0"
         >
           <AButton
             class="py-2 text-sm w-full"
             inner-text="検索する"
             user-type="client"
             size="md"
+            @click="areaSearch"
           />
         </div>
       </form>
     </div>
   </aside>
 </template>
+
 <script setup lang="ts">
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+const router = useRouter()
+const { getDistricts } = useHeartRailsGeoAPI()
+const { getAreaSearchParams, buildAreasString, buildAreaSearchUrl, buildDistrictPageUrl } = useAreaSearch()
+
+/** ブレイクポイント */
+const breakpoint = useBreakpoints(breakpointsTailwind)
+
+const { areas, prefecture, districts, area } = getAreaSearchParams()
+
+const currentDistricts = ref<string[] | undefined>()
+const selectedDistricts = ref<string[]>([])
+
+const areaSearch = () => {
+  const areasString = buildAreasString({ prefecture, districts: selectedDistricts.value })
+  const newUrl = buildAreaSearchUrl({ areas: areasString, prefecture, page: 1, area })
+  router.push(newUrl)
+}
+
+onMounted(async () => {
+  if (areas && prefecture && districts) {
+    currentDistricts.value = await getDistricts(prefecture)
+    selectedDistricts.value = districts
+  }
+})
+
 const sendData = () => {
   // 検索条件のデータが送信されます。
 }
 </script>
+
 <style scoped lang="scss">
 .city {
   width: 100%;

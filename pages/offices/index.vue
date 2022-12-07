@@ -1,7 +1,9 @@
 <template>
   <div class="flex flex-wrap container mx-auto lg:flex-nowrap lg:max-w-[990px] lg:gap-6">
     <!-- サイドバー（検索フォーム） -->
-    <MSideBarSearch />
+    <MSideBarSearch
+      :prefecture="prefecture"
+    />
 
     <!-- 検索結果一覧 -->
     <div class="pt-4 px-2.5 pb-[52px] w-full lg:w-[calc(100%-244px)]">
@@ -42,23 +44,26 @@
   </div>
 </template>
 <script setup lang="ts">
-const route = useRoute()
-const { useAreaSearch } = useOfficeSearch()
+const { useAsyncAreaSearch, getAreaSearchParams, buildAreaSearchUrl } = useAreaSearch()
 
-/** 現在のページ番号 */
-const page = ref(Number.parseInt(route.query.page as string))
+const { page, areas, prefecture, area } = getAreaSearchParams()
 
-/** 単語検索およびエリア検索で使用する検索文字列 */
-const areas = route.query.areas as string
+const currentPage = ref(page)
 
 /** 検索結果 */
-const { data: searchResults, pending, refresh } = useAreaSearch(areas, page)
+const { data: searchResults, pending, refresh } = useAsyncAreaSearch(areas, currentPage)
 
 /** ページ番号クリック処理。引数に渡されたページの所得及びurl履歴の更新をする */
 const clickPaginate = (newPage: number) => {
   window.scroll({ top: 0 })
-  page.value = newPage
-  history.pushState('', '', `/offices?areas=${areas}&page=${newPage}`)
+  currentPage.value = newPage
+  const url = buildAreaSearchUrl({
+    areas,
+    page: newPage,
+    prefecture,
+    area
+  })
+  history.pushState('', '', url)
   refresh()
 }
 </script>

@@ -30,7 +30,10 @@
         "max": 3
       }
     ],
-    "no-console": "off"
+    "no-console": "off",
+    "eqeqeq": [
+      { "null": "ignore" }
+    ]
   },
   "ignorePatterns": [
     "/api/**/*"
