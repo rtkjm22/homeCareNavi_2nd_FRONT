@@ -27,13 +27,15 @@ import type { Area } from '@/composables/useHeartRailsGeoAPI'
 const { getPrefectures } = useHeartRailsGeoAPI()
 const route = useRoute()
 const router = useRouter()
+const { buildDistrictPageUrl } = useAreaSearch()
 
 const area = route.query.area as Area
 
 const prefectures = getPrefectures(area)
 
 const selectPrefecrue = (prefecture: string) => {
-  router.push(`/district?area=${area}&prefecture=${prefecture}`)
+  const url = buildDistrictPageUrl({ area, prefecture })
+  router.push(url)
 }
 </script>
 
