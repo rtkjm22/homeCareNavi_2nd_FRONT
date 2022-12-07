@@ -32,7 +32,7 @@
     ],
     "no-console": "off",
     "eqeqeq": [
-      { "null": "ignore" }
+      "error", "always", { "null": "ignore" }
     ]
   },
   "ignorePatterns": [

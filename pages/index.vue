@@ -238,7 +238,7 @@ const currentDistricts = ref<string[]>()
 
 /** 都道府県を切り替えるたびに市区町村をAPIから取得する処理 */
 watch(selectedPrefecture, () => {
-  if (selectedPrefecture.value === undefined) { return }
+  if (selectedPrefecture.value == null) { return }
 
   getDistricts(selectedPrefecture.value)
     .then((res) => { currentDistricts.value = res })
