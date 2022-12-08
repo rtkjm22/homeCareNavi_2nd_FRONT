@@ -1,5 +1,4 @@
-import type { Ref } from 'vue'
-import type { AsyncDataOptions } from '#app'
+import type { OfficeSearchFetcher } from '@/types/offfice_search'
 
 /** エリア検索に必須なクエリパラメータ */
 type AreaSearchParams = {
@@ -61,10 +60,19 @@ export const useAreaSearch = () => {
     return { areas, page, prefecture, districts, area }
   }
 
+  /** 現在のurlがエリア検索の形式の場合trueを返す */
+  const isCurrentUrlAreaSearch = () => {
+    const params = getAreaSearchParams()
+    const isNotNullAllProperty = Object.values(params).every(v => v != null)
+    return isNotNullAllProperty
+  }
+
   /** エリア検索実行メソッド */
-  const useAsyncAreaSearch = (areas: string, page: Ref<number>, asyncOpts?: AsyncDataOptions<any>) => {
+  const useAsyncAreaSearch: OfficeSearchFetcher = (page, asyncOpts?) => {
+    const { areas } = getAreaSearchParams()
+    
     return useAsyncData(
-      `areaSearch?areas=${areas}&page=${page}`,
+      `areaSearch?areas=${areas}&page=${page.value}`,
       () => $api.client.api.v1.client.offices.area_search.$get({
         query: {
           areas,
@@ -81,6 +89,7 @@ export const useAreaSearch = () => {
     buildPrefecturePageUrl,
     buildAreaSearchUrl,
     getAreaSearchParams,
+    isCurrentUrlAreaSearch,
     useAsyncAreaSearch
   }
 }
