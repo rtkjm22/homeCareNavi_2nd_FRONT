@@ -37,11 +37,11 @@ export const useWordSearch = () => {
     const { words } = getWordSearchParams()
 
     return useAsyncData(
-      `wordSearch?words=${words}&page=${page.value}`,
+      `wordSearch?words=${words}&page=${page}`,
       () => $api.client.api.v1.client.offices.word_search.$get({
         query: {
           words,
-          page: page.value
+          page
         }
       }),
       asyncOpts

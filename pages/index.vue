@@ -21,7 +21,7 @@
           <p class="text-[12px] mb-8 text-gray-base">
             ホームケアナビは、ケアマネージャーの検索ができるサービスです。
           </p>
-          <MSearchBar />
+          <OWordSearchBar />
         </div>
 
         <!-- SP -->
@@ -77,7 +77,7 @@
           "
           >
             <div class="w-11/12 mx-auto">
-              <MSearchBar class="md:hidden h-[44px]" />
+              <OWordSearchBar class="md:hidden h-[44px]" />
               <button
                 class="
                 flex

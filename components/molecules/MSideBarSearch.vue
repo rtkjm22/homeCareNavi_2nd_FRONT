@@ -8,7 +8,7 @@
       </h3>
       <form class="" @submit.prevent="sendData">
         <!-- フリー検索欄 -->
-        <AInputRoundWithIcon />
+        <OWordSearchBar />
 
         <!-- エリア選択 -->
         <a
@@ -27,40 +27,43 @@
           size="sm"
           class="w-full text-pink mb-6"
         />
-        <NuxtLink
-          :to="breakpoint.isGreater('md') ? '/' : buildDistrictPageUrl({ area, prefecture })"
-          class="flex relative items-center -mx-4 mb-3 w-[calc(100% + 32px)] bg-[#F5F7F7]"
-        >
-          <span class="py-3 pl-7 text-xs text-gray-dark">{{ prefecture }}</span>
-          <AArrow class="absolute left-3" line-direction="left" line-color="gray-base" />
-        </NuxtLink>
-        <table class="city">
-          <tr>
-            <th>{{ prefecture }}</th>
-          </tr>
-          <tr>
-            <td
-              v-for="district in currentDistricts"
-              :key="district"
-            >
-              <MCheckboxWithArrow
-                v-model="selectedDistricts"
-                :text-label="district"
-              />
-            </td>
-          </tr>
-        </table>
-        <div
-          class="flex relative items-center -mx-4 w-[calc(100% + 32px)] px-3 py-[10px] bg-[#F5F7F7] rounded-b sticky bottom-0"
-        >
-          <AButton
-            class="py-2 text-sm w-full"
-            inner-text="検索する"
-            user-type="client"
-            size="md"
-            @click="areaSearch"
-          />
-        </div>
+
+        <template v-if="isCurrentUrlAreaSearch()">
+          <NuxtLink
+            :to="breakpoint.isGreater('md') ? '/' : buildDistrictPageUrl({ area, prefecture })"
+            class="flex relative items-center -mx-4 mb-3 w-[calc(100% + 32px)] bg-[#F5F7F7]"
+          >
+            <span class="py-3 pl-7 text-xs text-gray-dark">{{ prefecture }}</span>
+            <AArrow class="absolute left-3" line-direction="left" line-color="gray-base" />
+          </NuxtLink>
+          <table class="city">
+            <tr>
+              <th>{{ prefecture }}</th>
+            </tr>
+            <tr>
+              <td
+                v-for="district in currentDistricts"
+                :key="district"
+              >
+                <MCheckboxWithArrow
+                  v-model="selectedDistricts"
+                  :text-label="district"
+                />
+              </td>
+            </tr>
+          </table>
+          <div
+            class="flex relative items-center -mx-4 w-[calc(100% + 32px)] px-3 py-[10px] bg-[#F5F7F7] rounded-b sticky bottom-0"
+          >
+            <AButton
+              class="py-2 text-sm w-full"
+              inner-text="検索する"
+              user-type="client"
+              size="md"
+              @click="areaSearch"
+            />
+          </div>
+        </template>
       </form>
     </div>
   </aside>
@@ -70,12 +73,14 @@
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 const router = useRouter()
 const { getDistricts } = useHeartRailsGeoAPI()
-const { getAreaSearchParams, buildAreasString, buildAreaSearchUrl, buildDistrictPageUrl } = useAreaSearch()
 
 /** ブレイクポイント */
 const breakpoint = useBreakpoints(breakpointsTailwind)
 
-const { areas, prefecture, districts, area } = getAreaSearchParams()
+
+// ----- エリア検索 -----
+const { getAreaSearchParams, buildAreasString, buildAreaSearchUrl, buildDistrictPageUrl, isCurrentUrlAreaSearch } = useAreaSearch()
+const { prefecture, districts, area } = getAreaSearchParams()
 
 const currentDistricts = ref<string[] | undefined>()
 const selectedDistricts = ref<string[]>([])
@@ -87,11 +92,12 @@ const areaSearch = () => {
 }
 
 onMounted(async () => {
-  if (areas && prefecture && districts) {
+  if (isCurrentUrlAreaSearch()) {
     currentDistricts.value = await getDistricts(prefecture)
-    selectedDistricts.value = districts
+    selectedDistricts.value = districts!
   }
 })
+// -----
 
 const sendData = () => {
   // 検索条件のデータが送信されます。

@@ -72,11 +72,11 @@ export const useAreaSearch = () => {
     const { areas } = getAreaSearchParams()
     
     return useAsyncData(
-      `areaSearch?areas=${areas}&page=${page.value}`,
+      `areaSearch?areas=${areas}&page=${page}`,
       () => $api.client.api.v1.client.offices.area_search.$get({
         query: {
           areas,
-          page: page.value
+          page
         }
       }),
       asyncOpts
