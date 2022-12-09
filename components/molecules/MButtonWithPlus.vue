@@ -4,7 +4,7 @@
     class="block text-center font-bold border rounded transition-opacity hover:opacity-80"
   >
     <APlus class="plus_wrap">
-      利用者を追加する
+      <slot />
     </APlus>
   </NuxtLink>
 </template>
