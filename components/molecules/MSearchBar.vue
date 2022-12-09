@@ -29,7 +29,7 @@
       type="text"
       name="search"
       :placeholder="placeholder"
-      @keydown.enter="$emit('searchSubmit')"
+      @keypress.enter="$emit('searchSubmit')"
     />
   </label>
 </template>
