@@ -55,5 +55,14 @@ export const officeSearch = [
     return res(
       ctx.json(body)
     )
+  }),
+
+  /** 現在地検索 */
+  rest.get(`${BASE_PATH}/api/v1/client/offices/nearest_search`, (req, res, ctx) => {
+    const body = buildSearchResponse(req)
+
+    return res(
+      ctx.json(body)
+    )
   })
 ]

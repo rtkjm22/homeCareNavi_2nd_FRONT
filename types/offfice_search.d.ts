@@ -8,6 +8,5 @@ type OfficeSearchResponse = Methods['get']['resBody']
  * フェッチャーの型を全リクエストで統一させることで、動的に異なるフェッチャーを使用できるようにする。
  * */
 export type OfficeSearchFetcher = (
-    page: number, 
     asyncOpts?: AsyncDataOptions<OfficeSearchResponse> 
   ) => AsyncData<OfficeSearchResponse, Error | null>
