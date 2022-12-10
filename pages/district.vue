@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
 const { getDistricts } = useHeartRailsGeoAPI()
-const { buildPrefecturePageUrl } = useAreaSearch()
+const { buildPrefecturePageUrl } = useSearchArea()
 const route = useRoute()
 
 const area = route.query.area as string

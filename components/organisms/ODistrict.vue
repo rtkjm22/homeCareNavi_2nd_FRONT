@@ -74,7 +74,7 @@
 <script setup lang="ts">
 const { alert } = useUI()
 const router = useRouter()
-const { buildAreaSearchUrl, buildAreasString } = useAreaSearch()
+const { buildAreaSearchUrl, buildAreasString } = useSearchArea()
 
 const props = defineProps<{ districts?: string[], prefecture?: string, area: string }>()
 
