@@ -4,7 +4,7 @@ import openapi from '~/openapi.json'
 
 
 /** totalCount件の事業所を含む検索結果を返す */
-export const generateRandomSearchResponse = (req: RestRequest, totalCount?: number) => {
+export const buildSearchResponse = (req: RestRequest, totalCount?: number) => {
   totalCount ||= 125 // 引数にtotalCountを渡されなければ,初期値125とする
 
   // ページネーションレスポンス作成
@@ -41,8 +41,17 @@ export const generateRandomSearchResponse = (req: RestRequest, totalCount?: numb
 export const officeSearch = [
   /** エリア検索 */
   rest.get(`${BASE_PATH}/api/v1/client/offices/area_search`, (req, res, ctx) => {
-    const body = generateRandomSearchResponse(req)
+    const body = buildSearchResponse(req)
   
+    return res(
+      ctx.json(body)
+    )
+  }),
+
+  /** 単語検索 */
+  rest.get(`${BASE_PATH}/api/v1/client/offices/word_search`, (req, res, ctx) => {
+    const body = buildSearchResponse(req)
+
     return res(
       ctx.json(body)
     )

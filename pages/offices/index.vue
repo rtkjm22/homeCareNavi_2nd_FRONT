@@ -1,9 +1,7 @@
 <template>
   <div class="flex flex-wrap container mx-auto lg:flex-nowrap lg:max-w-[990px] lg:gap-6">
     <!-- サイドバー（検索フォーム） -->
-    <MSideBarSearch
-      :prefecture="prefecture"
-    />
+    <MSideBarSearch />
 
     <!-- 検索結果一覧 -->
     <div class="pt-4 px-2.5 pb-[52px] w-full lg:w-[calc(100%-244px)]">
@@ -44,27 +42,36 @@
   </div>
 </template>
 <script setup lang="ts">
-const { useAsyncAreaSearch, getAreaSearchParams, buildAreaSearchUrl } = useAreaSearch()
+import { useRouteQuery } from '@vueuse/router'
+import type { OfficeSearchFetcher } from '@/types/offfice_search'
 
-const { page, areas, prefecture, area } = getAreaSearchParams()
+const { alert } = useUI()
+const { isCurrentUrlAreaSearch, useAsyncAreaSearch } = useAreaSearch()
+const { isCurrentUrlWordSearch, useAsyncWordSearch } = useWordSearch()
 
-const currentPage = ref(page)
+const currentPage = useRouteQuery<string>('page', undefined, { mode: 'push' })
+
+// フェッチャーの初期値。これが呼び出された場合はエラー
+// @ts-ignore
+let searchFetcher: OfficeSearchFetcher = () => {
+  alert.showAlert('検索に失敗しました', 'danger')
+  return { data: null, pending: true, refresh: null }
+}
+
+// 現在のurlからエリア検索,単語検索,現在地検索を判定し、対応するフェッチャーを代入する
+if (isCurrentUrlAreaSearch()) {
+  searchFetcher = useAsyncAreaSearch
+} else if (isCurrentUrlWordSearch()) {
+  searchFetcher = useAsyncWordSearch
+}
 
 /** 検索結果 */
-const { data: searchResults, pending, refresh } = useAsyncAreaSearch(areas, currentPage)
+const { data: searchResults, pending } = searchFetcher(Number.parseInt(currentPage.value))
 
 /** ページ番号クリック処理。引数に渡されたページの所得及びurl履歴の更新をする */
 const clickPaginate = (newPage: number) => {
-  window.scroll({ top: 0 })
-  currentPage.value = newPage
-  const url = buildAreaSearchUrl({
-    areas,
-    page: newPage,
-    prefecture,
-    area
-  })
-  history.pushState('', '', url)
-  refresh()
+  // 代入するだけでurlのpageが更新され、router.pushされる
+  currentPage.value = newPage.toString()
 }
 </script>
 

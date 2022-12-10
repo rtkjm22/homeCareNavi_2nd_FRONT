@@ -30,7 +30,8 @@ const PATHS = [
   '/manager/signup',
   '/manager/login',
   '/offices/1',
-  "/offices?areas='東京都新宿区市ヶ谷本村町'&=page=1", // エリア検索
+  '/offices?areas=東京都港区,東京都北区&page=1&prefecture=東京都&area=関東', // エリア検索
+  '/offices?words=東京都&page=1', // 単語検索
   '/password-reset/complete',
   // '/password-reset/edit'
   '/password-reset',
