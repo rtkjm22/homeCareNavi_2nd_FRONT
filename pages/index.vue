@@ -21,7 +21,7 @@
           <p class="text-[12px] mb-8 text-gray-base">
             ホームケアナビは、ケアマネージャーの検索ができるサービスです。
           </p>
-          <OWordSearchBar />
+          <OSearchBarWord placeholder="事業所名、市区町村など" />
         </div>
 
         <!-- SP -->
@@ -77,34 +77,10 @@
           "
           >
             <div class="w-11/12 mx-auto">
-              <OWordSearchBar class="md:hidden h-[44px]" />
-              <button
-                class="
-                flex
-                justify-center
-                items-center
-                w-full
-                md:w-[343px]
-                h-[43px]
-                m-[16px]
-                border border-pink
-                text-pink
-                rounded
-                font-bold
-                mx-auto
-                hover:opacity-80
-              "
-              >
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                  <path
-                    d="M9,1.323a5.525,5.525,0,0,0-4.786,8.3L9,17.323l4.786-7.7A5.525,5.525,0,0,0,9,1.323ZM9,9.355a2.5,2.5,0,1,1,2.5-2.5A2.5,2.5,0,0,1,9,9.355Z"
-                    stroke-width="1"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                <span>現在地から探す</span>
-              </button>
+              <OSearchBarWord class="md:hidden h-[44px]" placeholder="事業所名、市区町村など" />
+              <OSearchButtonLocation
+                class="m-[16px] mx-auto"
+              />
 
               <!-- 地方区分検索 -->
               <div
@@ -205,7 +181,7 @@ import type { Area } from '@/composables/useHeartRailsGeoAPI'
 const { AREAS, getDistricts, getPrefectures } = useHeartRailsGeoAPI()
 const { alert } = useUI()
 const router = useRouter()
-const { buildPrefecturePageUrl } = useAreaSearch()
+const { buildPrefecturePageUrl } = useSearchArea()
 
 /** 選択中の地域 */
 const selectedArea = ref<Area>('関東')
