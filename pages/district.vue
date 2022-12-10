@@ -5,7 +5,7 @@
     <div class="bg-white w-11/12 rounded mx-auto mb-[130px]">
       <ul class="text-gray-dark">
         <li class="bg-gray-lighter rounded-t h-[32px] flex items-center">
-          <NuxtLink :to="`/prefecture?area=${area}`">
+          <NuxtLink :to="buildPrefecturePageUrl({ area })">
             <ALeftArrow class="text-gray-light" />{{ prefecture }}
           </NuxtLink>
         </li>
@@ -15,6 +15,7 @@
         <ODistrict
           :prefecture="prefecture"
           :districts="districts"
+          :area="area"
         />
       </ul>
     </div>
@@ -23,6 +24,7 @@
 
 <script setup lang="ts">
 const { getDistricts } = useHeartRailsGeoAPI()
+const { buildPrefecturePageUrl } = useAreaSearch()
 const route = useRoute()
 
 const area = route.query.area as string

@@ -39,7 +39,7 @@ type AddressResult = {
  */
 export const useHeartRailsGeoAPI = () => {
   /** 地方区分に該当する都道府県の配列を返す */
-  const getPrefectures = (area: Area) => {
+  const getPrefectures = (area?: Area) => {
     switch (area) {
       case '北海道':
         return ['北海道']
@@ -57,6 +57,8 @@ export const useHeartRailsGeoAPI = () => {
         return ['徳島県', '香川県', '愛媛県', '高知県']
       case '九州':
         return ['福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県']
+      default:
+        return []
     }
   }
 
@@ -69,14 +71,24 @@ export const useHeartRailsGeoAPI = () => {
     return response.location[0]
   }
 
-  /** 都道府県から市区町村の配列を返す */
+  /**
+   * 都道府県から市区町村の配列を返す。
+   * 毎回APIを叩く必要は無いため、セッションストレージにキャッシュする
+   * */
   const getDistricts = async (prefecture: string) => {
+    const districts = useSessionStorage<string[]>(`districts-${prefecture}`, [])
+    
+    // キャッシュが存在していればAPIリクエストせずに返す
+    if (districts.value.length !== 0) { return districts.value }
+
     type Result = { location: { city: string }[] }
 
     const { response } = await $fetch<BaseResponse<Result>>(`${BASE_URL}/?method=getCities&prefecture=${prefecture}`)
 
     if ('error' in response) { throw new Error('市区町村を取得できませんでした') }
-    return response.location
+
+    districts.value = response.location.map(res => res.city)
+    return districts.value
   }
 
   return {

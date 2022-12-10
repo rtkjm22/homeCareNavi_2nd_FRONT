@@ -22,10 +22,10 @@
             v-model="selectedDistricts"
             class="myCheckbox-Input"
             type="checkbox"
-            :value="district.city"
+            :value="district"
           /><span class="myCheckbox-DummyInput" />
           <span class="myCheckbox-LabelText">{{
-            district.city
+            district
           }}</span>
         </label>
         <label for="district" class="ml-2 text-sm myCheckbox" />
@@ -74,8 +74,9 @@
 <script setup lang="ts">
 const { alert } = useUI()
 const router = useRouter()
+const { buildAreaSearchUrl, buildAreasString } = useAreaSearch()
 
-const props = defineProps<{ districts?: { city: string }[], prefecture?: string }>()
+const props = defineProps<{ districts?: string[], prefecture?: string, area: string }>()
 
 /** チェックボックスで選択中の市区町村 */
 const selectedDistricts = ref<string[]>([])
@@ -96,15 +97,17 @@ const areaSearch = () => {
     return
   }
 
-  const prefectureAndDistricts = selectedDistricts.value.map((district) => {
-    return props.prefecture + district
-  })
+  const { area, prefecture } = props
+  if (area == null || prefecture == null) {
+    alert.showAlert('検索に失敗しました', 'danger')
+    return
+  }
 
-  // カンマ区切りの検索文字列を作成
-  // 例："札幌市北区北十条西,東京都新宿区市谷本村町"
-  const areas = prefectureAndDistricts.join()
+  const areas = buildAreasString({ prefecture, districts: selectedDistricts.value })
 
-  router.push(`/offices?areas=${areas}&page=1`)
+  const url = buildAreaSearchUrl({ areas, page: 1, prefecture, area })
+
+  router.push(url)
 }
 </script>
 

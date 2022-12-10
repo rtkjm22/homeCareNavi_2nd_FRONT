@@ -8,14 +8,17 @@
     />
   </ul>
 </template>
+
 <script setup lang="ts">
 import type { ResponseSearchOffice } from '@/api/@types'
 
 type Props = {
   offices: ResponseSearchOffice[]
 }
+
 defineProps<Props>()
 </script>
+
 <style scoped lang="scss">
 .twoCol {
   @apply gap-x-3 md:grid md:grid-cols-2;

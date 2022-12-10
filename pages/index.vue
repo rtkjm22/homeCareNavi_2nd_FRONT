@@ -192,6 +192,7 @@
           <ODistrict
             :prefecture="selectedPrefecture"
             :districts="currentDistricts"
+            :area="selectedArea"
           />
         </div>
       </div>
@@ -204,6 +205,7 @@ import type { Area } from '@/composables/useHeartRailsGeoAPI'
 const { AREAS, getDistricts, getPrefectures } = useHeartRailsGeoAPI()
 const { alert } = useUI()
 const router = useRouter()
+const { buildPrefecturePageUrl } = useAreaSearch()
 
 /** 選択中の地域 */
 const selectedArea = ref<Area>('関東')
@@ -215,7 +217,8 @@ const selectArea = (area: Area) => {
   const { matches } = window.matchMedia('(min-width: 768px)')
 
   if (!matches) {
-    router.push(`/prefecture?area=${area}`) // SP
+    const url = buildPrefecturePageUrl({ area })
+    router.push(url) // SP
   }
 }
 
@@ -231,11 +234,11 @@ const selectPrefecture = (prefecture: string) => {
 }
 
 /** 選択中の都道府県に紐づく市区町村一覧 */
-const currentDistricts = ref<{ city: string }[]>()
+const currentDistricts = ref<string[]>()
 
 /** 都道府県を切り替えるたびに市区町村をAPIから取得する処理 */
 watch(selectedPrefecture, () => {
-  if (selectedPrefecture.value === undefined) { return }
+  if (selectedPrefecture.value == null) { return }
 
   getDistricts(selectedPrefecture.value)
     .then((res) => { currentDistricts.value = res })

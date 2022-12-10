@@ -8,6 +8,7 @@
     next-button-class="text-pink"
     :on-click="onClickHandler"
     :hide-prev-next-when-ends="true"
+    :show-breakpoint-buttons="false"
   />
 </template>
 

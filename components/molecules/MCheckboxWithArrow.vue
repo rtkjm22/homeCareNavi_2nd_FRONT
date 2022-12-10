@@ -1,15 +1,35 @@
 <template>
   <label class="myCheckbox">
     <!-- チェックボックス部 -->
-    <input class="myCheckbox_input" type="checkbox" value="shibuya" checked />
+    <input
+      v-model="vModel"
+      class="myCheckbox_input"
+      type="checkbox"
+      :value="textLabel"
+    />
     <span class="myCheckbox_dummy" />
     <!-- ラベル部 -->
-    <span class="myCheckbox_text">渋谷区</span>
+    <span class="myCheckbox_text">{{ textLabel }}</span>
     <!-- 矢印（>） -->
     <AArrow class="absolute right-3" line-color="gray-base" />
   </label>
 </template>
-<script setup lang="ts"></script>
+
+<script setup lang="ts">
+type Props = {
+  modelValue: string[];
+  textLabel: string
+}
+
+const props = defineProps<Props>()
+const emits = defineEmits<{(e: 'update:modelValue', value: string[]): void}>()
+
+const vModel = computed({
+  get: () => props.modelValue,
+  set: value => emits('update:modelValue', value)
+})
+</script>
+
 <style scoped lang="scss">
 .myCheckbox {
   display: block;
