@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 const router = useRouter()
-const { alert } = useUI()
+const { showAlert } = useAlert()
 const { buildNearestSearchUrl } = useSearchNearest()
 
 // メソッドの使用時ではなく、ページ表示時に位置情報使用同意のポップアップを出現させる。
@@ -47,7 +47,7 @@ const clickSubmitBtn = () => {
     router.push(url)
   },
   () => {
-    alert.showAlert('位置情報を取得出来ませんでした。このページを再読み込みしてください。', 'danger')
+    showAlert('位置情報を取得出来ませんでした。このページを再読み込みしてください。', 'danger')
   })
 }
 </script>

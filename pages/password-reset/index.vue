@@ -45,17 +45,17 @@ definePageMeta({ middleware: 'auth-not' })
 const router = useRouter()
 const email = ref('')
 const { $api } = useNuxtApp()
-const { alert } = useUI()
+const { showAlert } = useAlert()
 
 const sendEmail = async () => {
   await $api.client.api.v1.auth.password.$post({
     body: { email: email.value }
   }).then(({ message }) => {
     router.push('/password-reset/complete')
-    alert.showAlert(message, 'success')
+    showAlert(message, 'success')
   }).catch(async (e) => {
     const message = await $api.getErrorMessage(e)
-    alert.showAlert(message, 'danger')
+    showAlert(message, 'danger')
   })
 }
 </script>

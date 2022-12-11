@@ -179,7 +179,7 @@
 <script setup lang="ts">
 import type { Area } from '@/composables/useHeartRailsGeoAPI'
 const { AREAS, getDistricts, getPrefectures } = useHeartRailsGeoAPI()
-const { alert } = useUI()
+const { showAlert } = useAlert()
 const router = useRouter()
 const { buildPrefecturePageUrl } = useSearchArea()
 
@@ -218,7 +218,7 @@ watch(selectedPrefecture, () => {
 
   getDistricts(selectedPrefecture.value)
     .then((res) => { currentDistricts.value = res })
-    .catch((e) => { alert.showAlert(e.message, 'danger') })
+    .catch((e) => { showAlert(e.message, 'danger') })
 })
 </script>
   

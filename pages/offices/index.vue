@@ -45,7 +45,7 @@
 import { useRouteQuery } from '@vueuse/router'
 import type { OfficeSearchFetcher } from '@/types/offfice_search'
 
-const { alert } = useUI()
+const { showAlert } = useAlert()
 const { isCurrentUrlAreaSearch, useAsyncAreaSearch } = useSearchArea()
 const { isCurrentUrlWordSearch, useAsyncWordSearch } = useSearchWord()
 const { isCurrentUrlNearestSearch, useAsyncNearestSearch } = useSearchNearest()
@@ -53,7 +53,7 @@ const { isCurrentUrlNearestSearch, useAsyncNearestSearch } = useSearchNearest()
 // フェッチャーの初期値。これが呼び出された場合はエラー
 // @ts-ignore
 let searchFetcher: OfficeSearchFetcher = () => {
-  alert.showAlert('検索に失敗しました', 'danger')
+  showAlert('検索に失敗しました', 'danger')
   return { data: null, pending: true, refresh: null }
 }
 

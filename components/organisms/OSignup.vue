@@ -152,17 +152,17 @@ const searchByPostal = async () => {
 
 const router = useRouter()
 const { $api } = useNuxtApp()
-const { alert } = useUI()
+const { showAlert } = useAlert()
 
 const signup = async () => {
   await $api.client.api.v1.auth.$post({ body: params })
     .then(async () => {
       await router.push(`/${props.userType}/signup/complete`)
-      alert.showAlert('メールを送信しました。メールに記載されているリンクにアクセスしてください。', 'success')
+      showAlert('メールを送信しました。メールに記載されているリンクにアクセスしてください。', 'success')
     })
     .catch(async (e) => {
       const message = await $api.getErrorMessage(e)
-      alert.showAlert(message, 'danger')
+      showAlert(message, 'danger')
     })
 }
 </script>
