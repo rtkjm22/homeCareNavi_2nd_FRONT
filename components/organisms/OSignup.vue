@@ -139,15 +139,15 @@ const params = reactive({
 const geoApi = useHeartRailsGeoAPI()
 
 // 郵便番号から住所及び経度緯度を取得する
-const searchByPostal = async () => {
+const searchByPostal = () => {
   const { postal } = params
   if (postal.length !== 7) { return }
 
-  const location = await geoApi.searchByPostal(postal)
-  if (location === undefined) { return }
-
-  const { city, prefecture, town } = location
-  params.address = city + prefecture + town
+  geoApi.searchByPostal(postal)
+    .then((res) => {
+      const { prefecture, city, town } = res
+      params.address = prefecture + city + town
+    })
 }
 
 const router = useRouter()
