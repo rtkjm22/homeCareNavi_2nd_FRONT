@@ -8,7 +8,7 @@ type AreaSearchParams = {
   area: string;
 }
 
-export const useAreaSearch = () => {
+export const useSearchArea = () => {
   const { $api } = useNuxtApp()
   const route = useRoute()
 
@@ -68,8 +68,8 @@ export const useAreaSearch = () => {
   }
 
   /** エリア検索実行メソッド */
-  const useAsyncAreaSearch: OfficeSearchFetcher = (page, asyncOpts?) => {
-    const { areas } = getAreaSearchParams()
+  const useAsyncAreaSearch: OfficeSearchFetcher = (asyncOpts?) => {
+    const { areas, page } = getAreaSearchParams()
     
     return useAsyncData(
       `areaSearch?areas=${areas}&page=${page}`,

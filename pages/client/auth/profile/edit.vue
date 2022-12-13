@@ -149,7 +149,7 @@ const isSamePassword = computed(() => {
 })
 
 // ステータス変更送信
-const { alert } = useUI()
+const { showAlert } = useAlert()
 const router = useRouter()
 const updateUser = async () => {
   if (!isSamePassword.value) { return }
@@ -159,11 +159,11 @@ const updateUser = async () => {
       $user.state.value = body.data
       $api.setAuthHeaders(headers)
       await router.push('/client/auth/profile')
-      alert.showAlert('登録情報を変更しました', 'success')
+      showAlert('登録情報を変更しました', 'success')
     })
     .catch(async (e) => {
       const message = await $api.getErrorMessage(e)
-      alert.showAlert(message, 'danger')
+      showAlert(message, 'danger')
     })
 }
 </script>

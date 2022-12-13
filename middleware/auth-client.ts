@@ -1,7 +1,7 @@
 /** クライアント専用ページ */
 export default defineNuxtRouteMiddleware(async () => {
   const { $user, $api } = useNuxtApp()
-  const { alert } = useUI()
+  const { showAlert } = useAlert()
 
   // ページ遷移するたびにAPIに通信し、トークンを検証する。トークンが誤っていればユーザー情報は消去される。
   await $api.client.api.v1.auth.validate_token.get()
@@ -15,12 +15,12 @@ export default defineNuxtRouteMiddleware(async () => {
     })
 
   if (!$user.state.value) {
-    alert.showAlert('ログインしてください。', 'warning')
+    showAlert('ログインしてください。', 'warning')
     return navigateTo('/client/login')
   }
 
   if (!$user.isClient.value) {
-    alert.showAlert('ページのアクセス権がありませんでした', 'warning')
+    showAlert('ページのアクセス権がありませんでした', 'warning')
     return navigateTo('/')
   }
 })

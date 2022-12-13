@@ -79,7 +79,7 @@ const isSamePassword = computed(() => {
 })
 
 const { $api, $user } = useNuxtApp()
-const { alert } = useUI()
+const { showAlert } = useAlert()
 const router = useRouter()
 const route = useRoute()
 const { 'access-token': accessToken, client, uid } = route.query as Record<string, string>
@@ -101,11 +101,11 @@ const passwordReset = async () => {
       $api.setAuthHeaders(headers)
       $user.setUserState(body.data)
       router.push('/')
-      alert.showAlert(body.message, 'success')
+      showAlert(body.message, 'success')
     })
     .catch(async (e) => {
       const message = await $api.getErrorMessage(e)
-      alert.showAlert(message, 'danger')
+      showAlert(message, 'danger')
     })
 }
 </script>

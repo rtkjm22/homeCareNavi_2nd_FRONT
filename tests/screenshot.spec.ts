@@ -32,6 +32,7 @@ const PATHS = [
   '/offices/1',
   '/offices?areas=東京都港区,東京都北区&page=1&prefecture=東京都&area=関東', // エリア検索
   '/offices?words=東京都&page=1', // 単語検索
+  '/offices?lat=35.740216&lng=139.7030277&page=1', // 現在地検索
   '/password-reset/complete',
   // '/password-reset/edit'
   '/password-reset',

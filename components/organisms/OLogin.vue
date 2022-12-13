@@ -108,7 +108,7 @@ const params = reactive({
   type: props.userType[0].toUpperCase() + props.userType.slice(1)
 })
 
-const { alert } = useUI()
+const { showAlert } = useAlert()
 const router = useRouter()
 const { $api, $user } = useNuxtApp()
 
@@ -118,11 +118,11 @@ const signInSubmit = async () => {
       $user.setUserState(body.data)
       $api.setAuthHeaders(headers)
       await router.push('/')
-      alert.showAlert(`ようこそ${body.data.name}さん`, 'success')
+      showAlert(`ようこそ${body.data.name}さん`, 'success')
     })
     .catch(async (e) => {
       const message = await $api.getErrorMessage(e)
-      alert.showAlert(message, 'danger')
+      showAlert(message, 'danger')
     })
 }
 </script>

@@ -27,7 +27,7 @@ import type { Area } from '@/composables/useHeartRailsGeoAPI'
 const { getPrefectures } = useHeartRailsGeoAPI()
 const route = useRoute()
 const router = useRouter()
-const { buildDistrictPageUrl } = useAreaSearch()
+const { buildDistrictPageUrl } = useSearchArea()
 
 const area = route.query.area as Area
 

@@ -45,16 +45,15 @@
 import { useRouteQuery } from '@vueuse/router'
 import type { OfficeSearchFetcher } from '@/types/offfice_search'
 
-const { alert } = useUI()
-const { isCurrentUrlAreaSearch, useAsyncAreaSearch } = useAreaSearch()
-const { isCurrentUrlWordSearch, useAsyncWordSearch } = useWordSearch()
-
-const currentPage = useRouteQuery<string>('page', undefined, { mode: 'push' })
+const { showAlert } = useAlert()
+const { isCurrentUrlAreaSearch, useAsyncAreaSearch } = useSearchArea()
+const { isCurrentUrlWordSearch, useAsyncWordSearch } = useSearchWord()
+const { isCurrentUrlNearestSearch, useAsyncNearestSearch } = useSearchNearest()
 
 // フェッチャーの初期値。これが呼び出された場合はエラー
 // @ts-ignore
 let searchFetcher: OfficeSearchFetcher = () => {
-  alert.showAlert('検索に失敗しました', 'danger')
+  showAlert('検索に失敗しました', 'danger')
   return { data: null, pending: true, refresh: null }
 }
 
@@ -63,10 +62,15 @@ if (isCurrentUrlAreaSearch()) {
   searchFetcher = useAsyncAreaSearch
 } else if (isCurrentUrlWordSearch()) {
   searchFetcher = useAsyncWordSearch
+} else if (isCurrentUrlNearestSearch()) {
+  searchFetcher = useAsyncNearestSearch
 }
 
 /** 検索結果 */
-const { data: searchResults, pending } = searchFetcher(Number.parseInt(currentPage.value))
+const { data: searchResults, pending } = searchFetcher()
+
+/** 現在のページ番号 */
+const currentPage = useRouteQuery<string>('page', undefined, { mode: 'push' })
 
 /** ページ番号クリック処理。引数に渡されたページの所得及びurl履歴の更新をする */
 const clickPaginate = (newPage: number) => {

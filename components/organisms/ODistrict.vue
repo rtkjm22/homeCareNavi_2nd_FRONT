@@ -72,9 +72,9 @@
 </template>
 
 <script setup lang="ts">
-const { alert } = useUI()
+const { showAlert } = useAlert()
 const router = useRouter()
-const { buildAreaSearchUrl, buildAreasString } = useAreaSearch()
+const { buildAreaSearchUrl, buildAreasString } = useSearchArea()
 
 const props = defineProps<{ districts?: string[], prefecture?: string, area: string }>()
 
@@ -93,13 +93,13 @@ watch(props, clearDistricts)
 
 const areaSearch = () => {
   if (selectedDistricts.value.length === 0) {
-    alert.showAlert('検索エリアが選択されていません', 'warning')
+    showAlert('検索エリアが選択されていません', 'warning')
     return
   }
 
   const { area, prefecture } = props
   if (area == null || prefecture == null) {
-    alert.showAlert('検索に失敗しました', 'danger')
+    showAlert('検索に失敗しました', 'danger')
     return
   }
 

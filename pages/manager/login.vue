@@ -8,10 +8,10 @@
 <script setup lang="ts">
 definePageMeta({ middleware: 'auth-not' })
 
-const { alert } = useUI()
+const { showAlert } = useAlert()
 const route = useRoute()
 
 if (route.query.account_confirmation_success) {
-  alert.showAlert('ケアマネージャー登録が完了しました。ログインしてください。', 'success')
+  showAlert('ケアマネージャー登録が完了しました。ログインしてください。', 'success')
 }
 </script>

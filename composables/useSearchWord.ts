@@ -9,7 +9,7 @@ type WordSearchParams = {
   page: number;
 }
 
-export const useWordSearch = () => {
+export const useSearchWord = () => {
   const route = useRoute()
   const { $api } = useNuxtApp()
 
@@ -29,12 +29,12 @@ export const useWordSearch = () => {
   /** 現在のurlが単語検索の形式の場合trueを返す */
   const isCurrentUrlWordSearch = () => {
     const { words, page } = getWordSearchParams()
-    return (words != null && page != null)
+    return (words != null && Number.isInteger(page))
   }
 
   /** 単語検索実行メソッド */
-  const useAsyncWordSearch: OfficeSearchFetcher = (page, asyncOpts?) => {
-    const { words } = getWordSearchParams()
+  const useAsyncWordSearch: OfficeSearchFetcher = (asyncOpts?) => {
+    const { words, page } = getWordSearchParams()
 
     return useAsyncData(
       `wordSearch?words=${words}&page=${page}`,

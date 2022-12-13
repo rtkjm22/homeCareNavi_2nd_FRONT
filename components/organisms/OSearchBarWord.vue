@@ -1,14 +1,16 @@
 <template>
   <MSearchBar
     v-model="words"
-    placeholder="事業所名、市区町村など"
+    :placeholder="placeholder"
     @search-submit="wordSearch"
   />
 </template>
 
 <script setup lang="ts">
 const router = useRouter()
-const { buildWordSearchUrl, getWordSearchParams } = useWordSearch()
+const { buildWordSearchUrl, getWordSearchParams } = useSearchWord()
+
+defineProps<{ placeholder: string }>()
 
 const { words: urlWords } = getWordSearchParams()
 const words = ref(urlWords || '')

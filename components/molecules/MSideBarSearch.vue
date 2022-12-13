@@ -6,9 +6,9 @@
       <h3 class="pt-2 mb-2 font-bold text-gray-dark">
         検索条件
       </h3>
-      <form class="" @submit.prevent="sendData">
+      <div>
         <!-- フリー検索欄 -->
-        <OWordSearchBar />
+        <OSearchBarWord placeholder="事業所名など" />
 
         <!-- エリア選択 -->
         <a
@@ -22,11 +22,7 @@
           <!-- アロー -->
           <AArrow class="relative sm:hidden" line-color="gray-light" />
         </a>
-        <AButtonSubmit
-          inner-text="現在地から探す"
-          size="sm"
-          class="w-full text-pink mb-6"
-        />
+        <OSearchButtonLocation class="mb-6" />
 
         <template v-if="isCurrentUrlAreaSearch()">
           <NuxtLink
@@ -64,7 +60,7 @@
             />
           </div>
         </template>
-      </form>
+      </div>
     </div>
   </aside>
 </template>
@@ -79,7 +75,7 @@ const breakpoint = useBreakpoints(breakpointsTailwind)
 
 
 // ----- エリア検索 -----
-const { getAreaSearchParams, buildAreasString, buildAreaSearchUrl, buildDistrictPageUrl, isCurrentUrlAreaSearch } = useAreaSearch()
+const { getAreaSearchParams, buildAreasString, buildAreaSearchUrl, buildDistrictPageUrl, isCurrentUrlAreaSearch } = useSearchArea()
 const { prefecture, districts, area } = getAreaSearchParams()
 
 const currentDistricts = ref<string[] | undefined>()
@@ -97,11 +93,6 @@ onMounted(async () => {
     selectedDistricts.value = districts!
   }
 })
-// -----
-
-const sendData = () => {
-  // 検索条件のデータが送信されます。
-}
 </script>
 
 <style scoped lang="scss">

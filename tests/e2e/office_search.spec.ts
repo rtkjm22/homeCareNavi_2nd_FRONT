@@ -41,7 +41,8 @@ test('サイドバーでエリア検索ができること', async ({ page }) => 
   await expectOfficeResult(page)
 })
 
-test('単語検索ができること', async ({ page }) => {
+test('トップページ及び検索一覧画面で単語検索できること', async ({ page }) => {
+  // トップページ
   await page.goto('http://localhost:8080/')
 
   await page.getByRole('textbox', { name: '事業所名、市区町村など' }).fill('新宿')
@@ -50,15 +51,37 @@ test('単語検索ができること', async ({ page }) => {
   await expect(page).toHaveURL(encodeURI('http://localhost:8080/offices?words=新宿&page=1'))
 
   await expectOfficeResult(page)
-})
 
-test('サイドバーで単語検索ができること', async ({ page }) => {
-  await page.goto('http://localhost:8080/offices?words=新宿&page=1')
-
-  await page.getByRole('textbox', { name: '事業所名、市区町村など' }).fill('茨城')
-  await page.getByRole('textbox', { name: '事業所名、市区町村など' }).press('Enter')
+  // 検索一覧画面
+  await page.getByRole('textbox', { name: '事業所名など' }).fill('茨城')
+  await page.getByRole('textbox', { name: '事業所名など' }).press('Enter')
 
   await expect(page).toHaveURL(encodeURI('http://localhost:8080/offices?words=茨城&page=1'))
+
+  await expectOfficeResult(page)
+})
+
+test('トップページ及び検索一覧画面で現在地検索できること', async ({ page, context }) => {
+  // 現在位置情報設定
+  context.grantPermissions(['geolocation'])
+  context.setGeolocation({
+    latitude: 35.67225,
+    longitude: 139.70003
+  })
+
+  // トップページ
+  await page.goto('http://localhost:8080/')
+
+  await page.getByRole('button', { name: '現在地から探す' }).click()
+
+  await expect(page).toHaveURL(/\/offices\?lat=.*&lng=.*&page=1/)
+
+  await expectOfficeResult(page)
+
+  // 検索一覧画面
+  await page.getByRole('button', { name: '現在地から探す' }).click()
+
+  await expect(page).toHaveURL(/\/offices\?lat=.*&lng=.*&page=1/)
 
   await expectOfficeResult(page)
 })

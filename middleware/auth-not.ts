@@ -1,10 +1,10 @@
 /** 未ログイン専用ページ */
 export default defineNuxtRouteMiddleware(() => {
   const { $user } = useNuxtApp()
-  const { alert } = useUI()
+  const { showAlert } = useAlert()
 
   if ($user.state.value) {
-    alert.showAlert('ログイン中はアクセス出来ません。', 'warning')
+    showAlert('ログイン中はアクセス出来ません。', 'warning')
     return navigateTo('/')
   }
 })

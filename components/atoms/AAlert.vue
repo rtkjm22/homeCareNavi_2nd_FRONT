@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body">
     <div
-      v-show="alert.state.value.isShow"
+      v-show="alertState.isShow"
       class="fixed top-16 left-1/2 -translate-x-1/2 flex items-center justify-between gap-4 rounded border p-4 md:p-5"
       :class="baseColors"
       role="alert"
@@ -28,7 +28,7 @@
           <strong class="text-sm md:text-base font-medium"> {{ title }} </strong>
 
           <span class="block text-xs md:text-sm opacity-90">
-            {{ alert.state.value.message }}
+            {{ alertState.message }}
           </span>
         </p>
       </div>
@@ -41,7 +41,7 @@
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          @click="manualClose"
+          @click="closeAlert"
         >
           <path
             fill-rule="evenodd"
@@ -55,10 +55,10 @@
 </template>
 
 <script setup lang="ts">
-const { alert } = useUI()
+const { alertState, closeAlert } = useAlert()
 
 const baseColors = computed<string[]>(() => {
-  switch (alert.state.value.type) {
+  switch (alertState.value.type) {
     case 'success':
       return ['border-green-900/10', 'bg-green-50', 'text-green-700']
     case 'info':
@@ -71,7 +71,7 @@ const baseColors = computed<string[]>(() => {
 })
 
 const icon = computed<{ color: string, path: string }>(() => {
-  switch (alert.state.value.type) {
+  switch (alertState.value.type) {
     case 'success':
       return {
         color: 'bg-green-600',
@@ -96,7 +96,7 @@ const icon = computed<{ color: string, path: string }>(() => {
 })
 
 const title = computed<string>(() => {
-  switch (alert.state.value.type) {
+  switch (alertState.value.type) {
     case 'success':
       return '成功'
     case 'info':
@@ -107,10 +107,4 @@ const title = computed<string>(() => {
       return '失敗'
   }
 })
-
-/** アラートのバツボタンで閉じる際のメソッド */
-const manualClose = () => {
-  clearTimeout(alert.closeTimeoutID.value)
-  alert.state.value.isShow = false
-}
 </script>

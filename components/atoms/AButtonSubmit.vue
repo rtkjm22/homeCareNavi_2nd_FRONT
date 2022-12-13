@@ -1,5 +1,7 @@
 <template>
   <button type="submit" class="base" :class="[btnColor, btnSize]">
+    <slot name="prepend-icon" />
+
     {{ innerText }}
   </button>
 </template>
