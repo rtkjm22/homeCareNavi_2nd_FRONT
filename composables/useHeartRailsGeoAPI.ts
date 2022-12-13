@@ -1,5 +1,14 @@
 /** HeartRailsGeoAPIの共通URL */
-const BASE_URL = 'http://geoapi.heartrails.com/api/json'
+const BASE_URL = 'https://geoapi.heartrails.com/api/json'
+
+/** 47都道府県 */
+const PREFECTURES = ['北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県',
+  '茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県',
+  '新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県', '岐阜県',
+  '静岡県', '愛知県', '三重県', '滋賀県', '京都府', '大阪府', '兵庫県',
+  '奈良県', '和歌山県', '鳥取県', '島根県', '岡山県', '広島県', '山口県',
+  '徳島県', '香川県', '愛媛県', '高知県', '福岡県', '佐賀県', '長崎県',
+  '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県'] as const
 
 /**
  * レスポンスの共通型。{ response: }は共通で、成功時はメソッド特有の値が、失敗時はerror: stringが返ってくる
@@ -39,7 +48,7 @@ type AddressResult = {
  */
 export const useHeartRailsGeoAPI = () => {
   /** 地方区分に該当する都道府県の配列を返す */
-  const getPrefectures = (area?: Area) => {
+  const getPrefectures = (area: Area) => {
     switch (area) {
       case '北海道':
         return ['北海道']
@@ -57,17 +66,15 @@ export const useHeartRailsGeoAPI = () => {
         return ['徳島県', '香川県', '愛媛県', '高知県']
       case '九州':
         return ['福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県']
-      default:
-        return []
     }
   }
 
-  /** 郵便番号から都道府県、市区町村、経度緯度等を取得しそれを返す。ヒットしなければundefinedを返す。 */
+  /** 郵便番号から都道府県、市区町村、経度緯度等を取得しそれを返す。 */
   const searchByPostal = async (postal: string) => {
     type Result = { location: AddressResult[] }
     const { response } = await $fetch<BaseResponse<Result>>(`${BASE_URL}/?method=searchByPostal&postal=${postal}`)
 
-    if ('error' in response) { return }
+    if ('error' in response) { throw new Error('郵便番号がヒットしませんでした') }
     return response.location[0]
   }
 
@@ -92,6 +99,7 @@ export const useHeartRailsGeoAPI = () => {
   }
 
   return {
+    PREFECTURES,
     searchByPostal,
     AREAS,
     getPrefectures,
