@@ -44,6 +44,6 @@ const btnSize = computed(() => {
 
 <style scoped lang="scss">
 .base {
-  @apply font-bold rounded duration-200 hover:opacity-70;
+  @apply font-bold rounded duration-200 hover:opacity-70 disabled:opacity-70;
 }
 </style>
