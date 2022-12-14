@@ -1,15 +1,16 @@
 <template>
   <AButtonSubmit
     class="
-      flex
-      justify-center
-      items-center
-      border
-      border-pink
-      text-pink
-      w-full
-    "
-    inner-text="現在地から探す"
+    flex
+    justify-center
+    items-center
+    border
+    border-pink
+    text-pink
+    w-full
+  "
+    v-bind="{ 'disabled': isClickSubmitBtn }"
+    :inner-text="text"
     size="sm"
     @click="clickSubmitBtn"
   >
@@ -35,7 +36,15 @@ const { buildNearestSearchUrl } = useSearchNearest()
 // メソッドの使用時にポップアップを出現させると、位置情報取得に5秒ほどの待機時間が生じてしまう現象の対策
 navigator.geolocation.getCurrentPosition(() => {})
 
+/** 現在位置取得が遅い場合があるので、クリックされたら現在地取得中の旨を分かるように表示するためのフラグ */
+const isClickSubmitBtn = ref(false)
+
+const text = ref('現在地から探す')
+
 const clickSubmitBtn = () => {
+  isClickSubmitBtn.value = true
+  text.value = '現在地を取得しています...'
+
   // 位置情報取得
   navigator.geolocation.getCurrentPosition((pos) => {
     const { latitude, longitude } = pos.coords

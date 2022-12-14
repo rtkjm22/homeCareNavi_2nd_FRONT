@@ -21,7 +21,7 @@
           <p class="text-[12px] mb-8 text-gray-base">
             ホームケアナビは、ケアマネージャーの検索ができるサービスです。
           </p>
-          <OSearchBarWord placeholder="事業所名、市区町村など" />
+          <OSearchBarWord placeholder="事業所名、市区町村など" class="md:w-[720px] md:h-[48px]" />
         </div>
 
         <!-- SP -->

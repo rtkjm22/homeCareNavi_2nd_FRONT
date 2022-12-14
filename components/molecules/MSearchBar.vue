@@ -18,13 +18,14 @@
         block
         bg-white
         w-full
-        md:w-[720px] md:h-[48px]
+        h-full
         border
         rounded-full
         py-2
         pl-9
         pr-3
-        focus:outline-none focus:ring-0
+        focus:outline-none
+        focus:ring-0
       "
       type="text"
       name="search"
