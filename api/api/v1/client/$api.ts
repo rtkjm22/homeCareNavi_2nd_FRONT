@@ -156,24 +156,28 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     reserves: {
       /**
        * ホームケアを予約する
+       * @returns OK
        */
-      post: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods7['post']['status']>(prefix, PATH7, POST, option).send(),
+      post: (option: { body: Methods7['post']['reqBody'], headers?: Methods7['post']['reqHeaders'] | undefined, config?: T | undefined }) =>
+        fetch<Methods7['post']['resBody'], BasicHeaders, Methods7['post']['status']>(prefix, PATH7, POST, option).json(),
       /**
        * ホームケアを予約する
+       * @returns OK
        */
-      $post: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods7['post']['status']>(prefix, PATH7, POST, option).send().then(r => r.body),
+      $post: (option: { body: Methods7['post']['reqBody'], headers?: Methods7['post']['reqHeaders'] | undefined, config?: T | undefined }) =>
+        fetch<Methods7['post']['resBody'], BasicHeaders, Methods7['post']['status']>(prefix, PATH7, POST, option).json().then(r => r.body),
       /**
-       * 予約一覧を取得する
+       * 事業所利用者が予約一覧を取得する
+       * @returns OK
        */
-      get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods7['get']['status']>(prefix, PATH7, GET, option).send(),
+      get: (option?: { headers?: Methods7['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
+        fetch<Methods7['get']['resBody'], BasicHeaders, Methods7['get']['status']>(prefix, PATH7, GET, option).json(),
       /**
-       * 予約一覧を取得する
+       * 事業所利用者が予約一覧を取得する
+       * @returns OK
        */
-      $get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods7['get']['status']>(prefix, PATH7, GET, option).send().then(r => r.body),
+      $get: (option?: { headers?: Methods7['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
+        fetch<Methods7['get']['resBody'], BasicHeaders, Methods7['get']['status']>(prefix, PATH7, GET, option).json().then(r => r.body),
       $path: () => `${prefix}${PATH7}`
     },
     thank: {

@@ -293,24 +293,28 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       reserves: {
         /**
          * ホームケアを予約する
+         * @returns OK
          */
-        post: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods12['post']['status']>(prefix, PATH12, POST, option).send(),
+        post: (option: { body: Methods12['post']['reqBody'], headers?: Methods12['post']['reqHeaders'] | undefined, config?: T | undefined }) =>
+          fetch<Methods12['post']['resBody'], BasicHeaders, Methods12['post']['status']>(prefix, PATH12, POST, option).json(),
         /**
          * ホームケアを予約する
+         * @returns OK
          */
-        $post: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods12['post']['status']>(prefix, PATH12, POST, option).send().then(r => r.body),
+        $post: (option: { body: Methods12['post']['reqBody'], headers?: Methods12['post']['reqHeaders'] | undefined, config?: T | undefined }) =>
+          fetch<Methods12['post']['resBody'], BasicHeaders, Methods12['post']['status']>(prefix, PATH12, POST, option).json().then(r => r.body),
         /**
-         * 予約一覧を取得する
+         * 事業所利用者が予約一覧を取得する
+         * @returns OK
          */
-        get: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods12['get']['status']>(prefix, PATH12, GET, option).send(),
+        get: (option?: { headers?: Methods12['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
+          fetch<Methods12['get']['resBody'], BasicHeaders, Methods12['get']['status']>(prefix, PATH12, GET, option).json(),
         /**
-         * 予約一覧を取得する
+         * 事業所利用者が予約一覧を取得する
+         * @returns OK
          */
-        $get: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods12['get']['status']>(prefix, PATH12, GET, option).send().then(r => r.body),
+        $get: (option?: { headers?: Methods12['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
+          fetch<Methods12['get']['resBody'], BasicHeaders, Methods12['get']['status']>(prefix, PATH12, GET, option).json().then(r => r.body),
         $path: () => `${prefix}${PATH12}`
       },
       thank: {
@@ -534,14 +538,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           return {
             /**
              * 予約を更新する
+             * @returns OK
              */
-            patch: (option?: { config?: T | undefined } | undefined) =>
-              fetch<void, BasicHeaders, Methods21['patch']['status']>(prefix, prefix2, PATCH, option).send(),
+            patch: (option: { body: Methods21['patch']['reqBody'], headers?: Methods21['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
+              fetch<Methods21['patch']['resBody'], BasicHeaders, Methods21['patch']['status']>(prefix, prefix2, PATCH, option).json(),
             /**
              * 予約を更新する
+             * @returns OK
              */
-            $patch: (option?: { config?: T | undefined } | undefined) =>
-              fetch<void, BasicHeaders, Methods21['patch']['status']>(prefix, prefix2, PATCH, option).send().then(r => r.body),
+            $patch: (option: { body: Methods21['patch']['reqBody'], headers?: Methods21['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
+              fetch<Methods21['patch']['resBody'], BasicHeaders, Methods21['patch']['status']>(prefix, prefix2, PATCH, option).json().then(r => r.body),
             $path: () => `${prefix}${prefix2}`
           }
         }
@@ -549,14 +555,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       reserves: {
         /**
          * 予約一覧を取得する
+         * @returns OK
          */
-        get: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods22['get']['status']>(prefix, PATH20, GET, option).send(),
+        get: (option?: { headers?: Methods22['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
+          fetch<Methods22['get']['resBody'], BasicHeaders, Methods22['get']['status']>(prefix, PATH20, GET, option).json(),
         /**
          * 予約一覧を取得する
+         * @returns OK
          */
-        $get: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods22['get']['status']>(prefix, PATH20, GET, option).send().then(r => r.body),
+        $get: (option?: { headers?: Methods22['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
+          fetch<Methods22['get']['resBody'], BasicHeaders, Methods22['get']['status']>(prefix, PATH20, GET, option).json().then(r => r.body),
         $path: () => `${prefix}${PATH20}`
       },
       staffs: {
