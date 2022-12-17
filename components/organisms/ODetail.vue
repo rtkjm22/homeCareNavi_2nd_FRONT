@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- スライドショー -->
-    <MSlider class="content lg:mb-6" />
+    <MSlider v-bind="mSlider" class="content lg:mb-6" />
     <!-- 基本情報（SP） -->
     <ODetailInfo v-bind="oDetailInfo" class="block mb-4 lg:hidden" />
     <!-- 事業所紹介 -->
@@ -14,9 +14,13 @@
 </template>
 
 <script setup lang="ts">
+import type { Props as MSliderProps } from '@/components/molecules/MSlider.vue'
 import type { Props as ODetailInfoProps } from '@/components/organisms/ODetailInfo.vue'
 
-defineProps<{ oDetailInfo: ODetailInfoProps }>()
+defineProps<{
+  oDetailInfo: ODetailInfoProps,
+  mSlider: MSliderProps
+}>()
 </script>
 
 <style scoped lang="scss">

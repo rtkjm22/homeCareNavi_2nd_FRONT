@@ -8,6 +8,7 @@
     <div v-else class="flex flex-col max-w-[990px] m-auto gap-8 lg:flex-row">
       <!-- 左カラム -->
       <ODetail
+        :m-slider="{ images: data.carousel_images }"
         :o-detail-info="data.office"
         class="gridItem w-full max-w-[520px]"
       />
