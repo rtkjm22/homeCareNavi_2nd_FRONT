@@ -42,9 +42,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useRouteQuery } from '@vueuse/router'
 import type { OfficeSearchFetcher } from '@/types/offfice_search'
 
+const router = useRouter()
 const { showAlert } = useAlert()
 const { isCurrentUrlAreaSearch, useAsyncAreaSearch } = useSearchArea()
 const { isCurrentUrlWordSearch, useAsyncWordSearch } = useSearchWord()
@@ -69,13 +69,11 @@ if (isCurrentUrlAreaSearch()) {
 /** 検索結果 */
 const { data: searchResults, pending } = searchFetcher()
 
-/** 現在のページ番号 */
-const currentPage = useRouteQuery<string>('page', undefined, { mode: 'push' })
-
-/** ページ番号クリック処理。引数に渡されたページの所得及びurl履歴の更新をする */
+/** ページ番号クリック処理。現在のurlからpageの値のみを更新し、更新後のurlにページ遷移する。 */
 const clickPaginate = (newPage: number) => {
-  // 代入するだけでurlのpageが更新され、router.pushされる
-  currentPage.value = newPage.toString()
+  const url = new URL(location.href)
+  url.searchParams.set('page', newPage.toString())
+  router.push(`/offices${url.search}`)
 }
 </script>
 
