@@ -5,7 +5,7 @@
     <!-- 基本情報（SP） -->
     <ODetailInfo v-bind="oDetailInfo" class="block mb-4 lg:hidden" />
     <!-- 事業所紹介 -->
-    <ODetailIntroduction class="content mb-4 lg:mb-6" />
+    <ODetailIntroduction v-bind="oDetailIntroduction" class="content mb-4 lg:mb-6" />
     <!-- スタッフ紹介 -->
     <ODetailThanks class="content mb-4 lg:mb-6" />
     <!-- 施設概要 -->
@@ -16,10 +16,12 @@
 <script setup lang="ts">
 import type { Props as MSliderProps } from '@/components/molecules/MSlider.vue'
 import type { Props as ODetailInfoProps } from '@/components/organisms/ODetailInfo.vue'
+import type { Props as ODetailIntroductionProps } from '@/components/organisms/ODetailIntroduction.vue'
 
 defineProps<{
   oDetailInfo: ODetailInfoProps,
-  mSlider: MSliderProps
+  mSlider: MSliderProps,
+  oDetailIntroduction: ODetailIntroductionProps
 }>()
 </script>
 
