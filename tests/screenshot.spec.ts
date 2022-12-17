@@ -45,6 +45,10 @@ for (const path of PATHS) {
   test(`screenshot ${path}`, async ({ page }) => {
     await page.goto(path)
     await waitMount(page)
+    // office系統の画面でテストが失敗しやすいので、office系統のみ2秒待ってからスクリーンショットを比較する
+    if (path.startsWith('/offices')) {
+      await page.waitForTimeout(2000)
+    }
     const fileName = path.replaceAll('/', '-') + '.png'
     await expect(page).toHaveScreenshot(fileName, { fullPage: true })
   })
