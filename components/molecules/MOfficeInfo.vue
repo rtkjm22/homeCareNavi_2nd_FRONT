@@ -4,7 +4,7 @@
     role="listitem"
   >
     <!-- 事業所詳細情報 -->
-    <a href="#" class="block p-3 w-full h-full z-10">
+    <NuxtLink :to="`/offices/${id}`" class="block p-3 w-full h-full z-10">
       <!-- web予約タグ -->
       <div class="min-h-[30px]">
         <ATag v-if="is_bookmark" class="mb-2.5" inner-text="web予約可" />
@@ -60,7 +60,7 @@
         </p>
         <AWorkDay :work-day="workday" />
       </div>
-    </a>
+    </NuxtLink>
     <!-- ブックマークアイコン -->
     <ABookmark
       class="absolute z-20 top-[46px] right-3"

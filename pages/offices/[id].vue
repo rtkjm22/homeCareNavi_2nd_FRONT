@@ -1,14 +1,33 @@
 <template>
   <div class="pb-14 sm:pt-10 sm:pb-20">
-    <div class="flex flex-col max-w-[990px] m-auto gap-8 lg:flex-row">
+    <!-- ローディング -->
+    <div v-if="pending || data == null" class="flex justify-center">
+      <ASpinner size="lg" />
+    </div>
+
+    <div v-else class="flex flex-col max-w-[990px] m-auto gap-8 lg:flex-row">
       <!-- 左カラム -->
-      <ODetail class="gridItem w-full max-w-[520px]" />
+      <ODetail
+        :o-detail-info="data.office"
+        class="gridItem w-full max-w-[520px]"
+      />
       <!-- 右カラム -->
-      <ODetailInfo class="hidden lg:max-w-[438px] lg:block" />
+      <ODetailInfo v-bind="data.office" class="hidden lg:max-w-[438px] lg:block" />
     </div>
   </div>
 </template>
-<script setup lang="ts"></script>
+
+<script setup lang="ts">
+const { $api } = useNuxtApp()
+const route = useRoute()
+
+const id = Number.parseInt(route.params.id as string)
+
+const { data, pending } = useAsyncData(`/offces/${id}`, () => {
+  return $api.client.api.v1.client.offices._id(id).$get()
+})
+</script>
+
 <style scoped lang="scss">
 .gridItem {
   @apply m-auto lg:grid rounded;
