@@ -9,50 +9,61 @@
         <!-- 住所 -->
         <tr>
           <td>住所</td>
-          <td>〒157-0072<br />東京都世田谷区祖師谷4-3-15</td>
+          <td>〒{{ postal }}<br />{{ address }}</td>
         </tr>
         <!-- 類型 -->
         <tr>
           <td>類型</td>
-          <td>介護付きホーム（サービス付き高齢者向け住宅 特定施設）</td>
+          <td>{{ classify }}</td>
         </tr>
         <!-- 開設年月 -->
         <tr>
           <td>開設年月</td>
-          <td>2011年3月1日</td>
+          <td>{{ opening_date }}</td>
         </tr>
         <!-- 居室数 -->
         <tr>
           <td>居室数</td>
-          <td>30室</td>
+          <td>{{ room_count }}室</td>
         </tr>
         <!-- 入居時の要件 -->
         <tr>
           <td>入居時の要件</td>
-          <td>満60歳以上の方、入居時自立・要支援・要介護</td>
+          <td>{{ requirements }}</td>
         </tr>
         <!-- 共用設備 -->
         <tr>
           <td>共用設備</td>
           <td>
-            エントランス、食堂兼機能訓練室、個浴、大浴場、特殊浴槽、和室、談話室、シアタールーム、屋上庭園
+            {{ shared_facilities }}
           </td>
         </tr>
         <!-- 経営・事業主体 -->
         <tr>
           <td>経営・<br />事業主体</td>
-          <td>株式会社ユニマット リタイアメント・コミュニティ</td>
+          <td>{{ business_entity }}</td>
         </tr>
         <!-- 公式サイト -->
         <tr>
           <td>公式サイト</td>
-          <td><a class="text-pink break-words hover:underline" href="#">https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html</a></td>
+          <td><a class="text-pink break-words hover:underline" :href="official_site_url">{{ official_site_url }}</a></td>
         </tr>
       </table>
     </div>
   </div>
 </template>
-<script setup lang="ts"></script>
+
+<script setup lang="ts">
+import type { OfficeOverview } from '@/api/@types'
+
+export type Props = OfficeOverview & {
+  postal: string;
+  address: string;
+}
+
+defineProps<Props>()
+</script>
+
 <style scoped lang="scss">
 .myTable {
   @apply w-full;

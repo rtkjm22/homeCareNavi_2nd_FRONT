@@ -9,7 +9,7 @@
     <!-- スタッフ紹介 -->
     <ODetailThanks v-bind="oDetailThanks" class="content mb-4 lg:mb-6" />
     <!-- 施設概要 -->
-    <ODetailOverview class="content" />
+    <ODetailOverview v-bind="oDetailOverview" class="content" />
   </div>
 </template>
 
@@ -18,12 +18,14 @@ import type { Props as MSliderProps } from '@/components/molecules/MSlider.vue'
 import type { Props as ODetailInfoProps } from '@/components/organisms/ODetailInfo.vue'
 import type { Props as ODetailIntroductionProps } from '@/components/organisms/ODetailIntroduction.vue'
 import type { Props as ODetailThanksProps } from '@/components/organisms/ODetailThanks.vue'
+import type { Props as ODetailOverviewProps } from '@/components/organisms/ODetailOverview.vue'
 
 defineProps<{
   oDetailInfo: ODetailInfoProps,
   mSlider: MSliderProps,
   oDetailIntroduction: ODetailIntroductionProps,
-  oDetailThanks: ODetailThanksProps
+  oDetailThanks: ODetailThanksProps,
+  oDetailOverview: ODetailOverviewProps
 }>()
 </script>
 

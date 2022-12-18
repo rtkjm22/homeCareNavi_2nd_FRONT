@@ -12,6 +12,7 @@
         :o-detail-info="data.office"
         :o-detail-introduction="{...data.office, ...{ feature_images: data.feature_images }}"
         :o-detail-thanks="{ staffs: data.staffs }"
+        :o-detail-overview="{ ...data.office_overview, ...data.office }"
         class="gridItem w-full max-w-[520px]"
       />
       <!-- 右カラム -->
