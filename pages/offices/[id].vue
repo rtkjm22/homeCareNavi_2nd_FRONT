@@ -11,6 +11,7 @@
         :m-slider="{ images: data.carousel_images }"
         :o-detail-info="data.office"
         :o-detail-introduction="{...data.office, ...{ feature_images: data.feature_images }}"
+        :o-detail-thanks="{ staffs: data.staffs }"
         class="gridItem w-full max-w-[520px]"
       />
       <!-- 右カラム -->

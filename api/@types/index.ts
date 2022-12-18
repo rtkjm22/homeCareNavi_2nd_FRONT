@@ -113,6 +113,8 @@ export type OfficeStaff = {
   introduction: string
   /** スタッフロール */
   role: 'worker' | 'care_manager'
+  /** 事業所スタッフの画像url */
+  avatar_url?: string | null | undefined
 }
 
 /** ページネーションのレスポンス */
