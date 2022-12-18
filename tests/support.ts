@@ -43,8 +43,8 @@ export const setAuthStorage = async (context: BrowserContext, userType: 'client'
  * ページ遷移時に表示しきっていないのにスクショすることが多々あるので対策。
  * App.vueにonMounted時にtrueになるdata属性があるので、trueになるまで待つ。
  * */
-export const waitMount = (page: Page) => {
-  return page.locator('div[data-test-mounted=true]').waitFor({
+export const waitMount = async (page: Page) => {
+  await page.locator('div[data-test-mounted=true]').waitFor({
     timeout: 5000
   })
 }
