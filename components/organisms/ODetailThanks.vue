@@ -1,5 +1,24 @@
 <template>
-  <div class="w-full p-4 bg-white">
+  <div
+    ref="thanksWrapper"
+    class="w-full p-4 bg-white overflow-hidden relative"
+    :class="{
+      'max-h-[600px]' : !isSeeMore, // もっと見るを押していない場合は、max-heightに制限を付けて表示を隠す
+      'pb-12' : isSeeMore // もっと見るを押している場合は、最下段のスタッフが閉じるボタンと被るので、スペースを確保する
+    }"
+  >
+    <!-- もっと見るボタン -->
+    <div v-if="isOverflow" class="w-full absolute bottom-0 left-0">
+      <!-- もっと見るの半透明箇所 -->
+      <div :class="{ 'see-more-gradient' : !isSeeMore }" />
+      <p
+        class="h-12 bg-white text-center text-pink text-sm cursor-pointer"
+        @click="isSeeMore = !isSeeMore"
+      >
+        {{ isSeeMore ? '閉じる' : 'もっと見る' }}
+      </p>
+    </div>
+
     <div class="flex justify-between">
       <h3 class="mb-4 text-base font-bold sm:mb-3 sm:text-lg">
         スタッフ紹介
@@ -84,6 +103,18 @@ export type Props = {
 }
 
 defineProps<Props>()
+
+const thanksWrapper = ref<HTMLDivElement>()
+
+/** スタッフの数が多すぎて見切れているか否かの判定 */
+const isOverflow = computed(() => {
+  if (thanksWrapper.value == null) { return false }
+
+  return thanksWrapper.value.offsetHeight < thanksWrapper.value.scrollHeight
+})
+
+/** もっと見る判定 */
+const isSeeMore = ref(false)
 </script>
 
 <style scoped lang="scss">
@@ -91,5 +122,10 @@ defineProps<Props>()
   li:not(:last-of-type) {
     @apply mb-6;
   }
+}
+
+.see-more-gradient {
+  background: linear-gradient(rgba(255,255,255, 0.8), rgba(255,255,255,1));
+  height: 32px;
 }
 </style>
