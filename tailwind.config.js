@@ -11,7 +11,9 @@ module.exports = {
     extend: {
       colors: {
         pink: '#F06364',
+        babypink: '#F0636433',
         orange: '#F09C3C',
+        lightGreen: '#a9f0d129',
         gray: {
           lighter: '#D9DEDE',
           light: '#AEB5B2',
@@ -36,5 +38,6 @@ module.exports = {
       }
     }
   },
-  plugins: []
+  plugins: [require('daisyui')],
+  darkMode: 'class'
 }

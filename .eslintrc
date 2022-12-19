@@ -1,5 +1,41 @@
 {
   "extends": [
     "@nuxtjs/eslint-config-typescript"
+  ],
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error", {
+        "varsIgnorePattern": "[A-Z].*|^_",
+        "argsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+    }],
+    /*
+    * <img />のように閉じタグ無しで記述した際にerrorが出ないようにしました。
+    * @see https://eslint.vuejs.org/rules/html-self-closing.html
+    */
+    "vue/html-self-closing": ["error", {
+      "html": {
+        "void": "always"
+      }
+    }],
+    // APIからの値がスネークケースであるため、propsの値はキャメルケース及びスネークケースどちらも許容
+    "vue/prop-name-casing": "off",
+    "no-trailing-spaces": [
+      "error", {
+        "skipBlankLines": true
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "error", {
+        "max": 3
+      }
+    ],
+    "no-console": "off",
+    "eqeqeq": [
+      "error", "always", { "null": "ignore" }
+    ]
+  },
+  "ignorePatterns": [
+    "/api/**/*"
   ]
 }
