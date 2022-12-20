@@ -28,7 +28,3 @@ defineProps<{
 
 const buttonText = '退会する'
 </script>
-
-<style scoped lang="scss">
-
-</style>
