@@ -1,12 +1,12 @@
 <template>
-  <div class="border-t-2 border-t-pink shadow-sm">
+  <div class="border-t-2 shadow-sm" :class="borderTopColor">
     <div class="relative bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div
           class="flex justify-between items-center pt-4 pb-3 md:justify-start md:space-x-10"
         >
           <!-- ヘッダー画像 -->
-          <div class="flex justify-start lg:w-0 lg:flex-1">
+          <div class="flex justify-start lg:w-0 lg:flex-1 md:hidden lg:flex">
             <NuxtLink to="/">
               <img
                 class="h-8 w-auto sm:h-8"
@@ -14,6 +14,10 @@
                 alt=""
               />
             </NuxtLink>
+            <!-- ロールがマネージャーのときのみ出現する「Staff」タグ -->
+            <div v-if="userType === 'manager'" class="relative block ml-2">
+              <span class="absolute top-[6px] px-2 pt-[1px] pb-[1.5px] rounded-sm text-[11px] font-medium bg-orange text-white">Staff</span>
+            </div>
           </div>
 
           <!-- メニュー部（PC） -->
@@ -149,17 +153,18 @@ const links = computed<Link[] | undefined>(() => {
       return [
         { innerText: '閲覧履歴', to: '/' },
         { innerText: 'ブックマーク', to: '/' },
-        { innerText: '予約状況確認', to: '/' },
+        { innerText: '予約状況確認', to: '/client/auth/reserves' },
         { innerText: 'レビュー履歴', to: '/' },
         { innerText: '登録情報変更', to: '/client/auth/profile' }
       ]
     case 'manager':
       return [
-        { innerText: '事業所情報編集', to: '/' },
-        { innerText: 'スタッフ情報', to: '/' },
+        { innerText: '事業所情報編集', to: '/manager/auth/profile/edit' },
+        { innerText: '施設概要編集', to: '/manager/auth/profile/edit_inst' },
+        { innerText: 'スタッフ情報', to: '/manager/auth/staffs' },
         { innerText: 'お礼一覧', to: '/' },
-        { innerText: '予約状況確認', to: '/' },
-        { innerText: '利用者情報管理', to: '/' }
+        { innerText: '予約状況確認', to: '/manager/auth/reserves' },
+        { innerText: '利用者情報管理', to: '/manager/auth/clients' }
       ]
   }
 })
@@ -177,6 +182,15 @@ const logout = async () => {
   await navigateTo('/client/login')
   showAlert('ログアウトしました', 'success')
 }
+
+/** ヘッダー上部のボーダー */
+const borderTopColor = computed(() => {
+  if (props.userType === "manager") {
+    return `border-t-orange`
+  } else {
+    return `border-t-pink`
+  }
+})
 </script>
 
 <style scoped lang="scss">
