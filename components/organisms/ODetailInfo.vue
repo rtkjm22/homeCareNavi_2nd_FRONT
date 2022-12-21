@@ -66,6 +66,7 @@
         user-type="client"
         size="lg"
         class="mb-4 lg:mb-[18px]"
+        @click.prevent="clickReserveButton"
       />
 
       <!-- 営業日 -->
@@ -100,6 +101,40 @@ export type Props = {
 }
 
 defineProps<Props>()
+
+const { $user } = useNuxtApp()
+const router = useRouter()
+const route = useRoute()
+const { showAlert } = useAlert()
+
+/**
+ * - クライアントは予約ページへ遷移
+ * - 未ログインはログインページへ遷移
+ * - ケアマネはトップページへ遷移
+*/
+const clickReserveButton = async () => {
+  // クライアントログイン中処理
+  if ($user.isClient.value) {
+    await router.push({
+      path: '/client/auth/reserves/new',
+      query: {
+        officeId: route.params.id
+      }
+    })
+  }
+
+  // 未ログイン処理
+  if ($user.state.value == null) {
+    await router.push('/client/login')
+    showAlert('予約するにはログインしてください', 'info')
+  }
+
+  // ケアマネログイン中処理
+  if ($user.isManager.value) {
+    await router.push('/')
+    showAlert('ケアマネージャーアカウントで予約は出来ません', 'warning')
+  }
+}
 </script>
 
 <style scoped lang="scss">

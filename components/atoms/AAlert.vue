@@ -79,7 +79,7 @@ const icon = computed<{ color: string, path: string }>(() => {
       }
     case 'info':
       return {
-        color: 'border-sky-600',
+        color: 'bg-sky-600',
         path: 'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
       }
     case 'warning':

@@ -149,7 +149,7 @@ const links = computed<Link[] | undefined>(() => {
       return [
         { innerText: '閲覧履歴', to: '/' },
         { innerText: 'ブックマーク', to: '/' },
-        { innerText: '予約状況確認', to: '/' },
+        { innerText: '予約状況確認', to: '/client/auth/reserves' },
         { innerText: 'レビュー履歴', to: '/' },
         { innerText: '登録情報変更', to: '/client/auth/profile' }
       ]
