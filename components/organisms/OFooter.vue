@@ -23,7 +23,7 @@
           >
             <nav>
               <ul class="flex ">
-                <li v-for="link in links" :key="link.text" class="linkItem">
+                <li v-for="link in links" :key="link.text" class="linkItem" :class="roleColor">
                   <NuxtLink :to="link.to">
                     {{ link.text }}
                   </NuxtLink>
@@ -38,6 +38,21 @@
 </template>
 
 <script setup lang="ts">
+type Props = {
+  role?: 'client' | 'manager'
+}
+
+const props = withDefaults(
+  defineProps<Props>(),
+  { role: 'client' }
+)
+
+const roleColor = computed(() => {
+  if (props.role === 'manager') {
+    return `linkItem-${props.role}`
+  }
+})
+
 const links = [
   {
     text: 'プライバシーポリシー',
@@ -57,6 +72,9 @@ const links = [
 <style scoped lang="scss">
 .linkItem {
   @apply text-[11px] text-pink whitespace-nowrap;
+  &-manager {
+    @apply text-orange;
+  }
 }
 .linkItem:not(:last-of-type) {
   @apply mr-5;

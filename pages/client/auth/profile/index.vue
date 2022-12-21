@@ -65,7 +65,7 @@
       class="mb-10 sm:mb-20 mx-auto flex justify-center max-w-pcCol1 bg-white relative rounded py-5 mt-5"
     >
       <NuxtLink
-        to="/"
+        to="/client/auth/profile/delete"
         class="text-pink font-bold"
       >
         退会する

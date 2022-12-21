@@ -1,12 +1,12 @@
 <template>
-  <NuxtLink
+  <button
     to="/"
     class="block text-center font-bold border rounded transition-opacity hover:opacity-80"
   >
     <APlus class="plus_wrap">
       <slot />
     </APlus>
-  </NuxtLink>
+  </button>
 </template>
 <style scoped lang="scss">
 .plus_wrap {

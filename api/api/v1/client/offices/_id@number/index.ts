@@ -41,7 +41,7 @@ export type Methods = {
       /** スタッフ一覧 */
       staffs: (Types.OfficeStaff & {
         /** ユーザーからのお礼コメント一覧 */
-        user_comments: string[]
+        thanks_messages: string[]
       })[]
       /** 最大5枚のカルーセル画像 */
       carousel_images: Types.OfficeImage[]

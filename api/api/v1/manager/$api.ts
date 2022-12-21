@@ -196,14 +196,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         return {
           /**
            * 予約を更新する
+           * @returns OK
            */
-          patch: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods6['patch']['status']>(prefix, prefix1, PATCH, option).send(),
+          patch: (option: { body: Methods6['patch']['reqBody'], headers?: Methods6['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
+            fetch<Methods6['patch']['resBody'], BasicHeaders, Methods6['patch']['status']>(prefix, prefix1, PATCH, option).json(),
           /**
            * 予約を更新する
+           * @returns OK
            */
-          $patch: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods6['patch']['status']>(prefix, prefix1, PATCH, option).send().then(r => r.body),
+          $patch: (option: { body: Methods6['patch']['reqBody'], headers?: Methods6['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
+            fetch<Methods6['patch']['resBody'], BasicHeaders, Methods6['patch']['status']>(prefix, prefix1, PATCH, option).json().then(r => r.body),
           $path: () => `${prefix}${prefix1}`
         }
       }
@@ -211,14 +213,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     reserves: {
       /**
        * 予約一覧を取得する
+       * @returns OK
        */
-      get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods7['get']['status']>(prefix, PATH5, GET, option).send(),
+      get: (option?: { headers?: Methods7['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
+        fetch<Methods7['get']['resBody'], BasicHeaders, Methods7['get']['status']>(prefix, PATH5, GET, option).json(),
       /**
        * 予約一覧を取得する
+       * @returns OK
        */
-      $get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods7['get']['status']>(prefix, PATH5, GET, option).send().then(r => r.body),
+      $get: (option?: { headers?: Methods7['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
+        fetch<Methods7['get']['resBody'], BasicHeaders, Methods7['get']['status']>(prefix, PATH5, GET, option).json().then(r => r.body),
       $path: () => `${prefix}${PATH5}`
     },
     staffs: {

@@ -113,6 +113,8 @@ export type OfficeStaff = {
   introduction: string
   /** スタッフロール */
   role: 'worker' | 'care_manager'
+  /** 事業所スタッフの画像url */
+  avatar_url?: string | null | undefined
 }
 
 /** ページネーションのレスポンス */
@@ -165,4 +167,20 @@ export type ResponseSearchOffice = {
   workday: ('sun' | 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat')[]
   /** サムネイルのイメージ画像 */
   thumbnail_image: string | null
+}
+
+export type AuthSuccess = {
+  /** successまたはerror */
+  status?: string | undefined
+  data: User
+}
+
+export type BadRequest = {
+  /** エラーの値 */
+  errors: string[]
+}
+
+export type SearchResult = {
+  offices: ResponseSearchOffice[]
+  paginate: Paginate
 }

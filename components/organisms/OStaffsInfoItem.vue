@@ -24,13 +24,15 @@
     </div>
     <div class="flex justify-between gap-2">
       <!-- スタッフ削除ボタン -->
+
       <AButton
         inner-text="削除"
         class="text-orange hover:bg-white min-w-[115px]"
       />
       <!-- スタッフ情報編集ボタン -->
-      <AButton inner-text="編集する" user-type="manager" class="w-full" />
+      <NuxtLink to="/manager/auth/staffs/edit" class="w-full">
+        <AButton inner-text="編集する" user-type="manager" class="w-full" />
+      </NuxtLink>
     </div>
   </div>
 </template>
-

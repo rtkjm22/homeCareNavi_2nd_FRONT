@@ -13,14 +13,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       return {
         /**
          * 予約を更新する
+         * @returns OK
          */
-        patch: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods0['patch']['status']>(prefix, prefix0, PATCH, option).send(),
+        patch: (option: { body: Methods0['patch']['reqBody'], headers?: Methods0['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
+          fetch<Methods0['patch']['resBody'], BasicHeaders, Methods0['patch']['status']>(prefix, prefix0, PATCH, option).json(),
         /**
          * 予約を更新する
+         * @returns OK
          */
-        $patch: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods0['patch']['status']>(prefix, prefix0, PATCH, option).send().then(r => r.body),
+        $patch: (option: { body: Methods0['patch']['reqBody'], headers?: Methods0['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
+          fetch<Methods0['patch']['resBody'], BasicHeaders, Methods0['patch']['status']>(prefix, prefix0, PATCH, option).json().then(r => r.body),
         $path: () => `${prefix}${prefix0}`
       }
     }
