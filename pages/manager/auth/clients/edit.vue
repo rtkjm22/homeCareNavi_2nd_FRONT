@@ -1,7 +1,7 @@
 <template>
   <div class="block mt-10 mx-auto mb-20 w-full max-w-[750px]">
     <NuxtLink
-      to="/manager/clients"
+      to="/manager/auth/clients"
       class="relative hidden mb-4 pl-4 text-orange text-center text-sm opacity-80 md:inline-block"
     >
       <AArrow
@@ -122,7 +122,7 @@
             class="mb-2 py-3 sm:py-4"
           />
           <NuxtLink
-            to="/manager/clients"
+            to="/manager/auth/clients"
             class="text-orange text-center text-sm"
           >
             もどる

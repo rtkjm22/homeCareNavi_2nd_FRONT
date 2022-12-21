@@ -1,6 +1,6 @@
 <template>
   <div class="md:w-[750px] md:mt-[73px] md:mb-20 m-auto">
-    <NuxtLink to="/" :class="`text-sm text-orange hidden md:inline-block`">
+    <NuxtLink to="/manager/auth/staffs" :class="`text-sm text-orange hidden md:inline-block`">
       <ALeftArrow class="text-orange" />スタッフ情報一覧にもどる
     </NuxtLink>
     <div class="w-full md:w-[750px] h-full m-auto bg-white md:rounded md:shadow-sm">
@@ -35,7 +35,7 @@
           />
           <AButtonSubmit inner-text="変更する" user-type="manager" class="py-3 sm:py-4 mt-8" />
           <div class="text-center mt-2 pb-8">
-            <NuxtLink to="/" :class="`text-sm text-orange`">
+            <NuxtLink to="/manager/auth/staffs" :class="`text-sm text-orange`">
               もどる
             </NuxtLink>
           </div>

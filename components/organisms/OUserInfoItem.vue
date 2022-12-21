@@ -37,7 +37,9 @@
         class="text-orange hover:bg-white min-w-[115px]"
       />
       <!-- 利用者情報編集ボタン -->
-      <AButton inner-text="編集する" user-type="manager" class="w-full" />
+      <NuxtLink to="/manager/auth/clients/edit" class="w-full">
+        <AButton inner-text="編集する" user-type="manager" class="w-full" />
+      </NuxtLink>
     </div>
   </div>
 </template>

@@ -2922,7 +2922,8 @@
                                 "name": "田中　太郎",
                                 "furigana": "たなか　たろう",
                                 "introduction": "スタッフ紹介テキストが入ります",
-                                "role": "worker"
+                                "role": "worker",
+                                "avatar_url": "https://gravatar.com/avatar/3f01516b4a15256a7499653db6b9f27e?s=400&d=robohash&r=x"
                               }
                             },
                             "properties": {
@@ -2955,6 +2956,12 @@
                                   "care_manager"
                                 ],
                                 "description": "スタッフロール"
+                              },
+                              "avatar_url": {
+                                "type": "string",
+                                "description": "事業所スタッフの画像url",
+                                "example": "https://gravatar.com/avatar/3f01516b4a15256a7499653db6b9f27e?s=400&d=robohash&r=x",
+                                "nullable": true
                               }
                             },
                             "required": [
@@ -2968,7 +2975,7 @@
                           {
                             "type": "object",
                             "properties": {
-                              "user_comments": {
+                              "thanks_messages": {
                                 "type": "array",
                                 "description": "ユーザーからのお礼コメント一覧",
                                 "example": [
@@ -2982,7 +2989,7 @@
                               }
                             },
                             "required": [
-                              "user_comments"
+                              "thanks_messages"
                             ]
                           }
                         ]
@@ -3003,7 +3010,7 @@
                             "id": 1,
                             "caption": "画像の説明テキストが入ります",
                             "role": "thumbnail",
-                            "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                            "image_url": "https://picsum.photos/200/300"
                           }
                         },
                         "properties": {
@@ -3031,7 +3038,7 @@
                             "type": "string",
                             "description": "画像URL",
                             "format": "uri",
-                            "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                            "example": "https://picsum.photos/200/300"
                           }
                         },
                         "required": [
@@ -3056,7 +3063,7 @@
                             "id": 1,
                             "caption": "画像の説明テキストが入ります",
                             "role": "thumbnail",
-                            "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                            "image_url": "https://picsum.photos/200/300"
                           }
                         },
                         "properties": {
@@ -3084,7 +3091,7 @@
                             "type": "string",
                             "description": "画像URL",
                             "format": "uri",
-                            "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                            "example": "https://picsum.photos/200/300"
                           }
                         },
                         "required": [
@@ -3105,7 +3112,7 @@
                           "requirements": "満60歳以上の方、入居時自立・要支援・要介護",
                           "shared_facilities": "エントランス、食堂兼機能訓練室、個浴、大浴場、特殊浴槽、和室、談話室、シアタールーム、屋上庭園",
                           "business_entity": "株式会社ユニマット　リタイアメント・コミュニティ",
-                          "official_site_url": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html"
+                          "official_site_url": "https://example.com"
                         }
                       },
                       "title": "OfficeOverview",
@@ -3150,8 +3157,8 @@
                         "official_site_url": {
                           "type": "string",
                           "description": "公式サイトのURL",
-                          "example": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html",
-                          "format": "uri"
+                          "format": "uri",
+                          "example": "https://example.com"
                         }
                       },
                       "required": [
@@ -3198,14 +3205,6 @@
                         "feature_detail": "ここに事業所の特徴テキストが入ります",
                         "is_bookmark": true
                       },
-                      "carousel_images": [
-                        {
-                          "id": 1,
-                          "caption": "画像の説明テキストが入ります",
-                          "role": "thumbnail",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                        }
-                      ],
                       "staffs": [
                         {
                           "id": 1,
@@ -3213,19 +3212,79 @@
                           "furigana": "たなか　たろう",
                           "introduction": "スタッフ紹介テキストが入ります",
                           "role": "worker",
-                          "user_comments": [
+                          "avatar_url": "https://gravatar.com/avatar/3f01516b4a15256a7499653db6b9f27e?s=400&d=robohash&r=x",
+                          "thanks_messages": [
                             "リハビリのノウハウがあり、足の悪い父のお世話も安心して任せられました。",
-                            "とても親切な対応で、またお世話にさせていただこうと思いました！",
+                            "とても親切な対応で、またお世話にさせていただこうと思いました！"
+                          ]
+                        },
+                        {
+                          "id": 2,
+                          "name": "田中　次郎",
+                          "furigana": "たなか　じろう",
+                          "introduction": "スタッフ紹介テキストが入ります",
+                          "role": "worker",
+                          "avatar_url": "https://gravatar.com/avatar/3f01516b4a15256a7499653db6b9f27e?s=400&d=robohash&r=x",
+                          "thanks_messages": [
                             "感謝感激です。毎回お世話になってます。"
                           ]
+                        },
+                        {
+                          "id": 3,
+                          "name": "田中　三郎",
+                          "furigana": "たなか　さぶろう",
+                          "introduction": "スタッフ紹介テキストが入ります",
+                          "role": "worker",
+                          "avatar_url": "https://gravatar.com/avatar/3f01516b4a15256a7499653db6b9f27e?s=400&d=robohash&r=x"
+                        },
+                        {
+                          "id": 4,
+                          "name": "田中　四郎",
+                          "furigana": "たなか　しろう",
+                          "introduction": "スタッフ紹介テキストが入ります",
+                          "role": "worker",
+                          "avatar_url": "https://gravatar.com/avatar/3f01516b4a15256a7499653db6b9f27e?s=400&d=robohash&r=x"
+                        }
+                      ],
+                      "carousel_images": [
+                        {
+                          "id": 1,
+                          "role": "carousel",
+                          "image_url": "https://picsum.photos/200/300"
+                        },
+                        {
+                          "id": 2,
+                          "role": "carousel",
+                          "image_url": "https://picsum.photos/200/300"
+                        },
+                        {
+                          "id": 3,
+                          "role": "carousel",
+                          "image_url": "https://picsum.photos/200/300"
+                        },
+                        {
+                          "id": 4,
+                          "role": "carousel",
+                          "image_url": "https://picsum.photos/200/300"
+                        },
+                        {
+                          "id": 5,
+                          "role": "carousel",
+                          "image_url": "https://picsum.photos/200/300"
                         }
                       ],
                       "feature_images": [
                         {
-                          "id": 1,
+                          "id": 6,
                           "caption": "画像の説明テキストが入ります",
-                          "role": "thumbnail",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          "role": "feature",
+                          "image_url": "https://picsum.photos/200/300"
+                        },
+                        {
+                          "id": 7,
+                          "caption": "画像の説明テキストが入ります",
+                          "role": "feature",
+                          "image_url": "https://picsum.photos/200/300"
                         }
                       ],
                       "office_overview": {
@@ -3236,7 +3295,7 @@
                         "requirements": "満60歳以上の方、入居時自立・要支援・要介護",
                         "shared_facilities": "エントランス、食堂兼機能訓練室、個浴、大浴場、特殊浴槽、和室、談話室、シアタールーム、屋上庭園",
                         "business_entity": "株式会社ユニマット　リタイアメント・コミュニティ",
-                        "official_site_url": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html"
+                        "official_site_url": "https://example.com"
                       }
                     }
                   }
@@ -3274,7 +3333,7 @@
             "content": {
               "application/json": {
                 "examples": {
-                  "全画像作成済みパターン": {
+                  "Example 1": {
                     "value": {
                       "id": 1,
                       "name": "ホームケア事務所_1",
@@ -3294,73 +3353,26 @@
                       "nearest_station": "北12条駅 徒歩5分",
                       "thumbnail_image": {
                         "id": 1,
+                        "caption": "画像の説明テキストが入ります",
                         "role": "thumbnail",
-                        "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                        "image_url": "https://picsum.photos/200/300"
                       },
                       "feature_images": [
                         {
-                          "id": 2,
-                          "caption": "画像の特徴テキストが入ります1",
-                          "role": "feature",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                        },
-                        {
-                          "id": 3,
-                          "caption": "画像の特徴テキストが入ります2",
-                          "role": "feature",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          "id": 1,
+                          "caption": "画像の説明テキストが入ります",
+                          "role": "thumbnail",
+                          "image_url": "https://picsum.photos/200/300"
                         }
                       ],
                       "carousel_images": [
                         {
-                          "id": 4,
-                          "role": "carousel",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                        },
-                        {
-                          "id": 5,
-                          "role": "carousel",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                        },
-                        {
-                          "id": 6,
-                          "role": "carousel",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                        },
-                        {
-                          "id": 7,
-                          "role": "carousel",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
-                        },
-                        {
-                          "id": 8,
-                          "role": "carousel",
-                          "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                          "id": 1,
+                          "caption": "画像の説明テキストが入ります",
+                          "role": "thumbnail",
+                          "image_url": "https://picsum.photos/200/300"
                         }
                       ]
-                    }
-                  },
-                  "全画像未作成パターン": {
-                    "value": {
-                      "id": 1,
-                      "name": "ホームケア事務所_1",
-                      "feature_title": "事業所紹介タイトル",
-                      "feature_detail": "ここに事業所の特徴テキストが入ります",
-                      "workday": [
-                        "mon",
-                        "tue",
-                        "wed",
-                        "thu",
-                        "fri"
-                      ],
-                      "workday_detail": "営業日時についてのテキストが入ります",
-                      "lat": "43.073211",
-                      "lng": "41.350427",
-                      "fax": "111-2222-3333",
-                      "nearest_station": "北12条駅 徒歩5分",
-                      "thumbnail_image": null,
-                      "feature_images": [],
-                      "carousel_images": []
                     }
                   }
                 },
@@ -3488,7 +3500,7 @@
                               "id": 1,
                               "caption": "画像の説明テキストが入ります",
                               "role": "thumbnail",
-                              "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                              "image_url": "https://picsum.photos/200/300"
                             }
                           },
                           "properties": {
@@ -3516,7 +3528,7 @@
                               "type": "string",
                               "description": "画像URL",
                               "format": "uri",
-                              "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                              "example": "https://picsum.photos/200/300"
                             }
                           },
                           "required": [
@@ -3539,7 +3551,7 @@
                                 "id": 1,
                                 "caption": "画像の説明テキストが入ります",
                                 "role": "thumbnail",
-                                "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                                "image_url": "https://picsum.photos/200/300"
                               }
                             },
                             "properties": {
@@ -3567,7 +3579,7 @@
                                 "type": "string",
                                 "description": "画像URL",
                                 "format": "uri",
-                                "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                                "example": "https://picsum.photos/200/300"
                               }
                             },
                             "required": [
@@ -3591,7 +3603,7 @@
                                 "id": 1,
                                 "caption": "画像の説明テキストが入ります",
                                 "role": "thumbnail",
-                                "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                                "image_url": "https://picsum.photos/200/300"
                               }
                             },
                             "properties": {
@@ -3619,7 +3631,7 @@
                                 "type": "string",
                                 "description": "画像URL",
                                 "format": "uri",
-                                "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                                "example": "https://picsum.photos/200/300"
                               }
                             },
                             "required": [
@@ -3987,7 +3999,7 @@
                       "requirements": "満60歳以上の方、入居時自立・要支援・要介護",
                       "shared_facilities": "エントランス、食堂兼機能訓練室、個浴、大浴場、特殊浴槽、和室、談話室、シアタールーム、屋上庭園",
                       "business_entity": "株式会社ユニマット　リタイアメント・コミュニティ",
-                      "official_site_url": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html"
+                      "official_site_url": "https://example.com"
                     }
                   },
                   "title": "OfficeOverview",
@@ -4032,8 +4044,8 @@
                     "official_site_url": {
                       "type": "string",
                       "description": "公式サイトのURL",
-                      "example": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html",
-                      "format": "uri"
+                      "format": "uri",
+                      "example": "https://example.com"
                     }
                   },
                   "required": [
@@ -4230,7 +4242,7 @@
                       "requirements": "満60歳以上の方、入居時自立・要支援・要介護",
                       "shared_facilities": "エントランス、食堂兼機能訓練室、個浴、大浴場、特殊浴槽、和室、談話室、シアタールーム、屋上庭園",
                       "business_entity": "株式会社ユニマット　リタイアメント・コミュニティ",
-                      "official_site_url": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html"
+                      "official_site_url": "https://example.com"
                     }
                   },
                   "title": "OfficeOverview",
@@ -4275,8 +4287,8 @@
                     "official_site_url": {
                       "type": "string",
                       "description": "公式サイトのURL",
-                      "example": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html",
-                      "format": "uri"
+                      "format": "uri",
+                      "example": "https://example.com"
                     }
                   },
                   "required": [
@@ -4382,7 +4394,7 @@
                       "id": 1,
                       "caption": "画像の説明テキストが入ります",
                       "role": "thumbnail",
-                      "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                      "image_url": "https://picsum.photos/200/300"
                     }
                   },
                   "properties": {
@@ -4410,7 +4422,7 @@
                       "type": "string",
                       "description": "画像URL",
                       "format": "uri",
-                      "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                      "example": "https://picsum.photos/200/300"
                     }
                   },
                   "required": [
@@ -4584,7 +4596,7 @@
                       "id": 1,
                       "caption": "画像の説明テキストが入ります",
                       "role": "thumbnail",
-                      "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                      "image_url": "https://picsum.photos/200/300"
                     }
                   },
                   "properties": {
@@ -4612,7 +4624,7 @@
                       "type": "string",
                       "description": "画像URL",
                       "format": "uri",
-                      "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+                      "example": "https://picsum.photos/200/300"
                     }
                   },
                   "required": [
@@ -5165,7 +5177,7 @@
       },
       "parameters": []
     },
-    "/api/v1/manager/reserve/{id}": {
+    "/api/v1/manager/reserves/{id}": {
       "parameters": [
         {
           "name": "id",
@@ -5184,12 +5196,88 @@
         "operationId": "updateManagerReserve",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "is_contacted": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": {
+                      "is_contacted": true
+                    }
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "is_contacted": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "examples": {
+                  "Example 1": {
+                    "value": "{\n  is_contacted: true\n}"
+                  }
+                }
+              }
+            }
           }
         },
         "description": "予約を更新する",
         "tags": [
           "reserve"
+        ],
+        "parameters": [
+          {
+            "name": "access-token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "7sbMLu90-fDnajzasuhOTQ"
+            },
+            "description": "トークン認証に必要なヘッダー(1/4)"
+          },
+          {
+            "name": "client",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "xJ-BFLHzY_XNMX_cjsQnPw"
+            },
+            "description": "トークン認証に必要なヘッダー(2/4)"
+          },
+          {
+            "name": "expiry",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "1660145125"
+            },
+            "description": "トークン認証に必要なヘッダー(3/4)"
+          },
+          {
+            "name": "uid",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "test1@example.com"
+            },
+            "description": "トークン認証に必要なヘッダー(4/4)"
+          }
         ]
       }
     },
@@ -6806,7 +6894,7 @@
             "requirements": "満60歳以上の方、入居時自立・要支援・要介護",
             "shared_facilities": "エントランス、食堂兼機能訓練室、個浴、大浴場、特殊浴槽、和室、談話室、シアタールーム、屋上庭園",
             "business_entity": "株式会社ユニマット　リタイアメント・コミュニティ",
-            "official_site_url": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html"
+            "official_site_url": "https://example.com"
           }
         },
         "title": "OfficeOverview",
@@ -6851,8 +6939,8 @@
           "official_site_url": {
             "type": "string",
             "description": "公式サイトのURL",
-            "example": "https://www.unimat-rc.co.jp/shisetsu/sosigaya_871/index.html",
-            "format": "uri"
+            "format": "uri",
+            "example": "https://example.com"
           }
         },
         "required": [
@@ -6878,7 +6966,7 @@
             "id": 1,
             "caption": "画像の説明テキストが入ります",
             "role": "thumbnail",
-            "image_url": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+            "image_url": "https://picsum.photos/200/300"
           }
         },
         "properties": {
@@ -6906,7 +6994,7 @@
             "type": "string",
             "description": "画像URL",
             "format": "uri",
-            "example": "http://localhost:3000/rails/active_storage/disk/eyJfcmF/test_image.jpg"
+            "example": "https://picsum.photos/200/300"
           }
         },
         "required": [
@@ -6928,7 +7016,8 @@
             "name": "田中　太郎",
             "furigana": "たなか　たろう",
             "introduction": "スタッフ紹介テキストが入ります",
-            "role": "worker"
+            "role": "worker",
+            "avatar_url": "https://gravatar.com/avatar/3f01516b4a15256a7499653db6b9f27e?s=400&d=robohash&r=x"
           }
         },
         "properties": {
@@ -6961,6 +7050,12 @@
               "care_manager"
             ],
             "description": "スタッフロール"
+          },
+          "avatar_url": {
+            "type": "string",
+            "description": "事業所スタッフの画像url",
+            "example": "https://gravatar.com/avatar/3f01516b4a15256a7499653db6b9f27e?s=400&d=robohash&r=x",
+            "nullable": true
           }
         },
         "required": [

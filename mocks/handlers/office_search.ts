@@ -64,5 +64,14 @@ export const officeSearch = [
     return res(
       ctx.json(body)
     )
+  }),
+
+  /** 事業所詳細取得 */
+  rest.get(`${BASE_PATH}/api/v1/client/offices/:id`, (req, res, cts) => {
+    const body = openapi.paths['/api/v1/client/offices/{id}'].get.responses[200].content['application/json'].examples['Example 1'].value
+
+    return res(
+      cts.json(body)
+    )
   })
 ]

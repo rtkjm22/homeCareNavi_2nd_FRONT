@@ -7,6 +7,7 @@ export const CLIENT_AUTH_PATHS = [
   '/client/auth/profile',
   '/client/auth/reserves/complete',
   '/client/auth/reserves',
+  '/client/auth/reserves/new',
   '/client/auth/thanks/complete'
 ] as const
 
