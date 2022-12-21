@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     // インポートした型をdefinePropsに指定できるようにする（単純な型限定）
     // https://github.com/vuejs/core/issues/4294
-    'vite-plugin-vue-type-imports/nuxt',
+    '@vue-macros/nuxt',
     '@vueuse/nuxt'
   ],
 
