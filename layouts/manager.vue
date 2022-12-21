@@ -3,7 +3,7 @@
     <OHeader user-type="manager" />
     <AAlert />
     <slot />
-    <OFooter class="footer" />
+    <OFooter class="footer" role="manager" />
   </div>
 </template>
 
