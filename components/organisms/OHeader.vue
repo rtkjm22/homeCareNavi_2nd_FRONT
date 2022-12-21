@@ -149,9 +149,9 @@ const links = computed<Link[] | undefined>(() => {
       return [
         { innerText: '閲覧履歴', to: '/' },
         { innerText: 'ブックマーク', to: '/' },
-        { innerText: '予約状況確認', to: '/client/auth/reserves' },
-        { innerText: 'レビュー履歴', to: '/' },
-        { innerText: '登録情報変更', to: '/client/auth/profile' }
+        { innerText: '予約履歴', to: '/client/auth/reserves' },
+        { innerText: 'お礼投稿履歴', to: '/' },
+        { innerText: '登録情報', to: '/client/auth/profile' }
       ]
     case 'manager':
       return [
