@@ -11,10 +11,5 @@ export type Methods = {
     resBody: {
       is_contacted: number
     }
-
-    reqBody: {
-      ' id': number
-      is_contacted?: boolean | undefined
-    }
   }
 }

@@ -21,8 +21,8 @@ import type { Methods as Methods17 } from './v1/manager/office_clients/_id@numbe
 import type { Methods as Methods18 } from './v1/manager/office_images'
 import type { Methods as Methods19 } from './v1/manager/office_images/_id@number'
 import type { Methods as Methods20 } from './v1/manager/office_overview'
-import type { Methods as Methods21 } from './v1/manager/reserve/_id@number'
-import type { Methods as Methods22 } from './v1/manager/reserves'
+import type { Methods as Methods21 } from './v1/manager/reserves'
+import type { Methods as Methods22 } from './v1/manager/reserves/_id@number'
 import type { Methods as Methods23 } from './v1/manager/staffs'
 import type { Methods as Methods24 } from './v1/manager/staffs/_id@number'
 import type { Methods as Methods25 } from './v1/manager/thank/_id@number'
@@ -49,11 +49,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH16 = '/api/v1/manager/office_clients'
   const PATH17 = '/api/v1/manager/office_images'
   const PATH18 = '/api/v1/manager/office_overview'
-  const PATH19 = '/api/v1/manager/reserve'
-  const PATH20 = '/api/v1/manager/reserves'
-  const PATH21 = '/api/v1/manager/staffs'
-  const PATH22 = '/api/v1/manager/thank'
-  const PATH23 = '/api/v1/manager/thanks'
+  const PATH19 = '/api/v1/manager/reserves'
+  const PATH20 = '/api/v1/manager/staffs'
+  const PATH21 = '/api/v1/manager/thank'
+  const PATH22 = '/api/v1/manager/thanks'
   const GET = 'GET'
   const POST = 'POST'
   const DELETE = 'DELETE'
@@ -532,7 +531,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
             fetch<Methods20['get']['resBody'], Methods20['get']['resHeaders'], Methods20['get']['status']>(prefix, PATH18, GET, option).json().then(r => r.body),
           $path: () => `${prefix}${PATH18}`
         },
-        reserve: {
+        reserves: {
           _id: (val3: number) => {
             const prefix3 = `${PATH19}/${val3}`
 
@@ -541,36 +540,34 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
                * 予約を更新する
                * @returns OK
                */
-              patch: (option: { body: Methods21['patch']['reqBody'], headers?: Methods21['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
-                fetch<Methods21['patch']['resBody'], BasicHeaders, Methods21['patch']['status']>(prefix, prefix3, PATCH, option).json(),
+              patch: (option?: { headers?: Methods22['patch']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
+                fetch<Methods22['patch']['resBody'], BasicHeaders, Methods22['patch']['status']>(prefix, prefix3, PATCH, option).json(),
               /**
                * 予約を更新する
                * @returns OK
                */
-              $patch: (option: { body: Methods21['patch']['reqBody'], headers?: Methods21['patch']['reqHeaders'] | undefined, config?: T | undefined }) =>
-                fetch<Methods21['patch']['resBody'], BasicHeaders, Methods21['patch']['status']>(prefix, prefix3, PATCH, option).json().then(r => r.body),
+              $patch: (option?: { headers?: Methods22['patch']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
+                fetch<Methods22['patch']['resBody'], BasicHeaders, Methods22['patch']['status']>(prefix, prefix3, PATCH, option).json().then(r => r.body),
               $path: () => `${prefix}${prefix3}`
             }
-          }
-        },
-        reserves: {
+          },
           /**
            * 予約一覧を取得する
            * @returns OK
            */
-          get: (option?: { headers?: Methods22['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
-            fetch<Methods22['get']['resBody'], BasicHeaders, Methods22['get']['status']>(prefix, PATH20, GET, option).json(),
+          get: (option?: { headers?: Methods21['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
+            fetch<Methods21['get']['resBody'], BasicHeaders, Methods21['get']['status']>(prefix, PATH19, GET, option).json(),
           /**
            * 予約一覧を取得する
            * @returns OK
            */
-          $get: (option?: { headers?: Methods22['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
-            fetch<Methods22['get']['resBody'], BasicHeaders, Methods22['get']['status']>(prefix, PATH20, GET, option).json().then(r => r.body),
-          $path: () => `${prefix}${PATH20}`
+          $get: (option?: { headers?: Methods21['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
+            fetch<Methods21['get']['resBody'], BasicHeaders, Methods21['get']['status']>(prefix, PATH19, GET, option).json().then(r => r.body),
+          $path: () => `${prefix}${PATH19}`
         },
         staffs: {
           _id: (val3: number) => {
-            const prefix3 = `${PATH21}/${val3}`
+            const prefix3 = `${PATH20}/${val3}`
 
             return {
               /**
@@ -603,30 +600,30 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            * @returns OK
            */
           get: (option?: { headers?: Methods23['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
-            fetch<Methods23['get']['resBody'], BasicHeaders, Methods23['get']['status']>(prefix, PATH21, GET, option).json(),
+            fetch<Methods23['get']['resBody'], BasicHeaders, Methods23['get']['status']>(prefix, PATH20, GET, option).json(),
           /**
            * スタッフ一覧を取得する
            * @returns OK
            */
           $get: (option?: { headers?: Methods23['get']['reqHeaders'] | undefined, config?: T | undefined } | undefined) =>
-            fetch<Methods23['get']['resBody'], BasicHeaders, Methods23['get']['status']>(prefix, PATH21, GET, option).json().then(r => r.body),
+            fetch<Methods23['get']['resBody'], BasicHeaders, Methods23['get']['status']>(prefix, PATH20, GET, option).json().then(r => r.body),
           /**
            * スタッフを追加する
            * @returns OK
            */
           post: (option: { body: Methods23['post']['reqBody'], headers?: Methods23['post']['reqHeaders'] | undefined, config?: T | undefined }) =>
-            fetch<Methods23['post']['resBody'], BasicHeaders, Methods23['post']['status']>(prefix, PATH21, POST, option).json(),
+            fetch<Methods23['post']['resBody'], BasicHeaders, Methods23['post']['status']>(prefix, PATH20, POST, option).json(),
           /**
            * スタッフを追加する
            * @returns OK
            */
           $post: (option: { body: Methods23['post']['reqBody'], headers?: Methods23['post']['reqHeaders'] | undefined, config?: T | undefined }) =>
-            fetch<Methods23['post']['resBody'], BasicHeaders, Methods23['post']['status']>(prefix, PATH21, POST, option).json().then(r => r.body),
-          $path: () => `${prefix}${PATH21}`
+            fetch<Methods23['post']['resBody'], BasicHeaders, Methods23['post']['status']>(prefix, PATH20, POST, option).json().then(r => r.body),
+          $path: () => `${prefix}${PATH20}`
         },
         thank: {
           _id: (val3: number) => {
-            const prefix3 = `${PATH22}/${val3}`
+            const prefix3 = `${PATH21}/${val3}`
 
             return {
               /**
@@ -648,13 +645,13 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            * お礼一覧を取得する
            */
           get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods26['get']['status']>(prefix, PATH23, GET, option).send(),
+            fetch<void, BasicHeaders, Methods26['get']['status']>(prefix, PATH22, GET, option).send(),
           /**
            * お礼一覧を取得する
            */
           $get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods26['get']['status']>(prefix, PATH23, GET, option).send().then(r => r.body),
-          $path: () => `${prefix}${PATH23}`
+            fetch<void, BasicHeaders, Methods26['get']['status']>(prefix, PATH22, GET, option).send().then(r => r.body),
+          $path: () => `${prefix}${PATH22}`
         }
       }
     }
