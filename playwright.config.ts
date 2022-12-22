@@ -21,7 +21,7 @@ const config: PlaywrightTestConfig = {
      */
     timeout: 15000,
     toHaveScreenshot: {
-      threshold: 1 // 極限まで判定を緩くする
+      threshold: 0.8 // 判定を緩くする
     }
   },
   /* Run tests in files in parallel */

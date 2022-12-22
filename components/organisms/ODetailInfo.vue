@@ -100,7 +100,7 @@ export type Props = {
   workday_detail: string
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const { $user } = useNuxtApp()
 const router = useRouter()
@@ -110,7 +110,7 @@ const { showAlert } = useAlert()
 /**
  * - クライアントは予約ページへ遷移
  * - 未ログインはログインページへ遷移
- * - ケアマネはトップページへ遷移
+ * - ケアマネは遷移しない
 */
 const clickReserveButton = async () => {
   // クライアントログイン中処理
@@ -118,7 +118,8 @@ const clickReserveButton = async () => {
     await router.push({
       path: '/client/auth/reserves/new',
       query: {
-        officeId: route.params.id
+        officeId: route.params.id,
+        officeName: props.name
       }
     })
   }
@@ -131,7 +132,6 @@ const clickReserveButton = async () => {
 
   // ケアマネログイン中処理
   if ($user.isManager.value) {
-    await router.push('/')
     showAlert('ケアマネージャーアカウントで予約は出来ません', 'warning')
   }
 }
