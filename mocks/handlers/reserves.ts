@@ -19,5 +19,14 @@ export const reserves = [
     return res(
       ctx.json(body)
     )
+  }),
+
+  /** 予約作成(クライアント) */
+  rest.post(`${BASE_PATH}/api/v1/client/reserves`, (req, res, ctx) => {
+    const body = openapi.paths['/api/v1/client/reserves'].post.responses[200].content['application/json'].examples['Example 1']
+
+    return res(
+      ctx.json(body)
+    )
   })
 ]
