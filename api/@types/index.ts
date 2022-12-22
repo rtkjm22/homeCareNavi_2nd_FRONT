@@ -169,6 +169,29 @@ export type ResponseSearchOffice = {
   thumbnail_image: string | null
 }
 
+export type Reserve = {
+  /** 主キー */
+  id?: number | undefined
+  /** 予約を受けた事業所のid */
+  office_id: number
+  /** 予約したクライアントのid */
+  client_id: number
+  /** 開始時間 */
+  interview_begin_at: string
+  /** 終了時間 */
+  interview_end_at: string
+  /** 予約したクライアント名 */
+  user_name: string
+  /** 予約したクライアントの年齢 */
+  user_age: number
+  /** クライアントの電話番号 */
+  contact_tel: string
+  /** お困りごと */
+  note: string
+  /** 事業所がクライアントに連絡済みかどうか */
+  is_contacted: boolean
+}
+
 export type AuthSuccess = {
   /** successまたはerror */
   status?: string | undefined
